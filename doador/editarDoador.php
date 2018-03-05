@@ -1,5 +1,5 @@
 <?php
-require_once("../conexao.php");
+require_once("conexao.php");
 
 	$con = conexaoMySql();
 if(($_GET['id']) == false){
@@ -53,20 +53,122 @@ if(($_GET['id']) == false){
 <br><br>
 <select id="tipoCliente" name="tipoCliente">
 	<option value="default">Tipo de Cliente..</option>
-	<?php if($doador->tipoDoador == 'fidel'){?>
-	<option value="fidel" selected>Fidelizado</option>
+	<?php if($doador->tipoDoador == 'Fidelizado'){?>
+	<option value="Fidelizado" selected>Fidelizado</option>
 	<?php } else {?>
-	<option value="fidel">Fidelizado</option>
-	<?php } if($doador->tipoDoador == 'exp'){?>
-	<option value="exp" selected>Exporádico</option>
+	<option value="Fidelizado">Fidelizado</option>
+	<?php } if($doador->tipoDoador == 'Exporádico'){?>
+	<option value="Exporádico" selected>Exporádico</option>
 	<?php } else {?>
-	<option value="exp">Exporádico</option>
-	<?php } if($doador->tipoDoador == 'anual'){?>
-	<option value="anual" selected>Anual</option>
+	<option value="Exporádico">Exporádico</option>
+	<?php } if($doador->tipoDoador == 'Anual'){?>
+	<option value="Anual" selected>Anual</option>
 	<?php } else {?>
-	<option value="anual">Anual</option>
+	<option value="Anual">Anual</option>
 	<?php } ?>
 </select>
+
+<?php if($doador->tipoDoador == "Fidelizado" && $doador->doaDia != 0){ ?>
+<select id="dia" name="dia" style="display: inline;">
+<?php } else { ?>
+<select id="dia" name="dia" style="display: none;">
+	<?php } ?>
+	<option value="default">Doa todo dia...</option>
+
+	<?php for($i=1; $i<=31; $i++){ ?>
+
+	<?php if($doador->doaDia == $i){ ?>
+	<option value="<?php echo $i; ?>" selected><?php echo $i; ?></option>
+	<? } else { ?>
+	<option value="<?php echo $i; ?>"><?php echo $i; ?></option>
+	<?php } ?>
+
+	<?php } //Fim do FOR ?> 
+	
+</select>
+
+<?php if($doador->tipoDoador == "Anual" && $doador->doaMes != "nenhum"){ ?>
+<select id="mes" name="mes" style="display: inline;">
+<?php } else { ?>
+<select id="mes" name="mes" style="display: none;">
+	<?php } ?>
+	<option value="default">Doa todo mês...</option>
+
+	<?php if($doador->doaMes == "Janeiro"){ ?> 
+	<option value="Janeiro" selected>Janeiro</option>
+	<?php } else { ?>
+	<option value="Janeiro">Janeiro</option>
+	<?php } ?>
+
+	<?php if($doador->doaMes == "Fevereiro"){?> 
+	<option value="Fevereiro" selected>Fevereiro</option>
+	<?php } else { ?>
+	<option value="Fevereiro">Fevereiro</option>
+	<?php } ?>
+
+	<?php if($doador->doaMes == "Março"){?> 
+	<option value="Março" selected>Março</option>
+	<?php } else { ?>
+	<option value="Março">Março</option>
+	<?php } ?>
+
+	<?php if($doador->doaMes == "Abril"){?> 
+	<option value="Abril" selected>Abril</option>
+	<?php } else { ?>
+	<option value="Abril">Abril</option>
+	<?php } ?>
+
+	<?php if($doador->doaMes == "Maio"){?> 
+	<option value="Maio" selected>Maio</option>
+	<?php } else { ?>
+	<option value="Maio">Maio</option>
+	<?php } ?>
+
+	<?php if($doador->doaMes == "Junho"){?> 
+	<option value="Junho" selected>Junho</option>
+	<?php } else { ?>
+	<option value="Junho">Junho</option>
+	<?php } ?>
+
+	<?php if($doador->doaMes == "Julho"){?> 
+	<option value="Julho" selected>Julho</option>
+	<?php } else { ?>
+	<option value="Julho">Julho</option>
+	<?php } ?>
+
+	<?php if($doador->doaMes == "Agosto"){?> 
+	<option value="Agosto" selected>Agosto</option>
+	<?php } else { ?>
+	<option value="Agosto">Agosto</option>
+	<?php } ?>
+
+	<?php if($doador->doaMes == "Setembro"){?> 
+	<option value="Setembro" selected>Setembro</option>
+	<?php } else { ?>
+	<option value="Setembro">Setembro</option>
+	<?php } ?>
+
+	<?php if($doador->doaMes == "Outubro"){?> 
+	<option value="Outubro" selected>Outubro</option>
+	<?php } else { ?>
+	<option value="Outubro">Outubro</option>
+	<?php } ?>
+
+
+	<?php if($doador->doaMes == "Novembro"){?> 
+	<option value="Novembro" selected>Novembro</option>
+	<?php } else { ?>
+	<option value="Novembro">Novembro</option>
+	<?php } ?>
+
+	<?php if($doador->doaMes == "Dezembro"){?> 
+	<option value="Dezembro" selected>Dezembro</option>
+	<?php } else { ?>
+	<option value="Dezembro">Dezembro</option>
+	<?php } ?>
+</select>
+
+
 <br><br>
 <select id="tipoPessoa" name="tipoPessoa">
 	<option value="default">Pessoa..</option>
@@ -80,6 +182,7 @@ if(($_GET['id']) == false){
 	<option value="juridica">Pessoa Jurídica</option>
 	<?php } ?>
 </select>
+
 <br><br>
 <label for="operadora">Operadora: </label>
 <input type="text" id="operadora" name="operadora" value="<?php echo $doador->operadora; ?>">
@@ -96,3 +199,27 @@ if(($_GET['id']) == false){
 	}
 	} 
 ?>
+
+<script type="text/javascript">
+	
+	tC = document.getElementById('tipoCliente');
+
+	tC.addEventListener("change",function(){
+		val = tC.value;
+
+		if(val == "Fidelizado"){
+			document.getElementById('dia').style.display = "inline";
+		} else {
+			document.getElementById('dia').style.display = "none";
+		}
+
+		if(val == "Anual"){
+			document.getElementById('mes').style.display = "inline";
+		} else {
+			document.getElementById('mes').style.display = "none";
+		}
+	});
+
+</script>
+</body>
+</html>

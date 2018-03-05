@@ -18,13 +18,38 @@
 	$operadora = $_POST['operadora'];
 	$turma = $_POST["turma"];
 
-	if($nome == ""){
-		echo "Nome em branco";
+	if($_POST['dia'] != "default"){
+		$dia = $_POST['dia'];
 	} else {
-		echo "Nome definido!";
+		$dia = 0;
 	}
 
-	$sql = "UPDATE doador SET nome = :nome, endereco = :endereco, email = :email, telefoneResidencial = :telRes, celular1 = :cel1, celular2 = :cel2, nascimento = :nasc, dataCadastro = :cad, tipoDoador = :tipoCli, tipoPessoa = :tipoPessoa, operadora = :operadora, turma = :turma WHERE id_doador=:id";
+	if($_POST['mes'] != "default"){
+		$mes = $_POST['mes'];
+	} else{
+		$mes = "nenhum";
+	}
+
+	if($tipoCliente == "Exporádico" || $tipoCliente == "Anual"){
+		$dia = 0;
+	} else {
+		$dia =$_POST['dia'];
+	}
+
+	if($tipoCliente == "Exporádico" || $tipoCliente == "Fidelizado"){
+		$mes = "nenhum";
+	} else {
+		$mes = $_POST['mes'];
+	}
+
+	if($tipoCliente == "Exporádico"){
+		$dia = 0;
+		$mes = "nenhum";
+	}
+
+
+
+	$sql = "UPDATE doador SET nome = :nome, endereco = :endereco, email = :email, telefoneResidencial = :telRes, celular1 = :cel1, celular2 = :cel2, nascimento = :nasc, dataCadastro = :cad, tipoDoador = :tipoCli, doaDia = :doaDia, doaMes = :doaMes, tipoPessoa = :tipoPessoa, operadora = :operadora, turma = :turma WHERE id_doador=:id";
 
 	$inserir = $con->prepare($sql);
 	$inserir->bindValue(':id',$id);
@@ -37,6 +62,8 @@
 	$inserir->bindValue(':nasc',$nascimento);
 	$inserir->bindValue(':cad',$cadastro);
 	$inserir->bindValue(':tipoCli',$tipoCliente);
+	$inserir->bindValue(':doaDia',$dia);
+	$inserir->bindValue(':doaMes',$mes);
 	$inserir->bindValue(':tipoPessoa',$pessoa);
 	$inserir->bindValue(':operadora',$operadora);
 	$inserir->bindValue(':turma',$turma);
@@ -49,7 +76,7 @@
 		<a href="<?php echo "http://".$_SERVER['SERVER_NAME'] ?>">Voltar</a>
 		<?php
 	} else {
-		echo "<h1>Não foi possivel cadastrar!</h1>";
+		echo "<h1>Nada a alterar.</h1>";
 	}
 
 	$con = null;

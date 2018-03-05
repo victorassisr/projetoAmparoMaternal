@@ -17,13 +17,20 @@
 	$operadora = $_POST['operadora'];
 	$turma = $_POST["turma"];
 
-	if($nome == ""){
-		echo "Nome em branco";
+
+	if($_POST['dia'] != "default"){
+		$dia = $_POST['dia'];
 	} else {
-		echo "Nome definido!";
+		$dia = 0;
 	}
 
-	$sql = "INSERT INTO doador(nome, endereco, email, telefoneResidencial, celular1, celular2, nascimento, dataCadastro, tipoDoador, tipoPessoa, operadora, turma) VALUES (:nome, :endereco, :email, :telRes, :cel1, :cel2, :nasc, :cad, :tipoCli, :tipoPessoa, :operadora, :turma)";
+	if($_POST['mes'] != "default"){
+		$mes = $_POST['mes'];
+	} else{
+		$mes = "nenhum";
+	}
+
+	$sql = "INSERT INTO doador(nome, endereco, email, telefoneResidencial, celular1, celular2, nascimento, dataCadastro, tipoDoador, doaDia, doaMes, tipoPessoa, operadora, turma) VALUES (:nome, :endereco, :email, :telRes, :cel1, :cel2, :nasc, :cad, :tipoCli, :doaDia, :doaMes, :tipoPessoa, :operadora, :turma)";
 
 	$inserir = $con->prepare($sql);
 	$inserir->bindValue(':nome',$nome);
@@ -35,9 +42,13 @@
 	$inserir->bindValue(':nasc',$nascimento);
 	$inserir->bindValue(':cad',$cadastro);
 	$inserir->bindValue(':tipoCli',$tipoCliente);
+	$inserir->bindValue(':doaDia',$dia);
+	$inserir->bindValue(':doaMes',$mes);
 	$inserir->bindValue(':tipoPessoa',$pessoa);
 	$inserir->bindValue(':operadora',$operadora);
 	$inserir->bindValue(':turma',$turma);
+
+	echo $dia . " Mes: " . $mes;
 
 	$inserir->execute();
 

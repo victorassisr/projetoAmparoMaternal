@@ -9,7 +9,7 @@
 		<li><a href="doador/cadastro.php">Cadastro de doadores</a></li>
 		<li><a href="doador/listarDoadores.php">Listar Doadores</a></li>
 		<li><a href="login/">Login</a></li>
-		<li><a href="sistemaDoacoes/">Cadastrar Doacoes</a></li>
+		<li><a href="doacao/">Cadastrar Doacoes</a></li>
 	</ul>
 </body>
 </html>

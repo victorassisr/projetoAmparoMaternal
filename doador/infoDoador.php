@@ -39,6 +39,12 @@
 		<li>Nascimento: <?php echo $doador->nascimento; ?></li>
 		<li>Data de Cadastro: <?php echo $doador->dataCadastro; ?></li>
 		<li>Tipo de Doador: <?php echo $doador->tipoDoador; ?></li>
+		<?php if($doador->doaDia != 0){ ?>
+		<li>Doa todo dia: <?php echo $doador->doaDia; ?></li>
+		<?php } ?>
+		<?php if($doador->doaMes != "nenhum"){ ?>
+		<li>Doa todo mês: <?php echo $doador->doaMes; ?></li>
+		<?php } ?>
 		<li>Tipo de Pessoa: <?php echo $doador->tipoPessoa; ?></li>
 		<li>Operadora: <?php echo $doador->operadora; ?></li>
 		<li>Turma: <?php echo $doador->turma; ?></li>
