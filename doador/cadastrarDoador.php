@@ -48,8 +48,6 @@
 	$inserir->bindValue(':operadora',$operadora);
 	$inserir->bindValue(':turma',$turma);
 
-	echo $dia . " Mes: " . $mes;
-
 	$inserir->execute();
 
 	if($inserir->rowCount() > 0){

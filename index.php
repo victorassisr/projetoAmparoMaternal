@@ -10,6 +10,8 @@
 		<li><a href="doador/listarDoadores.php">Listar Doadores</a></li>
 		<li><a href="login/">Login</a></li>
 		<li><a href="doacao/">Cadastrar Doacoes</a></li>
+		<li><a href="campanha/">Cadastrar Campanhas</a></li>
+		<li><a href="campanha/listarCampanhas.php">Listar Campanhas</a></li>
 	</ul>
 </body>
 </html>
