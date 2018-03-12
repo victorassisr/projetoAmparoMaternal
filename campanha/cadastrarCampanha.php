@@ -34,7 +34,7 @@ $con = conexaoMysql();
 			$cadastra->execute();
 
 			if($cadastra->rowCount() == 1){
-				echo "Cadastrou: " . $cadastra->rowCount();
+				echo "<h1>Campanha cadastrada com sucesso!</h1>";
 				echo "<br><br><a href=\"http://10.0.0.50/\">Voltar</a>";
 			} else {
 				echo "Houve um erro ao cadastrar!";

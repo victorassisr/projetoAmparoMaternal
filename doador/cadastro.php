@@ -36,9 +36,9 @@
 <br><br>
 <select id="tipoCliente" name="tipoCliente">
 	<option value="default">Tipo de Cliente..</option>
-	<option value="Fidelizado">Fidelizado</option>
-	<option value="Exporádico">Exporádico</option>
-	<option value="Anual">Anual</option>
+	<option value="fidelizado">Fidelizado</option>
+	<option value="exporadico">Exporádico</option>
+	<option value="anual">Anual</option>
 </select>
 
 <select id="dia" name="dia" style="display: none;">
@@ -94,8 +94,8 @@
 <br><br>
 <select id="tipoPessoa" name="tipoPessoa">
 	<option value="default">Pessoa..</option>
-	<option value="Física">Pessoa Fisica</option>
-	<option value="Jurídica">Pessoa Jurídica</option>
+	<option value="fisica">Pessoa Fisica</option>
+	<option value="juridica">Pessoa Jurídica</option>
 </select>
 <br><br>
 <label for="operadora">Operadora: </label>

@@ -3,7 +3,13 @@
 
 	$con = conexaoMysql();
 	
-	$id = $_GET['id'];
+
+	if(isset($_GET['id']) && $_GET['id'] != ""){
+
+		$id = $_GET['id'];
+	} else {
+		$id = 0;
+	}
 
 	$sql = "SELECT * FROM doador WHERE id_doador = :id";
 

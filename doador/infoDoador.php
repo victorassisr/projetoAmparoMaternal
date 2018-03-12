@@ -20,6 +20,26 @@
 		echo "Doador inexistente!";
 	}else{
 		$doador = $listar->fetch(PDO::FETCH_OBJ);
+
+		if($doador->tipoPessoa == "juridica"){
+			$doador->tipoPessoa = "Jurídica";
+		}
+
+		if($doador->tipoPessoa == "fisica"){
+			$doador->tipoPessoa = "Física";
+		}
+
+		if($doador->tipoDoador == "fidelizado"){
+			$doador->tipoDoador = "Fidelizado";
+		}
+
+		if($doador->tipoDoador == "exporadico"){
+			$doador->tipoDoador = "Exporádico";
+		}
+
+		if($doador->tipoDoador == "anual"){
+			$doador->tipoDoador = "Anual";
+		}
 ?>
 
 <!DOCTYPE html>
@@ -39,12 +59,12 @@
 		<li>Nascimento: <?php echo $doador->nascimento; ?></li>
 		<li>Data de Cadastro: <?php echo $doador->dataCadastro; ?></li>
 		<li>Tipo de Doador: <?php echo $doador->tipoDoador; ?></li>
-		<?php if($doador->doaDia != 0){ ?>
+<?php if($doador->doaDia != 0){ ?>
 		<li>Doa todo dia: <?php echo $doador->doaDia; ?></li>
-		<?php } ?>
-		<?php if($doador->doaMes != "nenhum"){ ?>
+<?php } ?>
+<?php if($doador->doaMes != "nenhum"){ ?>
 		<li>Doa todo mês: <?php echo $doador->doaMes; ?></li>
-		<?php } ?>
+<?php } ?>
 		<li>Tipo de Pessoa: <?php echo $doador->tipoPessoa; ?></li>
 		<li>Operadora: <?php echo $doador->operadora; ?></li>
 		<li>Turma: <?php echo $doador->turma; ?></li>

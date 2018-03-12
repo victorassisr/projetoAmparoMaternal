@@ -172,13 +172,13 @@ if(($_GET['id']) == false){
 <br><br>
 <select id="tipoPessoa" name="tipoPessoa">
 	<option value="default">Pessoa..</option>
-	<?php if($doador->tipoPessoa == 'fisica'){?>
+	<?php if($doador->tipoPessoa == 'fisica'){ ?>
 	<option value="fisica" selected>Pessoa Fisica</option>
-	<?php }else{?>
+	<?php }else{ ?>
 	<option value="fisica">Pessoa Fisica</option>
 	<?php }if($doador->tipoPessoa == 'juridica'){ ?>
 	<option value="juridica" selected>Pessoa Jurídica</option>
-	<? } else { ?>
+	<?php } else { ?>
 	<option value="juridica">Pessoa Jurídica</option>
 	<?php } ?>
 </select>

@@ -14,7 +14,7 @@
 		$valida->bindValue(':id_campanha',$id_campanha);
 		$valida->execute();
 
-		if($valida->rowCount == 0){
+		if($valida->rowCount() == 0){
 			$sql = "DELETE FROM campanhas WHERE id_campanha = :id_campanha";
 			$deleta = $con->prepare($sql);
 			$deleta->bindValue(':id_campanha',$id_campanha);
@@ -27,7 +27,7 @@
 			}
 
 		} else {
-			echo "<h1>ATENÇÂO!</h1>"
+			echo "<h1>ATENÇÂO!</h1>";
 			echo "<p>Você tem doacoes cadastradas nessa campanha!</p>";
 			echo "<p>Você não poderá apagar essa campanha a menos que não tenha nenhuma doação cadastrada nela.</p>";
 		}
