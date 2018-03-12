@@ -20,17 +20,34 @@
 	$busca->execute();
 	$campanhas = $busca->fetchAll(PDO::FETCH_OBJ);
 
+	//Busca tipo de Doação
+	$sql = "SELECT id_tipoDoacao, nome FROM tipoDoacao";
+	$busca = $con->prepare($sql);
+	$busca->execute();
+	$tipoDoacoes = $busca->fetchAll(PDO::FETCH_OBJ);
+
+	//Busca tipo de Doação em dinheiro
+	$sql = "SELECT idTipoDinheiro, tipo FROM tipoDoacaoDinheiro";
+	$busca = $con->prepare($sql);
+	$busca->execute();
+	$tiposDinheiro = $busca->fetchAll(PDO::FETCH_OBJ);
+
 ?>
 
 <!DOCTYPE html>
 <html>
 <head>
+	<noscript>
+		<meta http-equiv="Refresh" content="0;url=https://10.0.0.50/projetoAmparoMaternal/index.php?erro=nojs">
+	</noscript>
+
 	<title>Cadastrar Doacao</title>
 </head>
 <body>
-	<form action="cadastrarDoacao.php" method="POST">
 
-		<label for="itemDoacao">O que foi doado?</label>
+	<form action="cadastrarDoacao.php" method="POST" id="formDoacao">
+
+		<label for="itemDoacao" id="lItemDoacao">O que foi doado?</label>
 		<input type="text" name="itemDoacao" id="itemDoacao">
 
 		<br><br>
@@ -55,36 +72,58 @@
 
 		<br><br>
 
-		<label for="quantidade">Quantidade: </label>
+		<label for="quantidade" id="lQuantidade">Quantidade: </label>
 		<input type="number" name="quantidade" id="quantidade">
 
 		<br><br>
 
-		<label for="valorDinheiro">Valor Doado: </label>
-		<input type="text" name="valorDinheiro" id="valorDinheiro">
+		<label for="valorDinheiro" id="lValorDinheiro">Valor Doado: </label>
+		<input type="text" name="valorDinheiro" id="valorDinheiro" required>
+		<label for="valorCentavos" id="lValorCentavos">,</label>
+		<input type="text" maxlength="2" name="valorCentavos" id="valorCentavos" required>
 
 		<br><br>
 
 		<select name="tipoDinheiro">
-			<option value="default">Selecione uma opção...</option>
-			<option value="1">Depósito</option>
-			<option value="2">Em Espécie</option>
-			<option value="3">Cheque</option>
-			<option value="4">Cartão</option>
+			<option value="default">Selecione a categoria..</option>
+			<?php foreach($tiposDinheiro as $tipoDinheiro){ ?>
+			<?php
+				if($tipoDinheiro->tipo == "deposito"){
+					$tipoDinheiro->tipo = "Depósito";
+				}
+
+				if($tipoDinheiro->tipo == "especie"){
+					$tipoDinheiro->tipo = "Espécie";
+				}
+
+				if($tipoDinheiro->tipo == "cheque"){
+					$tipoDinheiro->tipo = "Cheque";
+				}
+
+				if($tipoDinheiro->tipo == "cartao"){
+					$tipoDinheiro->tipo = "Cartão";
+				}
+
+				if($tipoDinheiro->tipo == "outro"){
+					$tipoDinheiro->tipo = "Outros";
+				}
+			?>
+			<option value="<?php echo $tipoDinheiro->idTipoDinheiro; ?>"><?php echo $tipoDinheiro->tipo; ?></option>
+			<?php } ?>
 		</select>
 
 		<br><br>
 
-		<select name="tipoItem">
-			<option value="default">Selecione uma opção...</option>
-			<option value="1">Roupas</option>
-			<option value="2">Dinheiro</option>
-			<option value="3">Outros</option>
+		<select name="tipoDoacao">
+			<option value="default">Selecione a categoria..</option>
+			<?php foreach($tipoDoacoes as $tipoDoacao){ ?>
+			<option value="<?php echo $tipoDoacao->id_tipoDoacao; ?>"><?php echo $tipoDoacao->nome; ?></option>
+			<?php } ?>
 		</select>
 
 		<br><br>
 
-		<input type="submit" value="Cadastrar">
+		<button type="button" onclick="check()">Cadastrar</button>
 	</form>
 
 	<script>
@@ -108,6 +147,92 @@
 	dataDoacao.value = dataAtual; //Coloca a data validada no input.
 
 	//FIM COLOCAR DATA NO INPUT DATA DE CADASTRO
+	</script>
+
+	<script type="text/javascript">
+
+		form = document.getElementById("formDoacao");
+
+
+		//Labels
+		labelForItemDoacao = document.getElementById("lItemDoacao");
+		labelForQuantidade = document.getElementById("lQuantidade");
+		labelForValorDinheiro = document.getElementById("lValorDinheiro");
+		labelForValorCentavos = document.getElementById("lValorCentavos");
+
+
+		form.tipoDinheiro.style.display = "none";
+		form.tipoDinheiro.style.display = "none";
+		form.itemDoacao.style.display = "none";
+		labelForItemDoacao.style.display = "none";
+		form.quantidade.style.display = "none";
+		labelForQuantidade.style.display = "none";
+		form.valorDinheiro.style.display = "none";
+		form.valorCentavos.style.display = "none";
+		labelForValorDinheiro.style.display = "none";
+		labelForValorCentavos.style.display = "none";
+
+		form.tipoDoacao.addEventListener("change",function(){
+
+			tipo = form.tipoDoacao.options;
+
+			valor = tipo[tipo.selectedIndex].innerHTML;
+
+			if(valor == 'Dinheiro'){
+				form.tipoDinheiro.style.display = "inline";
+				form.itemDoacao.style.display = "none";
+				labelForItemDoacao.style.display = "none";
+				form.quantidade.style.display = "none";
+				labelForQuantidade.style.display = "none";
+				form.valorDinheiro.style.display = "inline";
+				form.valorCentavos.style.display = "inline";
+				labelForValorCentavos.style.display = "inline";
+				labelForValorDinheiro.style.display = "inline";
+			} else {
+				form.tipoDinheiro.style.display = "none";
+				form.itemDoacao.style.display = "inline";
+				labelForItemDoacao.style.display = "inline";
+				form.quantidade.style.display = "inline";
+				labelForQuantidade.style.display = "inline";
+				form.valorDinheiro.style.display = "none";
+				form.valorCentavos.style.display = "none";
+				labelForValorCentavos.style.display = "none";
+				labelForValorDinheiro.style.display = "none";
+			}
+		});
+
+		
+	function check(){	
+		dinheiro = form.valorDinheiro.value + "." + form.valorCentavos.value;
+		if(dinheiro.match(/^-?\d+\.\d+$/) != null){
+			form.valorDinheiro.style.border = "1px solid #a9a9a9";
+			form.valorDinheiro.style.padding = "2px 2px";
+			form.valorCentavos.style.border = "1px solid #a9a9a9";
+			form.valorCentavos.style.padding = "2px 2px";
+		} else {
+			form.valorDinheiro.style.border = "2px solid red";
+			form.valorCentavos.style.border = "2px solid red";
+		}
+	}
+
+	form.valorDinheiro.addEventListener("keyup",function(){
+		if(form.valorDinheiro.value.match(/^[0-9]+$/) && form.valorDinheiro.value != ""){
+			form.valorDinheiro.style.border = "1px solid #0F0";
+			form.valorDinheiro.style.padding = "2px 2px";
+		} else {
+			form.valorDinheiro.style.border = "2px solid red";
+		}
+	});
+
+	form.valorCentavos.addEventListener("keyup",function(){
+		if(form.valorCentavos.value.match(/^[0-9]+$/) && form.valorCentavos.value != ""){
+			form.valorCentavos.style.border = "1px solid #0F0";
+			form.valorCentavos.style.padding = "2px 2px";
+		} else {
+			form.valorCentavos.style.border = "2px solid red";
+		}
+	});
+
 	</script>
 
 

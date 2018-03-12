@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: 12-Mar-2018 às 03:18
+-- Generation Time: 12-Mar-2018 às 07:11
 -- Versão do servidor: 10.1.28-MariaDB
 -- PHP Version: 7.1.10
 
@@ -40,7 +40,8 @@ CREATE TABLE `campanhas` (
 --
 
 INSERT INTO `campanhas` (`id_campanha`, `nomeCampanha`, `dataInicial`, `dataFinal`) VALUES
-(1, 'Nenhuma', '0000-00-00', '0000-00-00');
+(1, 'Nenhuma', '0000-00-00', '0000-00-00'),
+(7, 'Natal', '2018-03-12', '2018-03-21');
 
 -- --------------------------------------------------------
 
@@ -108,7 +109,31 @@ CREATE TABLE `tipoDoacao` (
 --
 
 INSERT INTO `tipoDoacao` (`id_tipoDoacao`, `nome`) VALUES
-(7, 'roupasinhas');
+(1, 'Nenhuma'),
+(7, 'roupasinhas'),
+(8, 'Dinheiro');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `tipoDoacaoDinheiro`
+--
+
+CREATE TABLE `tipoDoacaoDinheiro` (
+  `idTipoDinheiro` int(100) NOT NULL,
+  `tipo` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Extraindo dados da tabela `tipoDoacaoDinheiro`
+--
+
+INSERT INTO `tipoDoacaoDinheiro` (`idTipoDinheiro`, `tipo`) VALUES
+(1, 'deposito'),
+(2, 'especie'),
+(3, 'cheque'),
+(4, 'cartao'),
+(5, 'outro');
 
 -- --------------------------------------------------------
 
@@ -161,6 +186,12 @@ ALTER TABLE `tipoDoacao`
   ADD PRIMARY KEY (`id_tipoDoacao`);
 
 --
+-- Indexes for table `tipoDoacaoDinheiro`
+--
+ALTER TABLE `tipoDoacaoDinheiro`
+  ADD PRIMARY KEY (`idTipoDinheiro`);
+
+--
 -- Indexes for table `usuarios`
 --
 ALTER TABLE `usuarios`
@@ -174,7 +205,7 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT for table `campanhas`
 --
 ALTER TABLE `campanhas`
-  MODIFY `id_campanha` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_campanha` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `doacao`
@@ -192,7 +223,13 @@ ALTER TABLE `doador`
 -- AUTO_INCREMENT for table `tipoDoacao`
 --
 ALTER TABLE `tipoDoacao`
-  MODIFY `id_tipoDoacao` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_tipoDoacao` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT for table `tipoDoacaoDinheiro`
+--
+ALTER TABLE `tipoDoacaoDinheiro`
+  MODIFY `idTipoDinheiro` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `usuarios`

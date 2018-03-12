@@ -18,7 +18,7 @@
 			?><a href="<?php echo "editarDoador.php?id=".$doador->id_doador; ?>">Editar</a>
 			<a href="<?php echo "excluirDoador.php?id=".$doador->id_doador; ?>">Excluir</a>
 			<a href="<?php echo "infoDoador.php?id=".$doador->id_doador; ?>">Info</a>
-			<a href="<?php echo "../doacao/indexNovo.php?id=".$doador->id_doador."&pag=doador"; ?>">Cadastrar Doacao</a>
+			<a href="<?php echo "../doacao/cadastrarDoacao.php?id=".$doador->id_doador."&pag=doador"; ?>">Cadastrar Doacao</a>
 			<?php
 			echo "<br><br>==============================<br><br>";
 		}

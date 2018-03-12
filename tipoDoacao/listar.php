@@ -23,9 +23,15 @@ $con = null;
 			echo "<h1>Nada cadastrado ainda!</h1>";
 		} else{
 		forEach($resultado as $i){
+			if($i['nome'] == "Nenhuma"){
+?>
+<li><?php echo $i["nome"]; ?></li>
+<?php
+			} else {
 		?>
 		<li><?php echo $i["nome"]; ?>--<a href="excluir.php?id=<?php echo $i['id_tipoDoacao']?>">Excluir</a>--<a href="alterar.php?id=<?php echo $i['id_tipoDoacao']?>">Alterar</a></li>
 		<?php
+				}
 			}
 		}
 		?>
