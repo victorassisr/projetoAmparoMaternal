@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: 08-Mar-2018 às 20:31
+-- Generation Time: 12-Mar-2018 às 03:18
 -- Versão do servidor: 10.1.28-MariaDB
 -- PHP Version: 7.1.10
 
@@ -40,10 +40,7 @@ CREATE TABLE `campanhas` (
 --
 
 INSERT INTO `campanhas` (`id_campanha`, `nomeCampanha`, `dataInicial`, `dataFinal`) VALUES
-(1, 'Nenhuma', '2018-03-01', '2018-03-01'),
-(2, 'teste', '2018-02-01', '2018-07-01'),
-(3, 'teste12', '2018-03-01', '2018-03-01'),
-(4, 'teste1', '2018-03-01', '2018-03-01');
+(1, 'Nenhuma', '0000-00-00', '0000-00-00');
 
 -- --------------------------------------------------------
 
@@ -53,6 +50,7 @@ INSERT INTO `campanhas` (`id_campanha`, `nomeCampanha`, `dataInicial`, `dataFina
 
 CREATE TABLE `doacao` (
   `id_doacao` int(10) NOT NULL,
+  `id_tipoDoacao` int(100) NOT NULL,
   `item_doacao` varchar(200) NOT NULL,
   `id_campanha` int(10) NOT NULL,
   `id_doador` int(10) NOT NULL,
@@ -102,10 +100,15 @@ INSERT INTO `doador` (`id_doador`, `nome`, `endereco`, `email`, `telefoneResiden
 
 CREATE TABLE `tipoDoacao` (
   `id_tipoDoacao` int(100) NOT NULL,
-  `nome` varchar(200) NOT NULL,
-  `off` int(12) NOT NULL,
-  `off3` int(12) NOT NULL
+  `nome` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Extraindo dados da tabela `tipoDoacao`
+--
+
+INSERT INTO `tipoDoacao` (`id_tipoDoacao`, `nome`) VALUES
+(7, 'roupasinhas');
 
 -- --------------------------------------------------------
 
@@ -171,25 +174,25 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT for table `campanhas`
 --
 ALTER TABLE `campanhas`
-  MODIFY `id_campanha` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_campanha` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `doacao`
 --
 ALTER TABLE `doacao`
-  MODIFY `id_doacao` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_doacao` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `doador`
 --
 ALTER TABLE `doador`
-  MODIFY `id_doador` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_doador` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `tipoDoacao`
 --
 ALTER TABLE `tipoDoacao`
-  MODIFY `id_tipoDoacao` int(100) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_tipoDoacao` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `usuarios`
