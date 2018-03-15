@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: 12-Mar-2018 às 07:11
+-- Generation Time: 15-Mar-2018 às 21:22
 -- Versão do servidor: 10.1.28-MariaDB
 -- PHP Version: 7.1.10
 
@@ -58,9 +58,19 @@ CREATE TABLE `doacao` (
   `dataDoacao` date NOT NULL,
   `quantidade` int(10) NOT NULL,
   `valorDinheiro` float NOT NULL,
-  `tipoDinheiro` int(11) NOT NULL,
-  `tipoItem` varchar(100) NOT NULL
+  `tipoDinheiro` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Cadastro de Doacoes';
+
+--
+-- Extraindo dados da tabela `doacao`
+--
+
+INSERT INTO `doacao` (`id_doacao`, `id_tipoDoacao`, `item_doacao`, `id_campanha`, `id_doador`, `dataDoacao`, `quantidade`, `valorDinheiro`, `tipoDinheiro`) VALUES
+(1, 8, 'Dinheiro', 7, 1, '2018-03-15', 0, 123.43, 1),
+(2, 7, 'Ropunhasd', 7, 1, '2018-03-15', 5, 0, 5),
+(3, 7, 'Comidads', 7, 1, '2018-03-15', 54, 0, 5),
+(4, 7, 'Ropunhasd', 7, 1, '2018-03-15', 5, 0, 5),
+(5, 7, 'Ropunhasd', 7, 1, '2018-03-15', 5, 0, 5);
 
 -- --------------------------------------------------------
 
@@ -211,13 +221,13 @@ ALTER TABLE `campanhas`
 -- AUTO_INCREMENT for table `doacao`
 --
 ALTER TABLE `doacao`
-  MODIFY `id_doacao` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_doacao` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `doador`
 --
 ALTER TABLE `doador`
-  MODIFY `id_doador` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_doador` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `tipoDoacao`
