@@ -144,5 +144,6 @@ th{
 .pesquisa{
 	margin-left: 410px;
 }
-
-
+.campo{
+	text-align: center;
+}
