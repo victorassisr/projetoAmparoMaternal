@@ -4,7 +4,7 @@ function conexaoMysql(){
 	$conexao;
 
 		$usuario = 'root';
-		$pass = '';
+		$pass = 'admin';
 
 
 	try{

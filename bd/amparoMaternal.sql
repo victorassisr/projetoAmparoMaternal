@@ -1,15 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.4
--- https://www.phpmyadmin.net/
+-- version 4.5.4.1deb2ubuntu2
+-- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: 15-Mar-2018 às 21:22
--- Versão do servidor: 10.1.28-MariaDB
--- PHP Version: 7.1.10
+-- Tempo de geração: 15/04/2018 às 18:46
+-- Versão do servidor: 5.7.21-0ubuntu0.16.04.1
+-- Versão do PHP: 7.0.28-0ubuntu0.16.04.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -19,13 +17,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `amparoMaternal`
+-- Banco de dados: `amparoMaternal`
 --
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `campanhas`
+-- Estrutura para tabela `campanhas`
 --
 
 CREATE TABLE `campanhas` (
@@ -36,7 +34,7 @@ CREATE TABLE `campanhas` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Tabela para cadastro das campanhas.';
 
 --
--- Extraindo dados da tabela `campanhas`
+-- Fazendo dump de dados para tabela `campanhas`
 --
 
 INSERT INTO `campanhas` (`id_campanha`, `nomeCampanha`, `dataInicial`, `dataFinal`) VALUES
@@ -46,7 +44,53 @@ INSERT INTO `campanhas` (`id_campanha`, `nomeCampanha`, `dataInicial`, `dataFina
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `doacao`
+-- Estrutura para tabela `categoriasDespesa`
+--
+
+CREATE TABLE `categoriasDespesa` (
+  `id` int(10) NOT NULL,
+  `nome` varchar(150) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Fazendo dump de dados para tabela `categoriasDespesa`
+--
+
+INSERT INTO `categoriasDespesa` (`id`, `nome`) VALUES
+(2, 'teste'),
+(3, 'refeiÃ§ao'),
+(4, 'Roupas'),
+(5, 'sei la'),
+(6, 'Agasalhos'),
+(7, 'moveis'),
+(8, 'higiene');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `despesas`
+--
+
+CREATE TABLE `despesas` (
+  `idDespesa` int(10) NOT NULL,
+  `idCategoria` int(10) NOT NULL,
+  `infoDespesa` varchar(250) NOT NULL,
+  `reais` int(10) NOT NULL,
+  `centavos` int(2) NOT NULL,
+  `data` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Fazendo dump de dados para tabela `despesas`
+--
+
+INSERT INTO `despesas` (`idDespesa`, `idCategoria`, `infoDespesa`, `reais`, `centavos`, `data`) VALUES
+(1, 3, 'alimentacao', 123, 34, '2018-04-15');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `doacao`
 --
 
 CREATE TABLE `doacao` (
@@ -62,7 +106,7 @@ CREATE TABLE `doacao` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Cadastro de Doacoes';
 
 --
--- Extraindo dados da tabela `doacao`
+-- Fazendo dump de dados para tabela `doacao`
 --
 
 INSERT INTO `doacao` (`id_doacao`, `id_tipoDoacao`, `item_doacao`, `id_campanha`, `id_doador`, `dataDoacao`, `quantidade`, `valorDinheiro`, `tipoDinheiro`) VALUES
@@ -75,7 +119,7 @@ INSERT INTO `doacao` (`id_doacao`, `id_tipoDoacao`, `item_doacao`, `id_campanha`
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `doador`
+-- Estrutura para tabela `doador`
 --
 
 CREATE TABLE `doador` (
@@ -97,7 +141,7 @@ CREATE TABLE `doador` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Extraindo dados da tabela `doador`
+-- Fazendo dump de dados para tabela `doador`
 --
 
 INSERT INTO `doador` (`id_doador`, `nome`, `endereco`, `email`, `telefoneResidencial`, `celular1`, `celular2`, `nascimento`, `dataCadastro`, `tipoDoador`, `doaDia`, `doaMes`, `tipoPessoa`, `operadora`, `turma`) VALUES
@@ -106,7 +150,7 @@ INSERT INTO `doador` (`id_doador`, `nome`, `endereco`, `email`, `telefoneResiden
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `tipoDoacao`
+-- Estrutura para tabela `tipoDoacao`
 --
 
 CREATE TABLE `tipoDoacao` (
@@ -115,7 +159,7 @@ CREATE TABLE `tipoDoacao` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Extraindo dados da tabela `tipoDoacao`
+-- Fazendo dump de dados para tabela `tipoDoacao`
 --
 
 INSERT INTO `tipoDoacao` (`id_tipoDoacao`, `nome`) VALUES
@@ -126,7 +170,7 @@ INSERT INTO `tipoDoacao` (`id_tipoDoacao`, `nome`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `tipoDoacaoDinheiro`
+-- Estrutura para tabela `tipoDoacaoDinheiro`
 --
 
 CREATE TABLE `tipoDoacaoDinheiro` (
@@ -135,7 +179,7 @@ CREATE TABLE `tipoDoacaoDinheiro` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Extraindo dados da tabela `tipoDoacaoDinheiro`
+-- Fazendo dump de dados para tabela `tipoDoacaoDinheiro`
 --
 
 INSERT INTO `tipoDoacaoDinheiro` (`idTipoDinheiro`, `tipo`) VALUES
@@ -148,7 +192,34 @@ INSERT INTO `tipoDoacaoDinheiro` (`idTipoDinheiro`, `tipo`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `usuarios`
+-- Estrutura para tabela `tiposBusca`
+--
+
+CREATE TABLE `tiposBusca` (
+  `idTipoBusca` int(5) NOT NULL,
+  `tipoBusca` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Fazendo dump de dados para tabela `tiposBusca`
+--
+
+INSERT INTO `tiposBusca` (`idTipoBusca`, `tipoBusca`) VALUES
+(1, 'DOADOR'),
+(2, 'DATA DE CADASTRO DO DOADOR'),
+(3, 'DOACAO'),
+(4, 'DATA DA DOACAO'),
+(5, 'CAMPANHA'),
+(6, 'DATA INICIAL DA CAMPANHA'),
+(7, 'DATA FINAL DA CAMPANHA'),
+(8, 'DESPESA'),
+(9, 'DATA DA DESPESA'),
+(10, 'TIPO DE DOADOR');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `usuarios`
 --
 
 CREATE TABLE `usuarios` (
@@ -161,93 +232,119 @@ CREATE TABLE `usuarios` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Extraindo dados da tabela `usuarios`
+-- Fazendo dump de dados para tabela `usuarios`
 --
 
 INSERT INTO `usuarios` (`id_usuario`, `nome`, `sobrenome`, `nome_usuario`, `senha`, `nivel`) VALUES
 (1, 'Victor', 'Assis', 'victor', '123456', 'user');
 
 --
--- Indexes for dumped tables
+-- Índices de tabelas apagadas
 --
 
 --
--- Indexes for table `campanhas`
+-- Índices de tabela `campanhas`
 --
 ALTER TABLE `campanhas`
   ADD PRIMARY KEY (`id_campanha`);
 
 --
--- Indexes for table `doacao`
+-- Índices de tabela `categoriasDespesa`
+--
+ALTER TABLE `categoriasDespesa`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Índices de tabela `despesas`
+--
+ALTER TABLE `despesas`
+  ADD PRIMARY KEY (`idDespesa`);
+
+--
+-- Índices de tabela `doacao`
 --
 ALTER TABLE `doacao`
   ADD PRIMARY KEY (`id_doacao`);
 
 --
--- Indexes for table `doador`
+-- Índices de tabela `doador`
 --
 ALTER TABLE `doador`
   ADD PRIMARY KEY (`id_doador`);
 
 --
--- Indexes for table `tipoDoacao`
+-- Índices de tabela `tipoDoacao`
 --
 ALTER TABLE `tipoDoacao`
   ADD PRIMARY KEY (`id_tipoDoacao`);
 
 --
--- Indexes for table `tipoDoacaoDinheiro`
+-- Índices de tabela `tipoDoacaoDinheiro`
 --
 ALTER TABLE `tipoDoacaoDinheiro`
   ADD PRIMARY KEY (`idTipoDinheiro`);
 
 --
--- Indexes for table `usuarios`
+-- Índices de tabela `tiposBusca`
+--
+ALTER TABLE `tiposBusca`
+  ADD PRIMARY KEY (`idTipoBusca`);
+
+--
+-- Índices de tabela `usuarios`
 --
 ALTER TABLE `usuarios`
   ADD PRIMARY KEY (`id_usuario`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT de tabelas apagadas
 --
 
 --
--- AUTO_INCREMENT for table `campanhas`
+-- AUTO_INCREMENT de tabela `campanhas`
 --
 ALTER TABLE `campanhas`
   MODIFY `id_campanha` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
-
 --
--- AUTO_INCREMENT for table `doacao`
+-- AUTO_INCREMENT de tabela `categoriasDespesa`
+--
+ALTER TABLE `categoriasDespesa`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+--
+-- AUTO_INCREMENT de tabela `despesas`
+--
+ALTER TABLE `despesas`
+  MODIFY `idDespesa` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT de tabela `doacao`
 --
 ALTER TABLE `doacao`
   MODIFY `id_doacao` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
 --
--- AUTO_INCREMENT for table `doador`
+-- AUTO_INCREMENT de tabela `doador`
 --
 ALTER TABLE `doador`
   MODIFY `id_doador` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
 --
--- AUTO_INCREMENT for table `tipoDoacao`
+-- AUTO_INCREMENT de tabela `tipoDoacao`
 --
 ALTER TABLE `tipoDoacao`
   MODIFY `id_tipoDoacao` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
-
 --
--- AUTO_INCREMENT for table `tipoDoacaoDinheiro`
+-- AUTO_INCREMENT de tabela `tipoDoacaoDinheiro`
 --
 ALTER TABLE `tipoDoacaoDinheiro`
   MODIFY `idTipoDinheiro` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
 --
--- AUTO_INCREMENT for table `usuarios`
+-- AUTO_INCREMENT de tabela `tiposBusca`
+--
+ALTER TABLE `tiposBusca`
+  MODIFY `idTipoBusca` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+--
+-- AUTO_INCREMENT de tabela `usuarios`
 --
 ALTER TABLE `usuarios`
   MODIFY `id_usuario` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-COMMIT;
-
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

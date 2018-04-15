@@ -1,4 +1,4 @@
-<?
+<?php
 	if(isset($_GET['erro']) && $_GET['erro'] == "nojs"){
 		$erro = "<h1>O seu browser não tem suporte a JavaScript ou ele está desabilitado!</h1><p>Para segurança e integridade dos dados, o sistema será desabilitado. Após reativar o JavaScript ou trocar de navegador que tenha o JavaScript habilitado, o sistema voltará ao seu funcionamento normal. Obrigado, Admins do sistema.</p><p>Se você reativar o JavaScript o sistema voltará ao normal.. Reativou o JavaScript?</p><p>Já reativei o JavaScript <a href=\"index.php\" title=\"Tentar Novamente\">vamos tentar novamente</a>..</p>";
 	}
