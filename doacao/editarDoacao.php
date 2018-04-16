@@ -182,6 +182,8 @@
 				labelForItemDoacao.style.display = "none";
 				form.quantidade.style.display = "none";
 				form.quantidade.value = "default";
+				form.valorDinheiro.value = "";
+				form.valorCentavos.value = "";
 				labelForQuantidade.style.display = "none";
 				form.valorDinheiro.style.display = "inline";
 				form.valorCentavos.style.display = "inline";
@@ -191,9 +193,11 @@
 				form.tipoDinheiro.style.display = "none";
 				form.tipoDinheiro.value = "default";
 				form.itemDoacao.style.display = "inline";
+				form.itemDoacao.value = "";
 				labelForItemDoacao.style.display = "inline";
 				form.quantidade.style.display = "inline";
 				labelForQuantidade.style.display = "inline";
+				form.quantidade.value = "0";
 				form.valorDinheiro.style.display = "none";
 				form.valorDinheiro.value = "default";
 				form.valorCentavos.style.display = "none";
