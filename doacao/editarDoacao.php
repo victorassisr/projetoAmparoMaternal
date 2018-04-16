@@ -61,13 +61,12 @@
 
 		<select name="campanha">
 			<option value="default">Selecione a Campanha..</option>
-			<?php foreach($campanhas as $campanha){ ?>
-			if($doacao->id_campanha == $campanha->id_campanha){
+			<?php foreach($campanhas as $campanha){
+			if($doacao->id_campanha == $campanha->id_campanha){ ?>
 				<option value="<?php echo $campanha->id_campanha; ?>" selected><?php echo $campanha->nomeCampanha; ?></option>
-			} else {
+			<?php } else { ?>
 			<option value="<?php echo $campanha->id_campanha; ?>"><?php echo $campanha->nomeCampanha; ?></option>
-			}
-			<?php } ?>
+			<?php }} ?>
 		</select>
 
 		<br><br>
@@ -89,16 +88,16 @@
 		<br><br>
 
 		<label for="valorDinheiro" id="lValorDinheiro">Valor Doado: </label>
-		<input type="text" name="valorDinheiro" id="valorDinheiro">
+		<input type="text" name="valorDinheiro" id="valorDinheiro" value="<?php echo $doacao->valorDinheiro; ?>">
 		<label for="valorCentavos" id="lValorCentavos">,</label>
-		<input type="text" maxlength="2" name="valorCentavos" id="valorCentavos">
+		<input type="text" maxlength="2" name="valorCentavos" id="valorCentavos" value="<?php echo $doacao->valorCentavos; ?>">
 
 		<br><br>
 
 		<select name="tipoDinheiro">
 			<option value="default">Selecione a categoria..</option>
-			<?php foreach($tiposDinheiro as $tipoDinheiro){ ?>
-			<?php
+			<?php foreach($tiposDinheiro as $tipoDinheiro){
+
 				if($tipoDinheiro->tipo == "deposito"){
 					$tipoDinheiro->tipo = "Depósito";
 				}
@@ -118,9 +117,8 @@
 				if($tipoDinheiro->tipo == "outro"){
 					$tipoDinheiro->tipo = "Outros";
 				}
-			?>
-			<?php
-			if($tipoDinheiro->idTipodinheiro == $doacao->tipoDinheiro){
+
+			if($tipoDinheiro->idTipoDinheiro == $doacao->tipoDinheiro){
 				?>
 			<option value="<?php echo $tipoDinheiro->idTipoDinheiro; ?>" selected><?php echo $tipoDinheiro->tipo; ?></option>
 			<?php } else { ?>
@@ -148,7 +146,7 @@
 		<input type="submit" value="Cadastrar">
 	</form>
 
-	<script>
+	<!--<script>
 		
 		//COLOCAR DATA NO INPUT DATA DE DOAÇÂO
 	dataDoacao = document.getElementById('dataDoacao');
@@ -169,7 +167,7 @@
 	dataDoacao.value = dataAtual; //Coloca a data validada no input.
 
 	//FIM COLOCAR DATA NO INPUT DATA DE CADASTRO
-	</script>
+	</script> -->
 
 	<script type="text/javascript">
 
@@ -195,14 +193,13 @@
 		labelForValorCentavos.style.display = "none";
 
 		form.tipoDoacao.addEventListener("change",function(){
-
+			
 			tipo = form.tipoDoacao.options;
 
 			valor = tipo[tipo.selectedIndex].innerHTML;
 
 			if(valor == 'Dinheiro'){
 				form.tipoDinheiro.style.display = "inline";
-				form.tipoDinheiro.value = "default";
 				form.itemDoacao.style.display = "none";
 				form.itemDoacao.value = "default";
 				labelForItemDoacao.style.display = "none";
@@ -210,19 +207,15 @@
 				form.quantidade.value = "default";
 				labelForQuantidade.style.display = "none";
 				form.valorDinheiro.style.display = "inline";
-				form.valorDinheiro.value = "";
 				form.valorCentavos.style.display = "inline";
-				form.valorCentavos.value = "";
 				labelForValorCentavos.style.display = "inline";
 				labelForValorDinheiro.style.display = "inline";
 			} else {
 				form.tipoDinheiro.style.display = "none";
 				form.tipoDinheiro.value = "default";
 				form.itemDoacao.style.display = "inline";
-				form.itemDoacao.value = "";
 				labelForItemDoacao.style.display = "inline";
 				form.quantidade.style.display = "inline";
-				form.quantidade.value = "";
 				labelForQuantidade.style.display = "inline";
 				form.valorDinheiro.style.display = "none";
 				form.valorDinheiro.value = "default";
@@ -232,14 +225,13 @@
 				labelForValorDinheiro.style.display = "none";
 			}
 		});
-
+		
 			tipo = form.tipoDoacao.options;
 
 			valor = tipo[tipo.selectedIndex].innerHTML;
 
 			if(valor == 'Dinheiro'){
 				form.tipoDinheiro.style.display = "inline";
-				form.tipoDinheiro.value = "default";
 				form.itemDoacao.style.display = "none";
 				form.itemDoacao.value = "default";
 				labelForItemDoacao.style.display = "none";
@@ -247,19 +239,15 @@
 				form.quantidade.value = "default";
 				labelForQuantidade.style.display = "none";
 				form.valorDinheiro.style.display = "inline";
-				form.valorDinheiro.value = "";
 				form.valorCentavos.style.display = "inline";
-				form.valorCentavos.value = "";
 				labelForValorCentavos.style.display = "inline";
 				labelForValorDinheiro.style.display = "inline";
 			} else {
 				form.tipoDinheiro.style.display = "none";
 				form.tipoDinheiro.value = "default";
 				form.itemDoacao.style.display = "inline";
-				form.itemDoacao.value = "";
 				labelForItemDoacao.style.display = "inline";
 				form.quantidade.style.display = "inline";
-				form.quantidade.value = "";
 				labelForQuantidade.style.display = "inline";
 				form.valorDinheiro.style.display = "none";
 				form.valorDinheiro.value = "default";
@@ -269,7 +257,6 @@
 				labelForValorDinheiro.style.display = "none";
 			}
 
-		
 	function check(){	
 		dinheiro = form.valorDinheiro.value + "." + form.valorCentavos.value;
 		if(dinheiro.match(/^-?\d+\.\d+$/) != null){

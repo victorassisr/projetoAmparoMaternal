@@ -20,26 +20,6 @@
 		$busca->bindValue(':idDoador',$id_doador);
 		$busca->execute();
 		$doacoes = $busca->fetchAll(PDO::FETCH_OBJ);
-
-/*
-	//Busca Campanhas
-	$sql = "SELECT nomeCampanha FROM campanhas";
-	$busca = $con->prepare($sql);
-	$busca->execute();
-	$campanhas = $busca->fetchAll(PDO::FETCH_OBJ);
-
-	//Busca tipo de Doação
-	$sql = "SELECT id_tipoDoacao, nome FROM tipoDoacao";
-	$busca = $con->prepare($sql);
-	$busca->execute();
-	$tipoDoacoes = $busca->fetchAll(PDO::FETCH_OBJ);
-
-	//Busca tipo de Doação em dinheiro
-	$sql = "SELECT idTipoDinheiro, tipo FROM tipoDoacaoDinheiro";
-	$busca = $con->prepare($sql);
-	$busca->execute();
-	$tiposDinheiro = $busca->fetchAll(PDO::FETCH_OBJ);
-*/
 ?>
 
 <!DOCTYPE html>
@@ -81,7 +61,7 @@
 
 	<p>Quantidade de Itens doados: <?php echo $doacao->quantidade; ?></p>
 
-	<p>Valor doado em dinheiro: <?php echo $doacao->valorDinheiro?> reais</p>
+	<p>Valor doado em dinheiro: R$<?php echo $doacao->valorDinheiro; ?>,<?php echo $doacao->valorCentavos; ?>.</p>
 
 	<?php
 		//Busca tipo de Doação em dinheiro

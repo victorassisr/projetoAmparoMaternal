@@ -23,7 +23,7 @@
 	<p>O que deseja buscar?</p>
 	<form action="busca.php" method="post">
 		<input type="text" name="parametro" placeholder="Parametros" id="parametro"><label id="labelData">Selecione uma data: </label><input type="date" name="data" id="data">
-		<select name="tipo">
+		<select name="tipo" id="filtro">
 			<?php foreach($tiposBusca as $tipoBusca){ ?>
 				<option value="<?php echo $tipoBusca->idTipoBusca; ?>"><?php echo $tipoBusca->tipoBusca; ?></option>
 			<?php } ?>
@@ -33,9 +33,9 @@
 	<script type="text/javascript">
 		var parametro = document.getElementById('parametro');
 		var data = document.getElementById('data');
+		var filtro = document.getElementById('filtro');
 
-
-		window.addEventListener("click",function(){
+		data.addEventListener("change",function(){
 			if(data.value != ""){
 				parametro.style.display = "none";
 			} else {
@@ -52,6 +52,16 @@
 			} else {
 				labelData.style.display = "inline";
 				campoData.style.display = "inline";
+			}
+		});
+
+		filtro.addEventListener("change",function(){
+			console.log(filtro.value);
+			console.log(parametro);
+			if(filtro.value == "2"){
+				parametro.style.display = "none";
+			} else {
+				parametro.style.display = "inline";
 			}
 		});
 	</script>

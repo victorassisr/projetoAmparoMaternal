@@ -30,18 +30,16 @@
 		$quantidade = 0;
 	}
 
-	if($valorInteiro != "default" && $valorCentavos != "default"){
-		$valorFinal = $valorInteiro . "." . $valorCentavos;
-		$valorFinal = floatval($valorFinal);
-	} else {
-		$valorFinal = 0;
+	if($valorInteiro == "default" && $valorCentavos == "default"){
+		$valorInteiro = 0;
+		$valorCentavos = 0;
 	}
 
 	if($tipoDoacaoDinheiro == "default"){
 		$tipoDoacaoDinheiro = 5;
 	}
 
-	$sql = "INSERT INTO doacao(id_tipoDoacao, item_doacao, id_campanha, id_doador, dataDoacao, quantidade, valorDinheiro, tipoDinheiro) VALUES (:id, :item, :campanha, :doador, :data, :quant, :valor, :tipoDin)";
+	$sql = "INSERT INTO doacao(id_tipoDoacao, item_doacao, id_campanha, id_doador, dataDoacao, quantidade, valorDinheiro, valorCentavos, tipoDinheiro) VALUES (:id, :item, :campanha, :doador, :data, :quant, :valorDinheiro, :valorCentavos, :tipoDin)";
 
 	$cadastrar = $con->prepare($sql);
 	$cadastrar->bindValue(':id',$categoriaDoacao);
@@ -50,7 +48,8 @@
 	$cadastrar->bindValue(':doador',$idDoador);
 	$cadastrar->bindValue(':data',$dataDoacao);
 	$cadastrar->bindValue(':quant',$quantidade);
-	$cadastrar->bindValue(':valor',$valorFinal);
+	$cadastrar->bindValue(':valorDinheiro',$valorInteiro);
+	$cadastrar->bindValue(':valorCentavos',$valorCentavos);
 	$cadastrar->bindValue(':tipoDin',$tipoDoacaoDinheiro);
 
 	$cadastrar->execute();
