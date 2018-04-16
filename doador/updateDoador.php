@@ -30,19 +30,19 @@
 		$mes = "nenhum";
 	}
 
-	if($tipoCliente == "Exporádico" || $tipoCliente == "Anual"){
+	if($tipoCliente == "exporadico" || $tipoCliente == "anual"){
 		$dia = 0;
 	} else {
 		$dia =$_POST['dia'];
 	}
 
-	if($tipoCliente == "Exporádico" || $tipoCliente == "Fidelizado"){
+	if($tipoCliente == "exporadico" || $tipoCliente == "fidelizado"){
 		$mes = "nenhum";
 	} else {
 		$mes = $_POST['mes'];
 	}
 
-	if($tipoCliente == "Exporádico"){
+	if($tipoCliente == "exporadico"){
 		$dia = 0;
 		$mes = "nenhum";
 	}

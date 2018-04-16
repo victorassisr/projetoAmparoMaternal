@@ -53,34 +53,34 @@ if(($_GET['id']) == false){
 <br><br>
 <select id="tipoCliente" name="tipoCliente">
 	<option value="default">Tipo de Cliente..</option>
-	<?php if($doador->tipoDoador == 'Fidelizado'){?>
-	<option value="Fidelizado" selected>Fidelizado</option>
+	<?php if($doador->tipoDoador == 'fidelizado'){?>
+	<option value="fidelizado" selected>Fidelizado</option>
 	<?php } else {?>
-	<option value="Fidelizado">Fidelizado</option>
-	<?php } if($doador->tipoDoador == 'Exporádico'){?>
-	<option value="Exporádico" selected>Exporádico</option>
+	<option value="fidelizado">Fidelizado</option>
+	<?php } if($doador->tipoDoador == 'exporadico'){?>
+	<option value="exporadico" selected>Exporádico</option>
 	<?php } else {?>
-	<option value="Exporádico">Exporádico</option>
-	<?php } if($doador->tipoDoador == 'Anual'){?>
-	<option value="Anual" selected>Anual</option>
+	<option value="exporadico">Exporádico</option>
+	<?php } if($doador->tipoDoador == 'anual'){?>
+	<option value="anual" selected>Anual</option>
 	<?php } else {?>
-	<option value="Anual">Anual</option>
+	<option value="anual">Anual</option>
 	<?php } ?>
 </select>
 
-<?php if($doador->tipoDoador == "Fidelizado" && $doador->doaDia != 0){ ?>
+<?php if(($doador->tipoDoador == "fidelizado") && ($doador->doaDia != "0")){ ?>
 <select id="dia" name="dia" style="display: inline;">
 <?php } else { ?>
 <select id="dia" name="dia" style="display: none;">
-	<?php } ?>
+<?php } ?>
 	<option value="default">Doa todo dia...</option>
 
-	<?php for($i=1; $i<=31; $i++){ ?>
+	<?php for($i=1; $i<=31; $i++){ 
 
-	<?php if($doador->doaDia == $i){ ?>
-	<option value="<?php echo $i; ?>" selected><?php echo $i; ?></option>
-	<? } else { ?>
-	<option value="<?php echo $i; ?>"><?php echo $i; ?></option>
+		if($doador->doaDia == $i){ ?>
+			<option value="<?php echo $i; ?>" selected><?php echo $i; ?></option>
+	<?php } else { ?>
+			<option value="<?php echo $i; ?>"><?php echo $i; ?></option>
 	<?php } ?>
 
 	<?php } //Fim do FOR ?> 
@@ -202,23 +202,41 @@ if(($_GET['id']) == false){
 
 <script type="text/javascript">
 	
-	tC = document.getElementById('tipoCliente');
+	var tC = document.getElementById('tipoCliente');
 
 	tC.addEventListener("change",function(){
 		val = tC.value;
 
-		if(val == "Fidelizado"){
+		if(val == "fidelizado"){
 			document.getElementById('dia').style.display = "inline";
 		} else {
 			document.getElementById('dia').style.display = "none";
+			document.getElementById('dia').value = "default";
 		}
 
-		if(val == "Anual"){
+		if(val == "anual"){
 			document.getElementById('mes').style.display = "inline";
 		} else {
 			document.getElementById('mes').style.display = "none";
+			document.getElementById('mes').value = "default";
 		}
 	});
+
+	val = tC.value;
+
+		if(val == "fidelizado"){
+			document.getElementById('dia').style.display = "inline";
+		} else {
+			document.getElementById('dia').style.display = "none";
+			document.getElementById('dia').value = "default"
+		}
+
+		if(val == "anual"){
+			document.getElementById('mes').style.display = "inline";
+		} else {
+			document.getElementById('mes').style.display = "none";
+			document.getElementById('mes').value = "default";
+		}
 
 </script>
 </body>
