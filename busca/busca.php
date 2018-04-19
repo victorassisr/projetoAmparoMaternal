@@ -1,59 +1,63 @@
 <?php
 
-if(isset($_POST['parametro']) && isset($_POST['tipo'])){
+if(isset($_POST['parametro']) && isset($_POST['tipo'])){ //Se tiver passado um parametro e um tipo continua.
 
-	$parametro = $_POST['parametro'];
-	$tipo = $_POST['tipo'];
+	$parametro = $_POST['parametro']; //Pega o parametro
+	$tipo = $_POST['tipo']; //Pega o tipo
 
-	$parametro = "%".$parametro."%";
+	$parametro = "%".$parametro."%"; //Adiciona % no inicio e fim do parametro pra não dar erro na consulta SQL
 
-	require_once('conexao.php');
+	require_once('conexao.php'); //Inclui o arquivo de conexão na página.
 
-	$con = conexaoMysql();
+	$con = conexaoMysql(); //Atribui a conexão a variaveel $con
 
-	if($tipo == "1"){
+	if($tipo == "1"){ //Se o tipo de busca for igual a 1
 
-		if($parametro != "%%"){
+		if($parametro != "%%"){ //Se o pparametro for diferente de %%, ou seja, não foi definido um parametro.
 
 			$sql = "SELECT * FROM doador WHERE nome LIKE :parametro OR endereco LIKE :parametro OR email LIKE :parametro OR telefoneResidencial LIKE :parametro OR celular1 LIKE :parametro OR celular2 LIKE :parametro OR nascimento LIKE :parametro OR dataCadastro LIKE :parametro OR tipoDoador LIKE :parametro OR doaDia LIKE :parametro OR doaMes LIKE :parametro OR tipoPessoa LIKE :parametro OR operadora LIKE :parametro OR turma LIKE :parametro";
 
-			$busca = $con->prepare($sql);
+			//Seleciona tudo do doador onde dados dorem correspondentes ao parametro buscado..
 
-			$busca->bindValue(':parametro',$parametro);
+			$busca = $con->prepare($sql); //Prepara a consulta
 
-			$busca->execute();
+			$busca->bindValue(':parametro',$parametro); //Atribui o valor de $parametro a :parametro
 
-			if($busca->rowCount() > 0){
-				$doadores = $busca->fetchAll(PDO::FETCH_OBJ);
+			$busca->execute(); //Executa a busca.
+
+			if($busca->rowCount() > 0){ //Se retornar mais q um resultado
+				$doadores = $busca->fetchAll(PDO::FETCH_OBJ); //Doadores são atribuidos a variavel $doadores.
 				echo "<pre>";
-				print_r($doadores);
+				print_r($doadores); //Mostra doadores..
 				echo "</pre>";
-			} else {
-				echo "<h1>Nada encontrado!</h1>";
+			} else { //Senão
+				echo "<h1>Nada encontrado!</h1>"; //Nenhum resultado encontrado
 			}
-		} else {
-			if($_POST['data'] != ""){
-				$data = "%".$_POST['data']."%";
+		} else { //Se o parametro for vazio %%
+			if($_POST['data'] != ""){ //Se a data for diferente de vazia
+				$data = "%".$_POST['data']."%"; //Coloca % no inicio e fim da data
 
 
 				$sql = "SELECT * FROM doador WHERE dataCadastro LIKE :parametro OR nascimento LIKE :parametro";
 
-				$busca = $con->prepare($sql);
+				//Seleciona tudo do doador onde a data ou nascimento seja igual ao parametro.
 
-				$busca->bindValue(':parametro',$data);
+				$busca = $con->prepare($sql); //Prepara a busca.
 
-				$busca->execute();
+				$busca->bindValue(':parametro',$data); //Coloca o valor da data no lugar de :parametro
 
-				if($busca->rowCount() > 0){
-					$doadores = $busca->fetchAll(PDO::FETCH_OBJ);
+				$busca->execute(); //Executa a busca no Banco
+
+				if($busca->rowCount() > 0){ //Se retornar algum resultado
+					$doadores = $busca->fetchAll(PDO::FETCH_OBJ); //Retorna os doadores
 					echo "<pre>";
-					print_r($doadores);
+					print_r($doadores); //Mostra os doadores
 					echo "</pre>";
-				} else {
-					echo "<h1>Nada encontrado!</h1>";
+				} else { //Senão
+					echo "<h1>Nada encontrado!</h1>"; //Mostra nada encontrado.
 				}
 
-			} else {
+			} else { //Se caso não encontrar nada, mostra:
 				echo "<h1>Nada encontrado!</h1>";
 			}
 		}
@@ -65,47 +69,50 @@ if(isset($_POST['parametro']) && isset($_POST['tipo'])){
 	if($tipo == "2"){
 
 
-		if($_POST['data'] != ""){
-			$data = "%".$_POST['data']."%";
+		if($_POST['data'] != ""){ //Se a data for diferente de vazia
+			$data = "%".$_POST['data']."%"; //Coloca % no inicio e fim da data.
 
 
 			$sql = "SELECT * FROM doacao WHERE dataDoacao LIKE :parametro";
 
-			$busca = $con->prepare($sql);
+			//Seleciona tudo de doacao onde a data for igual a busca.
 
-			$busca->bindValue(':parametro',$data);
+			$busca = $con->prepare($sql); //Prepara a query
 
-			$busca->execute();
+			$busca->bindValue(':parametro',$data); //Atribui valor da data a :parametro
 
-			if($busca->rowCount() > 0){
-				$doacoes = $busca->fetchAll(PDO::FETCH_OBJ);
+			$busca->execute(); //Executa a busca.
+
+			if($busca->rowCount() > 0){ //Se retornar algum resultado
+				$doacoes = $busca->fetchAll(PDO::FETCH_OBJ); //Doacoes
 				foreach ($doacoes as $doacao) {
+					//Em cada doação consulta o doador que a fez.
 					$sql = "SELECT nome FROM doador WHERE id_doador = :idDoador";
+					//Seleciona o nome do doador onde o id_doador for igual :idDoador.
+					$busca = $con->prepare($sql);//Prepara a consulta
 
-					$busca = $con->prepare($sql);
+					$busca->bindValue(':idDoador',$doacao->id_doador); //Atribuui o valor do id_doador que foi retornado da doacao.
 
-					$busca->bindValue(':idDoador',$doacao->id_doador);
+					$busca->execute(); //Executa a busca
 
-					$busca->execute();
+					$doador = $busca->fetch(PDO::FETCH_OBJ); //Dados do doador.
 
-					$doador = $busca->fetch(PDO::FETCH_OBJ);
-
-					if($doacao->tipoDinheiro == 1){
+					if($doacao->tipoDinheiro == 1){ //Se o tipo de doação for em dinheiro, mostra
 						echo "<p>Doador: ".$doador->nome." Doou: ".$doacao->item_doacao." Na quantia de: ". $doacao->valorDinheiro.",". $doacao->valorCentavos ." Na data de: "."<input type=\"date\" name=\"data\" value='" . $doacao->dataDoacao ."' readonly></p>";
-					}
+					} //Se não for em dinheiro mostra:
 					echo "<p>Doador: ".$doador->nome." Doou: ".$doacao->item_doacao." Na data de: "."<input type=\"date\" name=\"data\" value='" . $doacao->dataDoacao ."' readonly></p>";;
 				}
-			} else {
+			} else { //Não encontrou nada
 				echo "<h1>Nada encontrado!</h1>";
 			}
 
-		} else {
+		} else { //Não encontrou nada
 			echo "<h1>Nada encontrado!</h1>";
 		}
 
 	}
 
-} else {
+} else { //Se não tiver passado um parametro e um tipo mostra a mensagem.
 	echo "Exepecifique corretamente o que você deseja buscar.";
 }
 
