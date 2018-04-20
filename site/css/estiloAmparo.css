@@ -23,7 +23,11 @@ header{
 	width: 85% !important;
 	float: right;
 }
-/**/
+
+.centralizarIcone{
+	vertical-align: middle;
+}
+
 .class-active a.active{
 	background: #AFD40E;
 	color: white;
