@@ -11,7 +11,7 @@ if(isset($_POST['parametro']) && isset($_POST['tipo'])){ //Se tiver passado um p
 
 	$con = conexaoMysql(); //Atribui a conexão a variaveel $con
 
-	if($tipo == "1"){ //Se o tipo de busca for igual a 1
+	if($tipo == "DOADOR"){ //Se o tipo de busca for igual a 1
 
 		if($parametro != "%%"){ //Se o pparametro for diferente de %%, ou seja, não foi definido um parametro.
 
@@ -66,7 +66,7 @@ if(isset($_POST['parametro']) && isset($_POST['tipo'])){ //Se tiver passado um p
 
 	//Busca pela doacao
 
-	if($tipo == "2"){
+	if($tipo == "DOACAO"){
 
 
 		if($_POST['data'] != ""){ //Se a data for diferente de vazia

@@ -27,7 +27,7 @@
 		<select name="tipo" id="filtro">
 			<?php //FOREACH pega cada elemento e trata ele separado. Listando um a um o tipo de busca. ?>
 			<?php foreach($tiposBusca as $tipoBusca){ ?>
-				<option value="<?php echo $tipoBusca->idTipoBusca; ?>"><?php echo $tipoBusca->tipoBusca; ?></option>
+				<option value="<?php echo $tipoBusca->tipoBusca; ?>"><?php echo $tipoBusca->tipoBusca; ?></option>
 			<?php } ?>
 		</select>
 		<input type="submit" name="Enviar" value="Buscar">
@@ -45,7 +45,7 @@
 			}
 		});
 
-		parametro.addEventListener("keyup",function(){ //Se diigitar algo no parametro
+		parametro.addEventListener("keyup",function(){ //Se digitar algo no parametro
 			var labelData = document.getElementById('labelData');
 			var campoData = document.getElementById('data');
 			if(parametro.value != ""){ //Se o parametro for diferente a uma string vazia
@@ -59,7 +59,7 @@
 
 		filtro.addEventListener("change",function(){ //Se alterar o filtro
 
-			if(filtro.value == "2"){ //Se o valor do filtro for igual a 2 (Procura por data de doacoes)
+			if(filtro.value == "DOACAO"){ //Se o valor do filtro for igual a 2 (Procura por data de doacoes)
 				parametro.style.display = "none"; //Oculta o parametro
 			} else { //Caso contrário
 				parametro.style.display = "inline"; //Mostra o campo parametro

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Tempo de geração: 15/04/2018 às 18:46
+-- Tempo de geração: 22/04/2018 às 20:55
 -- Versão do servidor: 5.7.21-0ubuntu0.16.04.1
 -- Versão do PHP: 7.0.28-0ubuntu0.16.04.1
 
@@ -206,15 +206,7 @@ CREATE TABLE `tiposBusca` (
 
 INSERT INTO `tiposBusca` (`idTipoBusca`, `tipoBusca`) VALUES
 (1, 'DOADOR'),
-(2, 'DATA DE CADASTRO DO DOADOR'),
-(3, 'DOACAO'),
-(4, 'DATA DA DOACAO'),
-(5, 'CAMPANHA'),
-(6, 'DATA INICIAL DA CAMPANHA'),
-(7, 'DATA FINAL DA CAMPANHA'),
-(8, 'DESPESA'),
-(9, 'DATA DA DESPESA'),
-(10, 'TIPO DE DOADOR');
+(2, 'DOACAO');
 
 -- --------------------------------------------------------
 
