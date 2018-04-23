@@ -59,10 +59,10 @@
 
 	<div class="content container">
 		<div class="row">
-			<div class="col-sm-6">
+			<div class="col-md-6">
 				<canvas class="grafico" id="myChart"></canvas>
 			</div>
-			<div class="col-sm-6">
+			<div class="col-md-6">
 				<ul class="legenda">
 					<li class="text-red">Despesas do Mês</li>
 					<li class="text-orange">Doacões Recebidas no Mês</li>
