@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Tempo de geração: 22/04/2018 às 20:55
+-- Tempo de geração: 22/04/2018 às 21:15
 -- Versão do servidor: 5.7.21-0ubuntu0.16.04.1
 -- Versão do PHP: 7.0.28-0ubuntu0.16.04.1
 
@@ -85,7 +85,8 @@ CREATE TABLE `despesas` (
 --
 
 INSERT INTO `despesas` (`idDespesa`, `idCategoria`, `infoDespesa`, `reais`, `centavos`, `data`) VALUES
-(1, 3, 'alimentacao', 123, 34, '2018-04-15');
+(1, 3, 'alimentacao', 123, 34, '2018-04-15'),
+(2, 3, 'Ali', 234, 48, '2018-04-22');
 
 -- --------------------------------------------------------
 
@@ -102,6 +103,7 @@ CREATE TABLE `doacao` (
   `dataDoacao` date NOT NULL,
   `quantidade` int(10) NOT NULL,
   `valorDinheiro` float NOT NULL,
+  `valorCentavos` int(2) NOT NULL,
   `tipoDinheiro` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Cadastro de Doacoes';
 
@@ -109,12 +111,13 @@ CREATE TABLE `doacao` (
 -- Fazendo dump de dados para tabela `doacao`
 --
 
-INSERT INTO `doacao` (`id_doacao`, `id_tipoDoacao`, `item_doacao`, `id_campanha`, `id_doador`, `dataDoacao`, `quantidade`, `valorDinheiro`, `tipoDinheiro`) VALUES
-(1, 8, 'Dinheiro', 7, 1, '2018-03-15', 0, 123.43, 1),
-(2, 7, 'Ropunhasd', 7, 1, '2018-03-15', 5, 0, 5),
-(3, 7, 'Comidads', 7, 1, '2018-03-15', 54, 0, 5),
-(4, 7, 'Ropunhasd', 7, 1, '2018-03-15', 5, 0, 5),
-(5, 7, 'Ropunhasd', 7, 1, '2018-03-15', 5, 0, 5);
+INSERT INTO `doacao` (`id_doacao`, `id_tipoDoacao`, `item_doacao`, `id_campanha`, `id_doador`, `dataDoacao`, `quantidade`, `valorDinheiro`, `valorCentavos`, `tipoDinheiro`) VALUES
+(1, 8, 'Dinheiro', 7, 1, '2018-03-15', 0, 123, 50, 1),
+(2, 7, 'Ropunhasd', 7, 1, '2018-03-15', 5, 0, 0, 5),
+(3, 7, 'Comidads', 7, 1, '2018-03-15', 54, 0, 0, 5),
+(4, 7, 'Ropunhasd', 7, 1, '2018-03-15', 5, 0, 0, 5),
+(5, 7, 'Ropunhasd', 7, 1, '2018-03-15', 5, 0, 0, 5),
+(6, 8, 'Dinheiro', 1, 1, '2018-04-22', 0, 145, 50, 2);
 
 -- --------------------------------------------------------
 
@@ -306,12 +309,12 @@ ALTER TABLE `categoriasDespesa`
 -- AUTO_INCREMENT de tabela `despesas`
 --
 ALTER TABLE `despesas`
-  MODIFY `idDespesa` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idDespesa` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT de tabela `doacao`
 --
 ALTER TABLE `doacao`
-  MODIFY `id_doacao` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_doacao` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT de tabela `doador`
 --
