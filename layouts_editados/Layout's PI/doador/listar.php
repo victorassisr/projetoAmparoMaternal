@@ -31,8 +31,8 @@
 				</a>
 				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 					<a class="dropdown-item" href="cadastrar.php">Cadastrar</a>
-					<a class="dropdown-item" href="listarDoadores.php">Listar</a>
-					<a class="dropdown-item" href="buscarDoadores.php">Buscar</a>
+					<a class="dropdown-item dropdown-ativo-bt-bb" href="listar.php">Listar</a>
+					<a class="dropdown-item" href="buscar.php">Buscar</a>
 				</div>
 				</li>
 				<li class="nav-item">
@@ -50,16 +50,7 @@
 
 	<!-- Conteudo -->
 
-	<section ng-app="listarDoadores" ng-controller="controladorListarDoadores">
-		<h2 class="titulo text-center">Últimos doadores cadastrados</h2>
-		<div class="text-center"><span class="erro">{{erro}}</span></div>
-		<ul class="list-group">
-			<li class="list-group-item d-flex justify-content-between align-items-center" ng-repeat="doador in doadores track by $index">
-				{{doador.nome}}
-				<span class="badge badge-primary badge-pill">{{$index + 1}}</span>
-			</li>
-		</ul>
-	</section>
+
 
 	<footer class="container-fluid">
 		<p>AMPARO MATERNAL - EURÍPEDES NOVELINO &copy; - <?php date_default_timezone_set("America/Sao_Paulo"); echo date('Y');?></p>

@@ -1,4 +1,7 @@
 <?php
+
+//$request = file_get_contents('php://input');
+
 if(isset($_POST['nome']) && isset($_POST['endereco']) && isset($_POST['email']) && isset($_POST['residencial']) && isset($_POST['tel1']) && isset($_POST['tel2']) && isset($_POST['nascimento']) && isset($_POST['dataCadastro']) && isset($_POST['tipoCliente']) && isset($_POST['tipoPessoa']) && isset($_POST['operadora']) && isset($_POST['turma']) && $_POST['nome'] != "" && $_POST['endereco'] != "" && $_POST['email'] != "" && $_POST['residencial'] != "" && $_POST['tel1'] != "" && $_POST['tel2'] != "" && $_POST['nascimento'] != "" && $_POST['dataCadastro'] != "" && $_POST['tipoCliente'] != "" && $_POST['tipoPessoa'] != "" && $_POST['operadora'] != "" && $_POST['turma'] != ""){
 	require_once('conexao.php');
 

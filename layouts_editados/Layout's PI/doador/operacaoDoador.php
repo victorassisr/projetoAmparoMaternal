@@ -11,9 +11,12 @@ if(isset($_GET["item"]) && $_GET["item"] != "" && $_GET["item"] == "top10"){
 
 	$busca->execute();
 
-	$dados = $busca->fetchAll(PDO::FETCH_OBJ);
-
-	echo json_encode($dados);
+	if($busca->rowCount() > 0){
+		$dados = $busca->fetchAll(PDO::FETCH_OBJ);
+		echo json_encode($dados);
+	} else {
+		echo "ExceptionErro : Houve um erro na solicitacão. Tente novamente. Erro: Falha ao buscar dados do Banco.";
+	}
 	
 } else {
 	echo "404 - Nada aqui, por enquanto. =(";
