@@ -51,36 +51,56 @@ $(document).ready(function(){
 	//FIM COLOCAR DATA NO INPUT DATA DE CADASTRO
 
     var cadastroDoadorApp = angular.module('cadastroDoadorApp', []);
-    cadastroDoadorApp.controller('cadastroDoadorController', function($scope, $http) {
+    cadastroDoadorApp.controller('cadastroDoadorController', function($scope, $http, $filter) {
       $scope.doador = {};
 
       //Inicializacao das variaveis
-      	$scope.doador.dataDeCadastro = new Date(); //Coloca a data validada no input.
-      	$scope.doador.dataDeNascimento = new Date(); //Coloca a data validada no input.
+      	$scope.dataCadastro = { value : new Date() };//$filter('date')(data, 'yyyy-MM-dd'); //Coloca a data validada no input.
+      	$scope.dataNascimento = { value : new Date(1990, 0, 1) }; //Coloca a data validada no input.
       	$scope.doador.tipoDeDoador = "Fidelizado";
       	$scope.doador.dia = "1";
       	$scope.doador.mes = "Aleatório";
+        $scope.doador.pessoa = "Física";
 
         $scope.submitForm = function() {
-
+            $scope.doador.dataDeNascimento = $filter('date')($scope.dataNascimento.value, 'yyyy-MM-dd');
+            $scope.doador.dataDeCadastro = $filter('date')($scope.dataCadastro.value, 'yyyy-MM-dd');
             $http({
               method  : 'POST',
               url     : 'cadastroDoador.php',
               data    : $scope.doador,
               headers : { 'Content-Type': 'application/x-www-form-urlencoded' },
              }).then(function(response){
-             	//console.log(response.data.sucesso);
+              var result = (typeof response.data === 'string');
+
+              if(result){
+                if(response.data.match(/<b>Fatal error<\/b>/)){
+                  alert("Erro ao processar a requisição!");
+                  confirm("Erro FATAL, tente novamente.\nSe persistir, contate o administrador.");
+                } else {
+                  alert("Erro não especificado.");
+                }
+              }
+                //Mostra as mensagens de erro.
                 if(response.data.erroNome != undefined){
                 	$scope.erroNome = response.data.erroNome;
-                } else if(response.data.erroBanco != undefined){
+                }
+                if(response.data.erroBanco != undefined){
                 	$scope.erroGeral = response.data.erroBanco;
-                	console.log(response.data.erroBanco);
-                }else {
-	                if(response.data.sucesso != undefined){
-	                	alert("Cadastrado com sucesso!");
-	                	location.href="cadastrar.php";
-	                }
-	            }
+                }
+                if(response.data.erroEndereco != undefined){
+                  $scope.erroEndereco = response.data.erroEndereco;
+                }
+                if(response.data.erroEmail != undefined){
+                  $scope.erroEmail = response.data.erroEmail;
+                }
+                if(response.data.erroDocumento != undefined){
+                  $scope.erroDocumento = response.data.erroDocumento;
+                }
+	              if(response.data.sucesso != undefined){
+	                alert("Cadastrado com sucesso!");
+	                location.href="cadastrar.php";
+	             }
             });
         } //Fim do submitForm()
 

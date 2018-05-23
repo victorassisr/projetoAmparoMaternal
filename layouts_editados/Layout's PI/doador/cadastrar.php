@@ -62,46 +62,46 @@
     		<div class="form-group">
 		        <label>Endereço</label>
 		        <input type="text" name="endereco" class="form-control" ng-model="doador.endereco" autocomplete='address-line1'>
-        		<span ng-show="erroEndereco">{{erroEndereco}}</span>
+        		<span ng-show="erroEndereco" class="msgErro">{{erroEndereco}}</span>
     		</div>
     		<div class="form-group">
 		        <label>E-Mail</label>
 		        <input type="email" name="email" class="form-control" ng-model="doador.email" autocomplete='email'>
-        		<span ng-show="erroEmail">{{erroEmail}}</span>
+        		<span ng-show="erroEmail" class="msgErro">{{erroEmail}}</span>
     		</div>
     		<div class="form-group">
 		        <label>Telefone Residencial ou Comercial</label>
 		        <input type="text" name="telefoneFixo" class="form-control" ng-model="doador.telefoneFixo" autocomplete='tel'>
-        		<span ng-show="erroTelefoneFixo">{{erroTelefoneFixo}}</span>
+        		<span ng-show="erroTelefoneFixo" class="msgErro">{{erroTelefoneFixo}}</span>
     		</div>
     		<div class="form-group">
 		        <label>Celular</label>
 		        <input type="text" name="celular" class="form-control" ng-model="doador.celular">
-        		<span ng-show="erroCelular">{{erroCelular}}</span>
+        		<span ng-show="erroCelular" class="msgErro">{{erroCelular}}</span>
     		</div>
     		<div class="form-group">
 		        <label>Celular (Opcional)</label>
 		        <input type="text" name="celularOpcional" class="form-control" ng-model="doador.celularOpcional">
-        		<span ng-show="erroCelularOpcional">{{erroCelularOpcional}}</span>
+        		<span ng-show="erroCelularOpcional" class="msgErro">{{erroCelularOpcional}}</span>
     		</div>
     		<div class="form-group">
 		        <label>Data de Nascimento</label>
-		        <input type="date" name="dataDeNascimento" class="form-control">
-        		<span ng-show="erroDataDeNascimento">{{erroDataDeNascimento}}</span>
+		        <input type="date" name="dataDeNascimento" class="form-control" ng-model="dataNascimento.value">
+        		<span ng-show="erroDataDeNascimento" class="msgErro">{{erroDataDeNascimento}}</span>
     		</div>
     		<div class="form-group">
 		        <label>Data de Cadastro</label>
-		        <input type="date" name="dataDeCadastro" class="form-control">
-        		<span ng-show="erroDataDeCadastro">{{erroDataDeCadastro}}</span>
+		        <input type="date" name="dataDeCadastro" class="form-control" ng-model="dataCadastro.value">
+        		<span ng-show="erroDataDeCadastro" class="msgErro">{{erroDataDeCadastro}}</span>
     		</div>
     		<div class="form-group">
     			<label>Tipo de Doador</label>
-		       	<select name="tipoDeDoador" class="sel w-100 form-control" ng-change="alteraTipoDoador()" ng-model="doador.tipoDeDoador" ng-value="doador.tipoDeDoador">
-		       		<option ng-model="doador.tipoDeDoador">Fidelizado</option>
-		       		<option ng-model="doador.tipoDeDoador">Exporádico</option>
-		       		<option ng-model="doador.tipoDeDoador">Anual</option>
+		       	<select name="tipoDeDoador" class="sel w-100 form-control" ng-change="alteraTipoDoador()" ng-model="doador.tipoDeDoador">
+		       		<option>Fidelizado</option>
+		       		<option>Exporádico</option>
+		       		<option>Anual</option>
 		       	</select>
-		       	<span ng-show="erroTipoDeDoador">{{erroTipoDeDoador}}</span>
+		       	<span ng-show="erroTipoDeDoador" class="msgErro">{{erroTipoDeDoador}}</span>
     		</div>
  			<div class="form-group" ng-show="diaShow">
  				<label>Doa todo dia</label>
@@ -133,25 +133,25 @@
     		<div class="form-group">
 		        <label>Pessoa</label>
 		        <select name="pessoa" class="form-control sel w-100" ng-model="doador.pessoa">
-		        	<option ng-value="F">Física</option>
-		        	<option ng-value="J">Jurídica</option>
+		        	<option>Física</option>
+		        	<option>Jurídica</option>
 		        </select>
-        		<span ng-show="erroPessoa">{{erroPessoa}}</span>
+        		<span ng-show="erroPessoa" class="msgErro">{{erroPessoa}}</span>
     		</div>
     		<div class="form-group">
 		        <label>CPF ou CNPJ</label>
 		        <input type="text" name="documento" class="form-control" ng-model="doador.documento">
-        		<span ng-show="erroDocumento">{{erroDocumento}}</span>
+        		<span ng-show="erroDocumento" class="msgErro">{{erroDocumento}}</span>
     		</div>
     		<div class="form-group">
 		        <label>Operadora</label>
 		        <input type="text" name="operadora" class="form-control" ng-model="doador.operadora">
-        		<span ng-show="erroOperadora">{{erroOperadora}}</span>
+        		<span ng-show="erroOperadora" class="msgErro">{{erroOperadora}}</span>
     		</div>
     		<div class="form-group">
 		        <label>Turma</label>
 		        <input type="text" name="turma" class="form-control" ng-model="doador.turma">
-        		<span ng-show="erroTurma">{{erroTurma}}</span>
+        		<span ng-show="erroTurma" class="msgErro">{{erroTurma}}</span>
     		</div>
     		<button class="btn btn-primary" type="submit">Cadastrar</button>
 		</form>

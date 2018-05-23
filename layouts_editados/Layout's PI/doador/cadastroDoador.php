@@ -4,17 +4,66 @@
 
 	$doador = json_decode($json);
 
-	echo $doador;
 
 	$erros = Array();
 	$sucesso = Array();
 
-	if($doador->nome == ""){
+	if(!isset($doador->nome)){
 		$erros["erroNome"] = "Nome não pode ficar vazio.";
 	}
 
+	if(!isset($doador->endereco)){
+		$erros["erroEndereco"] = "Endereco não pode ficar vazio.";
+	}
+
+	if(!isset($doador->email)){
+		$erros["erroEmail"] = "E-Mail não pode ficar vazio.";
+	}
+
+	if(!isset($doador->telefoneFixo)){
+		$doador->telefoneFixo = "0 00 0000-0000";
+	}
+
+	if(!isset($doador->celular)){
+		$doador->celular = "0 00 0 0000-0000";
+	}
+
+	if(!isset($doador->celularOpcional)){
+		$doador->celularOpcional = "0 00 0 0000-0000";
+	}
+
+	if(!isset($doador->dataDeNascimento)){
+		$erros["erroDataDeNascimento"] = "Nascimento não pode ficar vazio.";
+	}
+
+	if(!isset($doador->dataDeCadastro)){
+		$erros["erroDataDeCadastro"] = "Data de cadastro não pode ficar vazio.";
+	}
+
+	if(!isset($doador->tipoDeDoador)){
+		$erros["erroTipoDeDoador"] = "Selecione um tipo de doador!";
+	}
+
+	if(!isset($doador->pessoa)){
+		$erros["erroPessoa"] = "Selecione um tipo de pessoa!";
+	}
+
+	if(!isset($doador->documento)){
+		$erros["erroDocumento"] = "Informe o documento!";
+	}
+
+	if(!isset($doador->operadora)){
+		$doador->operadora = "*";
+	}
+
+	if(!isset($doador->turma)){
+		$doador->turma = "*";
+	} 
+
+
 	if(isset($erros) && $erros != null){
 		echo json_encode($erros);
+		exit();
 	} else {
 		//Inserir no banco..
 		require_once('conexao.php');
@@ -33,7 +82,9 @@
 			$mes = "Não definido";
 		}
 
-		$sql = "INSERT INTO doador(nome, endereco, email, telefoneResidencial, celular1, celular2, nascimento, dataCadastro, tipoDoador, doaDia, doaMes, documento, tipoPessoa, operadora, turma) VALUES (:nome, :endereco, :email, :telRes, :cel1, :cel2, :nasc, :cad, :tipoCli, :doaDia, :doaMes, :doc, :tipoPessoa, :operadora, :turma)";
+
+
+		$sql = "INSERT INTO doador(nome, endereco, email, telefoneResidencial, celular1, celular2, nascimento, dataCadastro, tipoDoador, doaDia, doaMes, documento, tipoPessoa, operadora, turma) VALUES (:nome, :endereco, :email, :telRes, :cel1, :cel2, :nasc, :cad, :tipoCli, :doaDia, :doaMes, :documento, :tipoPessoa, :operadora, :turma)";
 
 		$inserir = $con->prepare($sql);
 		$inserir->bindValue(':nome',$doador->nome);
