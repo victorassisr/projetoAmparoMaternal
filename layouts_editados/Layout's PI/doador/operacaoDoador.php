@@ -1,5 +1,8 @@
 <?php
-if(isset($_GET["item"]) && $_GET["item"] != "" && $_GET["item"] == "top10"){
+
+$sucesso = false;
+
+if(isset($_GET["acao"]) && $_GET["acao"] != "" && $_GET["acao"] == "top10"){
 
 	require_once("conexao.php");
 
@@ -15,10 +18,63 @@ if(isset($_GET["item"]) && $_GET["item"] != "" && $_GET["item"] == "top10"){
 		$dados = $busca->fetchAll(PDO::FETCH_OBJ);
 		echo json_encode($dados);
 	} else {
-		echo "ExceptionErro : Houve um erro na solicitacão. Tente novamente. Erro: Falha ao buscar dados do Banco.";
+		$resposta["resposta"] = "Não foi encontrado nada com os parametros especificados.";
+		echo json_encode($resposta);
+	}
+	$sucesso = true;
+	
+}
+
+if(isset($_GET["acao"]) && $_GET["acao"] != "" && $_GET["acao"] == "listar"){
+
+	require_once("conexao.php");
+
+	$con = conexaoMysql();
+
+	$sql = "SELECT id_doador, nome FROM doador ORDER BY id_doador DESC LIMIT 0,20";
+
+	$busca = $con->prepare($sql);
+
+	$busca->execute();
+
+	if($busca->rowCount() > 0){
+		$dados = $busca->fetchAll(PDO::FETCH_OBJ);
+		echo json_encode($dados);
+	} else {
+		$resposta["resposta"] = "Não foi encontrado nada com os parametros especificados.";
+		echo json_encode($resposta);
 	}
 	
-} else {
-	echo "404 - Nada aqui, por enquanto. =(";
+	$sucesso = true;
 }
+
+if(isset($_GET["acao"]) && $_GET["acao"] != "" && $_GET["acao"] == "buscar"){
+
+	require_once("conexao.php");
+
+	$con = conexaoMysql();
+
+	$sqlBusca = "SELECT * FROM doador WHERE id_doador = ':id'";
+
+	$busca = $con->prepare($sqlBusca);
+
+	$busca->bindValue(':id',$_GET["id"]);
+
+	$busca->execute();
+
+	if($busca->rowCount() > 0){
+		$doador = $busca->fetch(PDO::FETCH_OBJ);
+		echo json_encode($dados);
+	} else {
+		$resposta["resposta"] = "Não foi encontrado nenhum doador com os parametros especificados.";
+		echo json_encode($resposta);
+	}
+	
+	$sucesso = true;
+}
+
+if(!$sucesso){
+	echo "ExceptionErro : Nada a mostrar por aqui.";
+}
+
 ?>

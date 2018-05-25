@@ -31,8 +31,8 @@
 				</a>
 				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 					<a class="dropdown-item" href="cadastrar.php">Cadastrar</a>
-					<a class="dropdown-item" href="listarDoadores.php">Listar</a>
-					<a class="dropdown-item" href="buscarDoadores.php">Buscar</a>
+					<a class="dropdown-item" href="listar.php">Listar</a>
+					<a class="dropdown-item" href="buscar.php">Buscar</a>
 				</div>
 				</li>
 				<li class="nav-item">

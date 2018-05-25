@@ -1,58 +1,7 @@
-var app = angular.module("listarDoadores", []);
-
-app.controller("controladorListarDoadores", function($scope, $http){
-
-	$http({
-		method : "GET",
-		url : "operacaoDoador.php?acao=top10",
-	}).then(function sucesso(response){
-		var str = String(response.data);
-		if(str.match(/Parse error/)){
-			$scope.erro = "Houve um erro ao buscar os doadores, se o problema persistir, contate o administrador do site.";
-		} else if(str.match(/ExceptionErro/)){
-			$scope.erro = "Houve um erro!";
-		} else if(str.match(/Fatal error/)){
-			$scope.erro = "Houve um erro!";
-		}else {
-			$scope.doadores = response.data;
-		}
-	});
-
-});
-
-
-$(document).ready(function(){
-    
-    //Esconde o carregamento
-    $(window).on("load", function(){
-        $('#carregamento').fadeOut(1200);//1500 é a duração do efeito (1.5 seg)
-    });
-    
-});
-
-//Controlador cadastro de doadores
-
-    //COLOCAR DATA NO INPUT DATA DE CADASTRO
-	
-	data = new Date(); //Cria uma nova data
-	dia = data.getDate();	//Pega o dia
-	mes = data.getMonth() + 1; //Pega o mes [0 a 11] soma mais 1 pra ficar certo.
-	ano = data.getFullYear(); //Pega o ANO.
-
-	if(dia < 10){	//Se o dia for menor q 10, coloca o 0 antes.
-		dia = "0"+dia;
-	}
-	if(mes < 10){	//Se o mes for menor q 10, coloca o 0 antes.
-		mes = "0"+mes;
-	}
-
-	dataAtual = '"' + ano + '-' + mes + '-' + dia + '"'; //Formata a data para ser valida.
-
-	//FIM COLOCAR DATA NO INPUT DATA DE CADASTRO
-
-    var cadastroDoadorApp = angular.module('cadastroDoadorApp', []);
-    cadastroDoadorApp.controller('cadastroDoadorController', function($scope, $http, $filter) {
+var editarDoadorApp = angular.module('editarDoadorApp', []);
+    editarDoadorApp.controller('editarDoadorController', function($scope, $http, $filter) {
       $scope.doador = {};
+
 
       //Inicializacao das variaveis
       	$scope.dataCadastro = { value : new Date() };//$filter('date')(data, 'yyyy-MM-dd'); //Coloca a data validada no input.
@@ -67,7 +16,7 @@ $(document).ready(function(){
             $scope.doador.dataDeCadastro = $filter('date')($scope.dataCadastro.value, 'yyyy-MM-dd');
             $http({
               method  : 'POST',
-              url     : 'cadastroDoador.php',
+              url     : 'editarDoador.php',
               data    : $scope.doador,
               headers : { 'Content-Type': 'application/x-www-form-urlencoded' },
              }).then(function(response){
