@@ -1,15 +1,55 @@
 var editarDoadorApp = angular.module('editarDoadorApp', []);
     editarDoadorApp.controller('editarDoadorController', function($scope, $http, $filter) {
       $scope.doador = {};
+      d = {};
 
+      $http.get('doador.json').then((res)=>{
+        d = res.data;
+        $scope.doador.id = d.id_doador;
+        $scope.doador.nome = d.nome;
+        $scope.doador.endereco = d.endereco;
+        $scope.doador.email = d.email;
+        $scope.doador.telefoneFixo = d.telefoneResidencial;
+        $scope.doador.celular = d.celular1;
+        $scope.doador.celularOpcional = d.celular2;
+        $scope.dataNascimento = { value : new Date(d.nascimento+":00:00:00") };
+        $scope.dataCadastro = { value : new Date(d.dataCadastro+":00:00:00") };
+        $scope.doador.dia = d.doaDia;
+        $scope.doador.mes = d.doaMes;
+        $scope.doador.documento = d.documento;
+        $scope.doador.tipoDeDoador = d.tipoDoador;
+        $scope.doador.pessoa = d.tipoPessoa;
+        $scope.doador.operadora = d.operadora;
+        $scope.doador.turma = d.turma;
 
-      //Inicializacao das variaveis
-      	$scope.dataCadastro = { value : new Date() };//$filter('date')(data, 'yyyy-MM-dd'); //Coloca a data validada no input.
-      	$scope.dataNascimento = { value : new Date(1990, 0, 1) }; //Coloca a data validada no input.
-      	$scope.doador.tipoDeDoador = "Fidelizado";
-      	$scope.doador.dia = "1";
-      	$scope.doador.mes = "Aleatório";
-        $scope.doador.pessoa = "Física";
+        //Colocar Dia ou mes, dependendo do doador..
+        if($scope.doador.tipoDeDoador == "Fidelizado"){
+          $scope.diaShow = true;
+          $scope.mesShow = false;
+          $scope.doador.mes = "Não definido";
+        } else {
+          $scope.diaShow = false;
+          $scope.doador.dia = 0;
+        }
+
+        if($scope.doador.tipoDeDoador == "Exporádico"){
+          $scope.mesShow = true;
+          $scope.diaShow = false;
+          $scope.doador.dia = 0;
+          $scope.doador.mes = "Aleatório";
+        } else {
+          $scope.mesShow = false;
+          $scope.doador.mes = "Não definido";
+        }
+
+        if($scope.doador.tipoDeDoador == "Anual"){
+          $scope.doador.dia = 0;
+          $scope.doador.mes = "Aleatório";
+          $scope.mesShow = false;
+          $scope.diaShow = false;
+        } //Fim de colocar Dia ou mes, dependendo do doador..
+
+      });
 
         $scope.submitForm = function() {
             $scope.doador.dataDeNascimento = $filter('date')($scope.dataNascimento.value, 'yyyy-MM-dd');
@@ -81,8 +121,9 @@ var editarDoadorApp = angular.module('editarDoadorApp', []);
         		$scope.mesShow = false;
    	     		$scope.diaShow = false;
         	}
-        }
+        } //Fim função alteraTipoDeDoador()
 
+window.onload = function(){
         //Validacao no carregamento da página
         if($scope.doador.tipoDeDoador == "Fidelizado"){
         	$scope.diaShow = true;
@@ -90,7 +131,7 @@ var editarDoadorApp = angular.module('editarDoadorApp', []);
         	$scope.doador.mes = "Não definido";
         } else {
         	$scope.diaShow = false;
-        	doador.dia = 0;
+        	$scope.doador.dia = 0;
         }
 
         if($scope.doador.tipoDeDoador == "Exporádico"){
@@ -110,4 +151,5 @@ var editarDoadorApp = angular.module('editarDoadorApp', []);
         	$scope.diaShow = false;
         }
         //Fim da validacao
-    });
+      }
+    }); //Fim do controller

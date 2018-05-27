@@ -1,18 +1,49 @@
 <?php
 
 if(isset($_GET["id"]) && $_GET["id"] != ""){
+	
+	require_once("conexao.php");
 
+	$con = conexaoMysql();
+
+	$sqlBusca = "SELECT * FROM doador WHERE id_doador = :id";
+
+	$busca = $con->prepare($sqlBusca);
+
+	$busca->bindValue(':id',$_GET["id"]);
+
+	$busca->execute();
+
+	if($busca->rowCount() > 0){
+		$doador = $busca->fetch(PDO::FETCH_OBJ);
+		$resposta = json_encode($doador);
+		$arquivo = "doador.json";
+		if($json = fopen($arquivo, "w")){
+			fwrite($json, $resposta);	
+		} else {
+			echo '<scipt>alert("Houve um erro ao processar os dados do doador.\nTente novamente.");</script>';
+		}
+	} else {
+		$resposta["notFound"] = "Não foi encontrado nenhum doador com os parametros especificados.";
+		$resposta = json_encode($resposta);
+		$arquivo = "doador.json";
+		if($json = fopen($arquivo, "w")){
+			fwrite($json, $resposta);	
+		} else {
+			echo '<scipt>alert("Houve um erro.\nTente novamente.");</script>';
+		}
+	}
 //HTML..
 ?>
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Editar Doador - {{doador.nome}}</title>
 	<link rel="stylesheet" type="text/css" href="../geral/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="../geral/css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="../geral/css/myStyle.css">
 	<link rel="stylesheet" type="text/css" href="css/editar.css">
 	<script type="text/javascript" src="../geral/js/angular-1.6.9.min.js"></script>
+	<title>Editar Doador - {{doador.nome}}</title>
 </head>
 <body>
 <body>
@@ -58,8 +89,8 @@ if(isset($_GET["id"]) && $_GET["id"] != ""){
 	<h3 class="text-center mt-40">Editar doador</h3>
 	<hr>
 	<div class="container" ng-app="editarDoadorApp" ng-controller="editarDoadorController">
-		<input type="hidden" name="id" ng-model="id" ng-value="<?php echo $_GET["id"]?>">
 		<form name="editarDoador" ng-submit="submitForm()">
+			<input type="hidden" name="id" ng-model="doador.id">
 			<span ng-show="erroNome" class="msgErro text-center">{{erroGeral}}</span>
     		<div class="form-group">
 		        <label>Nome*</label>
@@ -160,7 +191,7 @@ if(isset($_GET["id"]) && $_GET["id"] != ""){
 		        <input type="text" name="turma" class="form-control" ng-model="doador.turma">
         		<span ng-show="erroTurma" class="msgErro">{{erroTurma}}</span>
     		</div>
-    		<button class="btn btn-primary" type="submit">Editar</button>
+    		<button id="btn-editar" class="btn btn-primary" type="submit">Editar</button>
 		</form>
 	</div>
 
@@ -172,6 +203,7 @@ if(isset($_GET["id"]) && $_GET["id"] != ""){
 <script type="text/javascript" src="../geral/js/popper.min.js"></script>
 <script type="text/javascript" src="../geral/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="js/editar.js"></script>
+<script type="text/javascript" src="js/buscaDoadorPorId.js"></script>
 </body>
 </html>
 <?php
@@ -238,7 +270,7 @@ if(isset($_GET["id"]) && $_GET["id"] != ""){
 <script type="text/javascript" src="../geral/js/jquery-3.3.1.min.js"></script>
 <script type="text/javascript" src="../geral/js/popper.min.js"></script>
 <script type="text/javascript" src="../geral/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="js/script.js"></script>
+<script type="text/javascript" src="js/buscaDoadorPorId.js"></script>
 </body>
 </html>
 <?php

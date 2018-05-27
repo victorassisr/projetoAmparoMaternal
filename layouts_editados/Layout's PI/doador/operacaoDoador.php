@@ -54,7 +54,7 @@ if(isset($_GET["acao"]) && $_GET["acao"] != "" && $_GET["acao"] == "buscar"){
 
 	$con = conexaoMysql();
 
-	$sqlBusca = "SELECT * FROM doador WHERE id_doador = ':id'";
+	$sqlBusca = "SELECT * FROM doador WHERE id_doador = :id";
 
 	$busca = $con->prepare($sqlBusca);
 
