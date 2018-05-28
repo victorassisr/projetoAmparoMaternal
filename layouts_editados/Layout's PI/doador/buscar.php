@@ -10,7 +10,6 @@
 </head>
 <body>
 <body>
-	<div id="carregamento"><div id="img-loader"></div></div>
 	<nav class="navbar navbar-expand-lg navbar-dark">
 		<a class="navbar-brand" href="#" title="Amparo Maternal Euripedes Novelino"><div id="logo"></div></a>
 
