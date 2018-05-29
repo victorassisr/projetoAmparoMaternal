@@ -43,7 +43,7 @@ if(isset($_GET["id"]) && $_GET["id"] != ""){
 	<link rel="stylesheet" type="text/css" href="../geral/css/myStyle.css">
 	<link rel="stylesheet" type="text/css" href="css/editar.css">
 	<script type="text/javascript" src="../geral/js/angular-1.6.9.min.js"></script>
-	<title>Editar Doador - {{doador.nome}}</title>
+	<title>Editar Doador</title>
 </head>
 <body>
 <body>

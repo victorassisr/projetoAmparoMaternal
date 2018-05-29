@@ -6,10 +6,12 @@
 	<link rel="stylesheet" type="text/css" href="../geral/css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="../geral/css/myStyle.css">
 	<link rel="stylesheet" type="text/css" href="css/estilo.css">
+	<link rel="stylesheet" type="text/css" href="css/listar.css">
 	<script type="text/javascript" src="../geral/js/angular-1.6.9.min.js"></script>
 </head>
 <body>
 <body>
+	
 	<nav class="navbar navbar-expand-lg navbar-dark">
 		<a class="navbar-brand" href="#" title="Amparo Maternal Euripedes Novelino"><div id="logo"></div></a>
 
@@ -55,19 +57,19 @@
 			<li class="list-group-item d-flex justify-content-between align-items-center" ng-repeat="doador in doadores track by $index">
 				{{doador.nome}}
 				<div class="acoesDoador">
-					<a class="badge badge-primary badge-pill" href="editar.php?id={{doador.id_doador}}" title="Editar o doador {{doador.nome}}">Editar</a>
-					<a class="badge badge-primary badge-pill" href="excluir.php?id={{doador.id_doador}}" title="Excluir o doador {{doador.nome}}">Excluir</a>
-					<a class="badge badge-primary badge-pill" href="recibo.php?id={{doador.id_doador}}" title="Gerar Recibo para {{doador.nome}}">Recibo</a>
-					<a class="badge badge-primary badge-pill" href="informacoes.php?id={{doador.id_doador}}" title="Informações sobre o doador {{doador.nome}}">Informações</a>
+					<a class="badge badge-primary badge-pill botaoAcao" href="editar.php?id={{doador.id_doador}}" title="Editar o doador {{doador.nome}}">Editar</a>
+					<button class="badge badge-primary badge-pill botaoAcao" ng-click="excluir(doador.id_doador, doador.nome)" title="Excluir o doador {{doador.nome}}">Excluir</button>
+					<button class="badge badge-primary badge-pill botaoAcao" ng-click="gerarRecibo(doador.id_doador)" title="Gerar Recibo para {{doador.nome}}">Recibo</button>
+					<button class="badge badge-primary badge-pill botaoAcao" ng-click="info(doador.id_doador)" title="Informações sobre o doador {{doador.nome}}">Informações</button>
 				</div>
 			</li>
 		</ul>
 	</section>
 
 
-	<footer class="container-fluid">
-		<p>AMPARO MATERNAL - EURÍPEDES NOVELINO &copy; - <?php date_default_timezone_set("America/Sao_Paulo"); echo date('Y');?></p>
-	</footer>
+	<?php
+		include("rodape_doador.php");
+	?>
 
 <script type="text/javascript" src="../geral/js/jquery-3.3.1.min.js"></script>
 <script type="text/javascript" src="../geral/js/popper.min.js"></script>

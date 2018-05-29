@@ -6,6 +6,7 @@ app.controller("controladorListarDoadores", function($scope, $http){
 		method : "GET",
 		url : "operacaoDoador.php?acao=top10",
 	}).then(function sucesso(response){
+    console.log(response.data.resposta);
 		var str = String(response.data);
 		if(str.match(/Parse error/)){
 			$scope.erro = "Houve um erro ao buscar os doadores, se o problema persistir, contate o administrador do site.";
@@ -13,9 +14,11 @@ app.controller("controladorListarDoadores", function($scope, $http){
 			$scope.erro = "Houve um erro!";
 		} else if(str.match(/Fatal error/)){
 			$scope.erro = "Houve um erro!";
-		}else {
-			$scope.doadores = response.data;
-		}
+		}else if(response.data.resposta != undefined){
+			$scope.erro = response.data.resposta;
+		} else {
+      $scope.doadores = response.data;
+    }
 	});
 
 });

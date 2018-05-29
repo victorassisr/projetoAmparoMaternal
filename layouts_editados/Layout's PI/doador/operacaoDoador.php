@@ -18,7 +18,7 @@ if(isset($_GET["acao"]) && $_GET["acao"] != "" && $_GET["acao"] == "top10"){
 		$dados = $busca->fetchAll(PDO::FETCH_OBJ);
 		echo json_encode($dados);
 	} else {
-		$resposta["resposta"] = "Não foi encontrado nada com os parametros especificados.";
+		$resposta["resposta"] = "Não foi encontrado ninguém cadastrado ainda.";
 		echo json_encode($resposta);
 	}
 	$sucesso = true;
@@ -41,7 +41,7 @@ if(isset($_GET["acao"]) && $_GET["acao"] != "" && $_GET["acao"] == "listar"){
 		$dados = $busca->fetchAll(PDO::FETCH_OBJ);
 		echo json_encode($dados);
 	} else {
-		$resposta["resposta"] = "Não foi encontrado nada com os parametros especificados.";
+		$resposta["resposta"] = "Não foi encontrado ninguém cadastrado ainda.";
 		echo json_encode($resposta);
 	}
 	
@@ -65,6 +65,31 @@ if(isset($_GET["acao"]) && $_GET["acao"] != "" && $_GET["acao"] == "buscar"){
 	if($busca->rowCount() > 0){
 		$doador = $busca->fetch(PDO::FETCH_OBJ);
 		echo json_encode($dados);
+	} else {
+		$resposta["resposta"] = "Não foi encontrado nenhum doador com os parametros especificados.";
+		echo json_encode($resposta);
+	}
+	
+	$sucesso = true;
+}
+
+if(isset($_GET["acao"]) && $_GET["acao"] != "" && $_GET["acao"] == "excluir" && isset($_GET['id']) && $_GET['id'] != ""){
+
+	require_once("conexao.php");
+
+	$con = conexaoMysql();
+
+	$sqlEsclusao = "DELETE FROM doador WHERE id_doador = :id";
+
+	$busca = $con->prepare($sqlEsclusao);
+
+	$busca->bindValue(':id',$_GET["id"]);
+
+	$busca->execute();
+
+	if($busca->rowCount() > 0){
+		$resposta["sucesso"] = "Doador excluido com sucesso!";
+		echo json_encode($resposta);
 	} else {
 		$resposta["resposta"] = "Não foi encontrado nenhum doador com os parametros especificados.";
 		echo json_encode($resposta);
