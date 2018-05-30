@@ -29,7 +29,7 @@
 	        <a class="nav-link" href="../doador/">Doador</a>
 	      </li>
 	      <li class="nav-item">
-	        <a class="nav-link" href="#">Campanhas</a>
+	        <a class="nav-link" href="../campanha/">Campanhas</a>
 	      </li>
 	      <li class="nav-item">
 	        <a class="nav-link" href="#">Despesas</a>
@@ -37,11 +37,45 @@
 	      <li class="nav-item">
 	        <a class="nav-link" href="#">Relatórios</a>
 	      </li>
+	      <!--
+	      <li class="nav-item dropdown">
+	        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+	          Dropdown
+	        </a>
+	        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+	          <a class="dropdown-item" href="#">Action</a>
+	          <a class="dropdown-item" href="#">Another action</a>
+	          <div class="dropdown-divider"></div>
+	          <a class="dropdown-item" href="#">Something else here</a>
+	        </div>
+	      </li>
+	      <li class="nav-item">
+	        <a class="nav-link disabled" href="#">Disabled</a>
+	      </li>
+	  		-->
 	    </ul>
 	  </div>
 	</nav>
 
 	<div class="content container">
+		<div class="row"
+		style="font-size: 14pt;
+				font-weight: bold;
+				color: #018636;">
+			
+			<div class="col-md-6">
+				<a href="../doador/">
+					<img src="../inicio/img/icon_donation.png" style="width: 100px;">
+					<span>Nova doação</span>
+				</a>
+			</div>
+			<div class="col-md-6">
+				<a href="../doador/">
+					<img src="../inicio/img/icon_recibo.png" style="width: 100px;">
+					<span>Gerar recibos</span>
+				</a>
+			</div>
+		</div>
 		<div class="row">
 			<div class="col-md-6">
 				<canvas class="grafico" id="myChart"></canvas>
@@ -62,8 +96,8 @@
 		    <tr>
 		      <th scope="col">#</th>
 		      <th scope="col">À PAGAR</th>
-		      <th scope="col">À RECEBER</th>
 		      <th scope="col">VENCIDAS</th>
+		      <th scope="col">À RECEBER</th>
 		    </tr>
 		  </thead>
 		  <tbody>
@@ -88,9 +122,9 @@
 		</table>
 	</div>
 
-	<?php
-		include("rodape.php");
-	?>
+	<footer class="container-fluid">
+		<p>AMPARO MATERNAL - EURÍPEDES NOVELINO &copy; - <?php echo date('Y');?></p>
+	</footer>
 
 <script type="text/javascript" src="js2/jquery-3.3.1.min.js"></script>
 <script type="text/javascript" src="js2/popper.min.js"></script>

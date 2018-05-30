@@ -1,6 +1,12 @@
 /*IMPORTS*/
 @import url('https://fonts.googleapis.com/css?family=Amatic+SC');
-/*font-family: 'Amatic SC', cursive;*/
+a{
+	color: #018636;
+}
+a:hover{
+	color: #4cea18;
+	text-decoration: none;
+}
 
 .navbar-brand{
 	padding: 0 !important;
