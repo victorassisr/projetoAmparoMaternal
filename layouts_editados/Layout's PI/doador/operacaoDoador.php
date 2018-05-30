@@ -48,7 +48,7 @@ if(isset($_GET["acao"]) && $_GET["acao"] != "" && $_GET["acao"] == "listar"){
 	$sucesso = true;
 }
 
-if(isset($_GET["acao"]) && $_GET["acao"] != "" && $_GET["acao"] == "buscar"){
+if(isset($_GET["acao"]) && $_GET["acao"] != "" && $_GET["acao"] == "buscar" && isset($_GET["id"]) && $_GET["id"] != ""){
 
 	require_once("conexao.php");
 
@@ -64,7 +64,7 @@ if(isset($_GET["acao"]) && $_GET["acao"] != "" && $_GET["acao"] == "buscar"){
 
 	if($busca->rowCount() > 0){
 		$doador = $busca->fetch(PDO::FETCH_OBJ);
-		echo json_encode($dados);
+		echo json_encode($doador);
 	} else {
 		$resposta["resposta"] = "Não foi encontrado nenhum doador com os parametros especificados.";
 		echo json_encode($resposta);

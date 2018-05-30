@@ -60,9 +60,9 @@
 		</ul>
 	</section>
 
-	<footer class="container-fluid">
-		<p>AMPARO MATERNAL - EURÍPEDES NOVELINO &copy; - <?php date_default_timezone_set("America/Sao_Paulo"); echo date('Y');?></p>
-	</footer>
+	<?php
+		include("rodape_doador.php");
+	?>
 
 <script type="text/javascript" src="../geral/js/jquery-3.3.1.min.js"></script>
 <script type="text/javascript" src="../geral/js/popper.min.js"></script>
