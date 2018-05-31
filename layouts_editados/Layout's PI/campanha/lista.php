@@ -72,12 +72,11 @@
 			</div>
 		</div>
 	</div>
-<?php  include("footer.html") ?>
+<?php  include("rodape.php") ?>
 
 <script type="text/javascript" src="../geral/js/jquery-3.3.1.min.js"></script>
 <script type="text/javascript" src="../geral/js/popper.min.js"></script>
 <script type="text/javascript" src="../geral/js/bootstrap.min.js"></script>
-<!-- <script type="text/javascript" src="../geral/js/chart.js"></script> -->
 <script type="text/javascript" src="../geral/js/script.js"></script>
 <script type="text/javascript" src="js/scriptIndex.js"></script>
 </body>

@@ -13,21 +13,21 @@
 	<?php  include("menu.html") ?>
 	<div class="container">
 		<h3 class="titulo">Cadastrar Campanhas</h3>
-		<form action="cadastrarCampanha.php" method="POST" class="form-group" ng-submit="cadastroCamp()">
+		<form class="form-group" ng-submit="cadastroCamp()">
 			<label for="campanha">Nome da Campanha</label><br/>
-				<input class="form-control" type="text" name="nomeCampanha" id="nomeCampanha" required>
+				<input class="form-control" type="text" name="nomeCampanha" id="nomeCampanha" ng-model="campanha.nome" required>
 			<br>
 			<label for="campanha">Data de início:</label><br/>
-				<input type="date" name="dataInicial" id="dataInicial" required><br>
+				<input type="date" name="dataInicial" id="dataInicial" ng-model="dataInicial" required><br>
 			<br>
 			<label for="campanha">Data de término:</label><br/>
-				<input type="date" name="dataFinal" id="dataFinal" required>
+				<input type="date" name="dataFinal" id="dataFinal" ng-model="dataFinal" required>
 			<br><br>
 			<input type="submit" value="Cadastrar" class="btn"/>
 		</form>
 	</div>
 
-<?php  include("footer.html") ?>
+<?php  include("rodape.php") ?>
 
 <script type="text/javascript" src="../geral/js/jquery-3.3.1.min.js"></script>
 <script type="text/javascript" src="../geral/js/popper.min.js"></script>

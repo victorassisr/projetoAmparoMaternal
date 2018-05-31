@@ -36,7 +36,7 @@
 		</table>
 	</div>
 <?php 
-	include("footer.html");
+	include("rodape.php");
 ?>
 <script type="text/javascript" src="../geral/js/jquery-3.3.1.min.js"></script>
 <script type="text/javascript" src="../geral/js/popper.min.js"></script>
