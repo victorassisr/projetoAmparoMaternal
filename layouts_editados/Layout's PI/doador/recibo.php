@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<meta charset="utf-8">
 	<title>Gerência de Doadores</title>
 	<link rel="stylesheet" type="text/css" href="../geral/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="../geral/css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="../geral/css/myStyle.css">
-	<link rel="stylesheet" type="text/css" href="css/estilo.css">
-	<link rel="stylesheet" type="text/css" href="css/listar.css">
+	<link rel="stylesheet" type="text/css" href="css/recibo.css">
 	<script type="text/javascript" src="../geral/js/angular-1.6.9.min.js"></script>
 </head>
 <body>
@@ -50,22 +50,49 @@
 	</nav>
 
 	<!-- Conteudo -->
-	<section ng-app="listarDoadores" ng-controller="controladorListarDoadores">
-		<h2 class="titulo text-center">Doadores</h2>
+	<section ng-app="reciboDoador" ng-controller="reciboController">
 		<div class="text-center"><span class="erro">{{erro}}</span></div>
-		<ul class="list-group">
-			<li class="list-group-item d-flex justify-content-between align-items-center" ng-repeat="doador in doadores track by $index">
-				<div class="nome">
-					{{doador.nome}}
+
+		<div class="recibo">
+			<div class="topo clearfix">
+				<div class="logo">
+					LOGO
 				</div>
-				<div class="acoesDoador">
-					<a class="badge badge-primary badge-pill botaoAcao" href="editar.php?id={{doador.id_doador}}" title="Editar o doador {{doador.nome}}">Editar</a>
-					<button class="badge badge-primary badge-pill botaoAcao" ng-click="excluir(doador.id_doador, doador.nome)" title="Excluir o doador {{doador.nome}}">Excluir</button>
-					<a class="badge badge-primary badge-pill botaoAcao" href="recibo.php?id={{doador.id_doador}}" title="Gerar Recibo para {{doador.nome}}">Recibo</button>
-					<a class="badge badge-primary badge-pill botaoAcao" href="info.php?id={{doador.id_doador}}" title="Informações sobre o doador {{doador.nome}}">Informações</a>
+				<div class="cabecalho">
+					<div class="text-center leis">
+						<h3>AMPARO MATERNAL</h3>
+						<p class="lei">Lei de Utilidade Pública Municipal nº 3.146/93</p>
+						<p class="lei">Lei de Utilidade Pública Estadual nº 13.731/00</p>
+						<p class="lei">Lei de Utilidade Pública Federal / processo nº 21.510/97-65</p>
+					</div>
+					<div class="endereco">
+						Rua Vereador João Pacheco, 944 - CEP 38700-248 - Patos de Minas - Minas Gerais
+					</div>
+					<div class="contato">
+						<b>Telefone (34) 3825-5010</b> - CNPJ 23.097.645/0001-90 - Ins. Estadual: Isenta
+					</div>
 				</div>
-			</li>
-		</ul>
+			</div>
+			<div class="corpoRecibo clearfix">
+				<div class="valor">
+					<p class="serie">RECIBO DE DOAÇÃO - SÉRIE "A" - VALOR <span class="campoValor">324,40</span> <span class="numeroRecibo"> Nº: TIMESTAMP</span></p>
+				</div>
+				<div class="informacoes">
+					<p>Recebemos de <b class="txt">{{doador.nome}}</b>, a quantia de <b class="txt">R$ 324,40</b></p>
+				</div>
+				<div class="mensagem clearfix">
+					<p>Você está contribuindo com o programa</p>
+					<p>"Cidadania em Rede", fazendo acontecer projetos</p>
+					<p>de desenvolvimento Sócio - Educativo - Cultural</p>
+					<p>em Patos de Minas - MG.</p>
+				</div>
+				<div class="assinatura clearfix text-center">
+					<p class="ass">ASSINATURA</p>
+					<p class="assNome">Mirian Gontijo Moreira da Costa</p>
+					<p>Presidente</p>
+				</div>
+			</div>
+		</div>
 	</section>
 
 
@@ -76,6 +103,6 @@
 <script type="text/javascript" src="../geral/js/jquery-3.3.1.min.js"></script>
 <script type="text/javascript" src="../geral/js/popper.min.js"></script>
 <script type="text/javascript" src="../geral/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="js/listar.js"></script>
+<script type="text/javascript" src="js/recibo.js"></script>
 </body>
 </html>
