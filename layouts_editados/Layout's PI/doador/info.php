@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<meta charset="utf-8">
 	<title>Gerência de Doadores</title>
 	<link rel="stylesheet" type="text/css" href="../geral/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="../geral/css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="../geral/css/myStyle.css">
-	<link rel="stylesheet" type="text/css" href="css/estilo.css">
-	<link rel="stylesheet" type="text/css" href="css/listar.css">
+	<link rel="stylesheet" type="text/css" href="css/info.css">
 	<script type="text/javascript" src="../geral/js/angular-1.6.9.min.js"></script>
 </head>
 <body>
@@ -50,22 +50,11 @@
 	</nav>
 
 	<!-- Conteudo -->
-	<section ng-app="listarDoadores" ng-controller="controladorListarDoadores">
-		<h2 class="titulo text-center">Doadores</h2>
+	<section ng-app="infoDoador" ng-controller="infoController">
 		<div class="text-center"><span class="erro">{{erro}}</span></div>
-		<ul class="list-group">
-			<li class="list-group-item d-flex justify-content-between align-items-center" ng-repeat="doador in doadores track by $index">
-				<div class="nome">
-					{{doador.nome}}
-				</div>
-				<div class="acoesDoador">
-					<a class="badge badge-primary badge-pill botaoAcao" href="editar.php?id={{doador.id_doador}}" title="Editar o doador {{doador.nome}}">Editar</a>
-					<button class="badge badge-primary badge-pill botaoAcao" ng-click="excluir(doador.id_doador, doador.nome)" title="Excluir o doador {{doador.nome}}">Excluir</button>
-					<button class="badge badge-primary badge-pill botaoAcao" ng-click="gerarRecibo(doador.id_doador)" title="Gerar Recibo para {{doador.nome}}">Recibo</button>
-					<a class="badge badge-primary badge-pill botaoAcao" href="info.php?id={{doador.id_doador}}" title="Informações sobre o doador {{doador.nome}}">Informações</a>
-				</div>
-			</li>
-		</ul>
+
+		<div class="conteudo" ng-include="tableDoador">
+		</div>
 	</section>
 
 
@@ -76,6 +65,6 @@
 <script type="text/javascript" src="../geral/js/jquery-3.3.1.min.js"></script>
 <script type="text/javascript" src="../geral/js/popper.min.js"></script>
 <script type="text/javascript" src="../geral/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="js/listar.js"></script>
+<script type="text/javascript" src="js/info.js"></script>
 </body>
 </html>
