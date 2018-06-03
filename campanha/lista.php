@@ -1,28 +1,7 @@
-<?php
-	if(isset($_GET['id']) && $_GET['id'] != ""){
-
-		$id = $_GET['id'];
-
-		require_once('conexao.php');
-
-		$con = conexaoMysql();
-
-		$sql = "SELECT * FROM campanhas WHERE id_campanha = :id";
-
-		$listar = $con->prepare($sql);
-
-		$listar->bindValue(':id',$id);
-
-		$listar->execute();
-
-		if($listar->rowCount() == 1){
-
-		$campanha = $listar->fetch(PDO::FETCH_OBJ);
-?>
 <!DOCTYPE html>
-<html ng-app="editarCampanha">
+<html ng-app="campanhas">
 <head>
-	<title>Editar Campanha</title>
+	<title>Campanhas</title>
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> 
 	<link rel="stylesheet" type="text/css" href="../geral/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="../geral/css/font-awesome.min.css">
@@ -30,7 +9,7 @@
 	<link rel="stylesheet" type="text/css" href="css/estilo.css">
 	<script type="text/javascript" src="../geral/js/angular-1.6.9.min.js"></script>
 </head>
-<body ng-controller="editarCampanhaCtrl">
+<body ng-controller="campanhasCtrl">
 	<nav class="navbar navbar-expand-lg navbar-dark">
 		<a class="navbar-brand" href="#" title="Amparo Maternal Euripedes Novelino"><div id="logo"></div></a>
 
@@ -67,49 +46,38 @@
 			</ul>
 		</div>
 	</nav>
-	<div class="container">
-		<h2>Editar Campanha</h2>
-		<form class="form-group" action="updateCampanha.php" method="post" ng-submit="submitForm()">
-			<label for="campanha">Nome da Campanha</label>
-			<input class="form-control" type="text" name="nomeCampanha" id="nomeCampanha" value="<?php echo $campanha->nomeCampanha; ?>" required>
-
-			<br><br>
-			<div class="row">
-				<div class="col-md-6">
-					<label for="campanha">Data de Inicio</label><br>
-					<input type="date" name="dataInicial" id="dataInicial" value="<?php echo $campanha->dataInicial; ?>" >
-				</div>
-				<div class="col-md-6">
-					<label for="campanha">Nome de Término</label><br>
-					<input type="date" name="dataFinal" id="dataFinal" value="<?php echo $campanha->dataFinal; ?>" >
-				</div>
-				<input type="hidden" name="id" value="<?php echo $campanha->id_campanha; ?>">
-			</div><br><br>
-			<input class="btn" type="submit" value="Editar Campanha" />
-		</form>
+	<div class="container">	
+		<table class="table table-hover table-dark table-responsive-xm">
+		  <thead>
+		    <tr>
+		      <th scope="col">CAMPANHAS</th>
+		      <th scope="col">Início</th>
+		      <th scope="col">Término</th>
+		      <th scope="col">Editar</th>
+		      <th scope="col">Excluir</th>
+		    </tr>
+		  </thead>
+		  <tbody>
+		    <tr ng-repeat="campanha in campanhas">
+		      <td>{{campanha.nomeCampanha}}</td>
+		      	<th scope="row">{{campanha.dataInicial | date:'dd/MM/yyyy'}}</th>
+		      	<th scope="row">{{campanha.dataFinal | date:'dd/MM/yyyy'}}</th>
+		      	<th scope="row"><a href="editarCampanha.php?id={{campanha.id_campanha}}"><i class="material-icons">edit</i></a></th>
+		      	<th scope="row" ng-click="excluir(campanha.id_campanha, campanha.nomeCampanha)" class="icon-excluir" title="Deletar campanha - {{campanha.nomeCampanha}}">
+		   			<i class="material-icons">delete</i>
+		   		</th>
+		    </tr>
+		  </tbody>
+		</table>
+			</div>
+		</div>
 	</div>
-		<footer class="container-fluid">
-		<p>AMPARO MATERNAL - EURÍPEDES NOVELINO &copy; - <?php echo date('Y');?></p>
-	</footer>
+<?php  include("rodape.php") ?>
 
-
-	
 <script type="text/javascript" src="../geral/js/jquery-3.3.1.min.js"></script>
 <script type="text/javascript" src="../geral/js/popper.min.js"></script>
 <script type="text/javascript" src="../geral/js/bootstrap.min.js"></script>
-<!-- <script type="text/javascript" src="../geral/js/chart.js"></script> -->
 <script type="text/javascript" src="../geral/js/script.js"></script>
 <script type="text/javascript" src="js/scriptIndex.js"></script>
 </body>
 </html>
-
-<?php 
-
-		} else{
-			echo "Voce deve selecionar um elemento válido para ser editado!";
-			echo "<a href=\"lista.php\">Voltar</a>";
-		}
-	} else {
-		echo "Voce deve selecionar um elemento válido para ser editado!";
-		echo "<a href=\"lista.php\">Voltar</a>";
-	}

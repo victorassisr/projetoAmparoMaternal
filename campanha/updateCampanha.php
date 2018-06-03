@@ -41,8 +41,7 @@ $con = conexaoMysql();
 				$edita->execute();
 
 				if($edita->rowCount() == 1){
-					echo "Alterado com sucesso!";
-					echo "<br><br><a href=\"http://10.0.0.50/\">Voltar</a>";
+					alert("Alterado com sucesso!");
 				} else {
 					echo "Erro: Nada a alterar!";
 					echo "<br><br><a href=\"http://10.0.0.50/\">Voltar</a>";

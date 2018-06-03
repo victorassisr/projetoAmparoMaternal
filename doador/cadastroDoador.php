@@ -1,5 +1,7 @@
 <?php
-	$json = file_get_contents("php://input");
+
+	$json = file_get_contents('php://input');
+
 	$doador = json_decode($json);
 
 
@@ -63,7 +65,7 @@
 		echo json_encode($erros);
 		exit();
 	} else {
-		//Atualizar no banco..
+		//Inserir no banco..
 		require_once('conexao.php');
 
 		$con = conexaoMySql();
@@ -74,18 +76,17 @@
 			$dia = 0;
 		}
 
-		if($doador->mes != "Nao definido"){
+		if($doador->mes != "Não definido"){
 			$mes = $doador->mes;
 		} else{
-			$mes = "Nao definido";
+			$mes = "Não definido";
 		}
 
 
 
-		$sql = "UPDATE doador SET nome = :nome, endereco = :endereco, email = :email, telefoneResidencial = :telRes, celular1 = :cel1, celular2 = :cel2, nascimento = :nasc, dataCadastro = :cad, tipoDoador = :tipoCli, doaDia = :doaDia, doaMes = :doaMes, documento = :documento, tipoPessoa = :tipoPessoa, operadora = :operadora, turma = :turma WHERE id_doador = :id";
+		$sql = "INSERT INTO doador(nome, endereco, email, telefoneResidencial, celular1, celular2, nascimento, dataCadastro, tipoDoador, doaDia, doaMes, documento, tipoPessoa, operadora, turma) VALUES (:nome, :endereco, :email, :telRes, :cel1, :cel2, :nasc, :cad, :tipoCli, :doaDia, :doaMes, :documento, :tipoPessoa, :operadora, :turma)";
 
 		$inserir = $con->prepare($sql);
-		$inserir->bindValue(':id',$doador->id);
 		$inserir->bindValue(':nome',$doador->nome);
 		$inserir->bindValue(':endereco',$doador->endereco);
 		$inserir->bindValue(':email',$doador->email);
@@ -110,11 +111,10 @@
 			$sucesso["sucesso"] = "Sucesso";
 			echo json_encode($sucesso);
 		} else {
-			$erroBanco["erroBanco"] = "Nada a atualizar.";
+			$erroBanco["erroBanco"] = "Houve um erro ao inserir no banco de dados. Contate o administrador.";
 			echo json_encode($erroBanco);
 		}
 		//Fim insercao
-		
 	}
 
 ?>
