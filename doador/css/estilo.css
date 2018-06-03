@@ -53,3 +53,17 @@
 	border-radius: 4px;
 	cursor: pointer;
 }
+
+.labelBlock{
+	display: block;
+}
+
+#reaisADoar{
+	max-width: 200px;
+	display: inline-block;
+}
+
+#centavosADoar{
+	max-width: 100px;
+	display: inline-block;
+}

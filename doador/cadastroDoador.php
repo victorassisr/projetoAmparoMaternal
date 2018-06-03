@@ -56,6 +56,14 @@
 		$doador->operadora = "*";
 	}
 
+	if(!isset($doador->reaisADoar)){
+		$doador->reaisADoar = 0;
+	}
+
+	if(!isset($doador->centavosADoar)){
+		$doador->centavosADoar = 0;
+	}
+
 	if(!isset($doador->turma)){
 		$doador->turma = "*";
 	} 
@@ -84,7 +92,7 @@
 
 
 
-		$sql = "INSERT INTO doador(nome, endereco, email, telefoneResidencial, celular1, celular2, nascimento, dataCadastro, tipoDoador, doaDia, doaMes, documento, tipoPessoa, operadora, turma) VALUES (:nome, :endereco, :email, :telRes, :cel1, :cel2, :nasc, :cad, :tipoCli, :doaDia, :doaMes, :documento, :tipoPessoa, :operadora, :turma)";
+		$sql = "INSERT INTO doador(nome, endereco, email, telefoneResidencial, celular1, celular2, nascimento, dataCadastro, tipoDoador, reaisADoar, centavosADoar, doaDia, doaMes, documento, tipoPessoa, operadora, turma) VALUES (:nome, :endereco, :email, :telRes, :cel1, :cel2, :nasc, :cad, :tipoCli, :reaisADoar, :centavosADoar, :doaDia, :doaMes, :documento, :tipoPessoa, :operadora, :turma)";
 
 		$inserir = $con->prepare($sql);
 		$inserir->bindValue(':nome',$doador->nome);
@@ -96,6 +104,8 @@
 		$inserir->bindValue(':nasc',$doador->dataDeNascimento);
 		$inserir->bindValue(':cad',$doador->dataDeCadastro);
 		$inserir->bindValue(':tipoCli',$doador->tipoDeDoador);
+		$inserir->bindValue(':reaisADoar',$doador->reaisADoar);
+		$inserir->bindValue(':centavosADoar',$doador->centavosADoar);
 		$inserir->bindValue(':doaDia',$doador->dia);
 		$inserir->bindValue(':doaMes',$doador->mes);
 		$inserir->bindValue(':documento',$doador->documento);

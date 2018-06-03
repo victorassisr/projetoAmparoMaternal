@@ -9,7 +9,6 @@ infoDoador.controller("infoController", function($scope, $location, $http){
     		method : "GET",
     		url : "operacaoDoador.php?acao=buscar&id="+id
     	}).then(function(response){
-    		console.log(response.data);
     		if(response.data.resposta === undefined){
     			$scope.tableDoador = "tableInfoDoador2.php";
     			$scope.doador = response.data;

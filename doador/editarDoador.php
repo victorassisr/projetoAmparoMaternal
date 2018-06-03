@@ -50,6 +50,14 @@
 		$erros["erroDocumento"] = "Informe o documento!";
 	}
 
+	if(!isset($doador->reaisADoar)){
+		$doador->reaisADoar = 0;
+	}
+
+	if(!isset($doador->centavosADoar)){
+		$doador->centavosADoar = "00";
+	}
+
 	if(!isset($doador->operadora)){
 		$doador->operadora = "*";
 	}
@@ -82,7 +90,7 @@
 
 
 
-		$sql = "UPDATE doador SET nome = :nome, endereco = :endereco, email = :email, telefoneResidencial = :telRes, celular1 = :cel1, celular2 = :cel2, nascimento = :nasc, dataCadastro = :cad, tipoDoador = :tipoCli, doaDia = :doaDia, doaMes = :doaMes, documento = :documento, tipoPessoa = :tipoPessoa, operadora = :operadora, turma = :turma WHERE id_doador = :id";
+		$sql = "UPDATE doador SET nome = :nome, endereco = :endereco, email = :email, telefoneResidencial = :telRes, celular1 = :cel1, celular2 = :cel2, nascimento = :nasc, dataCadastro = :cad, tipoDoador = :tipoCli, reaisADoar = :reaisADoar, centavosADoar = :centavosADoar, doaDia = :doaDia, doaMes = :doaMes, documento = :documento, tipoPessoa = :tipoPessoa, operadora = :operadora, turma = :turma WHERE id_doador = :id";
 
 		$inserir = $con->prepare($sql);
 		$inserir->bindValue(':id',$doador->id);
@@ -95,6 +103,8 @@
 		$inserir->bindValue(':nasc',$doador->dataDeNascimento);
 		$inserir->bindValue(':cad',$doador->dataDeCadastro);
 		$inserir->bindValue(':tipoCli',$doador->tipoDeDoador);
+		$inserir->bindValue(':reaisADoar',$doador->reaisADoar);
+		$inserir->bindValue(':centavosADoar',$doador->centavosADoar);
 		$inserir->bindValue(':doaDia',$doador->dia);
 		$inserir->bindValue(':doaMes',$doador->mes);
 		$inserir->bindValue(':documento',$doador->documento);

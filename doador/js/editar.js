@@ -32,6 +32,8 @@ var editarDoadorApp = angular.module('editarDoadorApp', []);
               $scope.doador.celularOpcional = d.celular2;
               $scope.dataNascimento = { value : new Date(d.nascimento+":00:00:00") };
               $scope.dataCadastro = { value : new Date(d.dataCadastro+":00:00:00") };
+              $scope.doador.reaisADoar = parseFloat(d.reaisADoar);
+              $scope.doador.centavosADoar = d.centavosADoar;
               $scope.doador.dia = d.doaDia;
               $scope.doador.mes = d.doaMes;
               $scope.doador.documento = d.documento;
@@ -44,9 +46,11 @@ var editarDoadorApp = angular.module('editarDoadorApp', []);
               if($scope.doador.tipoDeDoador == "Fidelizado"){
                 $scope.diaShow = true;
                 $scope.mesShow = false;
+                $scope.valorASerDoado = true;
                 $scope.doador.mes = "Não definido";
               } else {
                 $scope.diaShow = false;
+                $scope.valorASerDoado = false;
                 $scope.doador.dia = 0;
               }
 

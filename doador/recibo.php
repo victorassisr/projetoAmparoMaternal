@@ -75,10 +75,10 @@
 			</div>
 			<div class="corpoRecibo clearfix">
 				<div class="valor">
-					<p class="serie">RECIBO DE DOAÇÃO - SÉRIE "A" - VALOR <span class="campoValor">324,40</span> <span class="numeroRecibo"> Nº: TIMESTAMP</span></p>
+					<p class="serie">RECIBO DE DOAÇÃO - SÉRIE "A" - VALOR <span class="campoValor">{{doador.reaisADoar}},{{doador.centavosADoar}}</span> <span class="numeroRecibo"> Nº: TIMESTAMP</span></p>
 				</div>
 				<div class="informacoes">
-					<p>Recebemos de <b class="txt">{{doador.nome}}</b>, a quantia de <b class="txt">R$ 324,40</b></p>
+					<p>Recebemos de <b class="txt">{{doador.nome}}</b>, a quantia de <b class="txt">R$ {{doador.reaisADoar}},{{doador.centavosADoar}}</b></p>
 				</div>
 				<div class="mensagem clearfix">
 					<p>Você está contribuindo com o programa</p>

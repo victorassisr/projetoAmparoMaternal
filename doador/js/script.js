@@ -23,35 +23,7 @@ app.controller("controladorListarDoadores", function($scope, $http){
 
 });
 
-
-$(document).ready(function(){
-    
-    //Esconde o carregamento
-    $(window).on("load", function(){
-        $('#carregamento').fadeOut(1200);//1500 é a duração do efeito (1.5 seg)
-    });
-    
-});
-
 //Controlador cadastro de doadores
-
-    //COLOCAR DATA NO INPUT DATA DE CADASTRO
-	
-	data = new Date(); //Cria uma nova data
-	dia = data.getDate();	//Pega o dia
-	mes = data.getMonth() + 1; //Pega o mes [0 a 11] soma mais 1 pra ficar certo.
-	ano = data.getFullYear(); //Pega o ANO.
-
-	if(dia < 10){	//Se o dia for menor q 10, coloca o 0 antes.
-		dia = "0"+dia;
-	}
-	if(mes < 10){	//Se o mes for menor q 10, coloca o 0 antes.
-		mes = "0"+mes;
-	}
-
-	dataAtual = '"' + ano + '-' + mes + '-' + dia + '"'; //Formata a data para ser valida.
-
-	//FIM COLOCAR DATA NO INPUT DATA DE CADASTRO
 
     var cadastroDoadorApp = angular.module('cadastroDoadorApp', []);
     cadastroDoadorApp.controller('cadastroDoadorController', function($scope, $http, $filter) {
@@ -64,6 +36,9 @@ $(document).ready(function(){
       	$scope.doador.dia = "1";
       	$scope.doador.mes = "Aleatório";
         $scope.doador.pessoa = "Física";
+        $scope.valorASerDoado = true;
+        $scope.doador.reaisADoar = parseFloat("0");
+        $scope.doador.centavosADoar = "00";
 
         $scope.submitForm = function() {
             $scope.doador.dataDeNascimento = $filter('date')($scope.dataNascimento.value, 'yyyy-MM-dd');
@@ -112,10 +87,14 @@ $(document).ready(function(){
         	if($scope.doador.tipoDeDoador == "Fidelizado"){
         		$scope.diaShow = true;
         		$scope.mesShow = false;
+            $scope.valorASerDoado = true;
         		$scope.doador.mes = "Não definido";
         		$scope.doador.dia = "1";
         	} else {
 	        	$scope.diaShow = false;
+            $scope.valorASerDoado = false;
+            $scope.doador.reaisADoar = 0;
+            $scope.doador.centavosADoar = 0;
 	        	$scope.doador.dia = 0;
 	        }
 	        

@@ -102,6 +102,10 @@
 		       	</select>
 		       	<span ng-show="erroTipoDeDoador" class="msgErro">{{erroTipoDeDoador}}</span>
     		</div>
+    		<div class="form-group" ng-show="valorASerDoado">
+    			<label class="labelBlock">Valor a ser doado</label>
+    			<span>R$ </span><input type="number" id="reaisADoar" class="form-control" name="reaisADoar" ng-model="doador.reaisADoar" required>,<input id="centavosADoar" type="text" class="form-control" name="centavosADoar" ng-model="doador.centavosADoar" required>
+    		</div>
  			<div class="form-group" ng-show="diaShow">
  				<label>Doa todo dia</label>
     			<select class="sel w-100 form-control" name="dia" ng-model="doador.dia" ng-value="doador.dia">
