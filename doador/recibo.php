@@ -50,7 +50,7 @@
 	</nav>
 
 	<!-- Conteudo -->
-	<section ng-app="reciboDoador" ng-controller="reciboController">
+	<section ng-app="reciboDoador" ng-controller="reciboController" ng-submit="cadastrarRecibo()">
 		<div class="text-center"><span class="erro">{{erro}}</span></div>
 
 		<div class="recibo">
@@ -74,8 +74,9 @@
 				</div>
 			</div>
 			<div class="corpoRecibo clearfix">
+				<input type="hidden" name="idDoador" ng-model="doador.id">
 				<div class="valor">
-					<p class="serie">RECIBO DE DOAÇÃO - SÉRIE "A" - VALOR <span class="campoValor">{{doador.reaisADoar}},{{doador.centavosADoar}}</span> <span class="numeroRecibo"> Nº: TIMESTAMP</span></p>
+					<p class="serie">RECIBO DE DOAÇÃO - SÉRIE "A" - VALOR <span class="campoValor">{{doador.reaisADoar}},{{doador.centavosADoar}}</span> <span class="numeroRecibo"> Nº: {{numero}}</span></p>
 				</div>
 				<div class="informacoes">
 					<p>Recebemos de <b class="txt">{{doador.nome}}</b>, a quantia de <b class="txt">R$ {{doador.reaisADoar}},{{doador.centavosADoar}}</b></p>
@@ -92,6 +93,16 @@
 					<p>Presidente</p>
 				</div>
 			</div>
+		</div>
+		<div>
+			<form>
+				<input type="hidden" name="recibo.id_doador" ng-model="recibo.id_doador">
+				<input type="hidden" name="recibo.id_doador" ng-model="recibo.nome">
+				<input type="hidden" name="recibo.numero" ng-model="recibo.numero">
+				<input type="hidden" name="recibo.reais" ng-model="recibo.reais">
+				<input type="hidden" name="recibo.centavos" ng-model="recibo.centavos">
+				<button type="submit" class="btn btn-default m-auto blk">GRAVAR RECIBO</button>
+			</form>
 		</div>
 	</section>
 
