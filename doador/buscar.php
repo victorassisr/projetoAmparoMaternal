@@ -47,17 +47,22 @@
 		</div>
 	</nav>
 
-	<!-- Conteudo -->
+	<div ng-app="buscaDoador" ng-controller="buscaDoadorCtrl">
+		<p>O que deseja buscar?</p>
+		<form ng-submit="buscarDoador()">
+			<input type="text" name="parametro" placeholder="Pesquisar" id="parametro" ng-model="parametros.pesquisa"><label id="labelData">Ou pesquise por data: </label><input type="date" name="data" id="data" ng-model="data">
+			<select name="tipo" id="filtro" ng-value="parametros.tipoDeBusca" ng-model="parametros.tipoDeBusca">
+					<option ng-model="parametros.tipoDeBusca" ng-repeat="busca in buscas track by $index">{{busca.tipoBusca}}</option>
+			</select>
+			<input type="submit" name="Enviar" value="Buscar">
+		</form>
+	</div>
 
-
-
-	<footer class="container-fluid">
-		<p>AMPARO MATERNAL - EURÍPEDES NOVELINO &copy; - <?php date_default_timezone_set("America/Sao_Paulo"); echo date('Y');?></p>
-	</footer>
+	<?php include("rodape_doador.php"); ?>
 
 <script type="text/javascript" src="../geral/js/jquery-3.3.1.min.js"></script>
 <script type="text/javascript" src="../geral/js/popper.min.js"></script>
 <script type="text/javascript" src="../geral/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="js/script.js"></script>
+<script type="text/javascript" src="js/buscar.js"></script>
 </body>
 </html>

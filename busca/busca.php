@@ -27,9 +27,7 @@ if(isset($_POST['parametro']) && isset($_POST['tipo'])){ //Se tiver passado um p
 
 			if($busca->rowCount() > 0){ //Se retornar mais q um resultado
 				$doadores = $busca->fetchAll(PDO::FETCH_OBJ); //Doadores são atribuidos a variavel $doadores.
-				echo "<pre>";
-				print_r($doadores); //Mostra doadores..
-				echo "</pre>";
+				echo json_encode($doadores);
 			} else { //Senão
 				echo "<h1>Nada encontrado!</h1>"; //Nenhum resultado encontrado
 			}
@@ -50,9 +48,7 @@ if(isset($_POST['parametro']) && isset($_POST['tipo'])){ //Se tiver passado um p
 
 				if($busca->rowCount() > 0){ //Se retornar algum resultado
 					$doadores = $busca->fetchAll(PDO::FETCH_OBJ); //Retorna os doadores
-					echo "<pre>";
-					print_r($doadores); //Mostra os doadores
-					echo "</pre>";
+					echo json_encode($doadores);
 				} else { //Senão
 					echo "<h1>Nada encontrado!</h1>"; //Mostra nada encontrado.
 				}

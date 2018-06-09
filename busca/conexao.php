@@ -4,7 +4,7 @@ function conexaoMysql(){ //Funcção de conexão com o banco
 	$conexao; //variavel de conexao
 
 		$usuario = 'root'; //Usuario
-		$pass = 'admin'; //Senha do banco
+		$pass = 'fepam'; //Senha do banco
 
 
 	try{ //Tente

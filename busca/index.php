@@ -19,52 +19,22 @@
 <head>
 	<meta charset="utf-8">
 	<title>Buscar</title>
+	<script type="text/javascript" src="../geral/js/angular-1.6.9.min.js"></script>
 </head>
 <body>
-	<p>O que deseja buscar?</p>
-	<form action="busca.php" method="post">
-		<input type="text" name="parametro" placeholder="Parametros" id="parametro"><label id="labelData">Selecione uma data: </label><input type="date" name="data" id="data">
-		<select name="tipo" id="filtro">
-			<?php //FOREACH pega cada elemento e trata ele separado. Listando um a um o tipo de busca. ?>
-			<?php foreach($tiposBusca as $tipoBusca){ ?>
-				<option value="<?php echo $tipoBusca->tipoBusca; ?>"><?php echo $tipoBusca->tipoBusca; ?></option>
-			<?php } ?>
-		</select>
-		<input type="submit" name="Enviar" value="Buscar">
-	</form>
-	<script type="text/javascript">
-		var parametro = document.getElementById('parametro');
-		var data = document.getElementById('data');
-		var filtro = document.getElementById('filtro');
-
-		data.addEventListener("change",function(){  //Se mudar a data..
-			if(data.value != ""){ //Se a data for diferente de uma string vazia..
-				parametro.style.display = "none"; //Oculta o parametro.
-			} else { //Senão
-				parametro.style.display = "inline"; //Mostra o campo parametro.
-			}
-		});
-
-		parametro.addEventListener("keyup",function(){ //Se digitar algo no parametro
-			var labelData = document.getElementById('labelData');
-			var campoData = document.getElementById('data');
-			if(parametro.value != ""){ //Se o parametro for diferente a uma string vazia
-				labelData.style.display = "none"; //Oculta label da data
-				campoData.style.display = "none"; //Oculta data.
-			} else { //Caso contrário
-				labelData.style.display = "inline"; //Mostra label data
-				campoData.style.display = "inline"; //Mostra campo data.
-			}
-		});
-
-		filtro.addEventListener("change",function(){ //Se alterar o filtro
-
-			if(filtro.value == "DOACAO"){ //Se o valor do filtro for igual a 2 (Procura por data de doacoes)
-				parametro.style.display = "none"; //Oculta o parametro
-			} else { //Caso contrário
-				parametro.style.display = "inline"; //Mostra o campo parametro
-			}
-		});
-	</script>
+	<div ng-app="buscaDoador" ng-controller="buscaDoadorCtrl">
+		<p>O que deseja buscar?</p>
+		<form action="busca.php" method="post">
+			<input type="text" name="parametro" placeholder="Parametros" id="parametro"><label id="labelData">Selecione uma data: </label><input type="date" name="data" id="data">
+			<select name="tipo" id="filtro">
+				<?php //FOREACH pega cada elemento e trata ele separado. Listando um a um o tipo de busca. ?>
+				<?php foreach($tiposBusca as $tipoBusca){ ?>
+					<option value="<?php echo $tipoBusca->tipoBusca; ?>"><?php echo $tipoBusca->tipoBusca; ?></option>
+				<?php } ?>
+			</select>
+			<input type="submit" name="Enviar" value="Buscar">
+		</form>
+	</div>
+	<script type="text/javascript" src="js/busca.js"></script>
 </body>
 </html>
