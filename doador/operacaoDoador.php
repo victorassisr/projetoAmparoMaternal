@@ -98,6 +98,31 @@ if(isset($_GET["acao"]) && $_GET["acao"] != "" && $_GET["acao"] == "excluir" && 
 	$sucesso = true;
 }
 
+if(isset($_GET["acao"]) && $_GET["acao"] != "" && $_GET["acao"] == "busca"){
+
+	require_once("conexao.php");
+
+	$con = conexaoMysql();
+
+	$sqlBusca = "SELECT * FROM doador WHERE id_doador = :id";
+
+	$busca = $con->prepare($sqlBusca);
+
+	$busca->bindValue(':id',$_GET["id"]);
+
+	$busca->execute();
+
+	if($busca->rowCount() > 0){
+		$doador = $busca->fetch(PDO::FETCH_OBJ);
+		echo json_encode($doador);
+	} else {
+		$resposta["resposta"] = "Não foi encontrado nenhum doador com os parametros especificados.";
+		echo json_encode($resposta);
+	}
+	
+	$sucesso = true;
+}
+
 if(!$sucesso){
 	echo "ExceptionErro : Nada a mostrar por aqui.";
 }

@@ -5,7 +5,7 @@
 	<link rel="stylesheet" type="text/css" href="../geral/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="../geral/css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="../geral/css/myStyle.css">
-	<link rel="stylesheet" type="text/css" href="css/estilo.css">
+	<link rel="stylesheet" type="text/css" href="css/busca.css">
 	<script type="text/javascript" src="../geral/js/angular-1.6.9.min.js"></script>
 </head>
 <body>
@@ -47,15 +47,28 @@
 		</div>
 	</nav>
 
-	<div ng-app="buscaDoador" ng-controller="buscaDoadorCtrl">
-		<p>O que deseja buscar?</p>
+	<div ng-app="buscaDoador" ng-controller="buscaDoadorCtrl" class="container">
+		<h2 class="text-center p-20">O que deseja buscar?</h2>
 		<form ng-submit="buscarDoador()">
-			<input type="text" name="parametro" placeholder="Pesquisar" id="parametro" ng-model="parametros.pesquisa"><label id="labelData">Ou pesquise por data: </label><input type="date" name="data" id="data" ng-model="data">
-			<select name="tipo" id="filtro" ng-value="parametros.tipoDeBusca" ng-model="parametros.tipoDeBusca">
+			<div class="form-group">
+				<input type="text" name="parametro" placeholder="Nome, endereço, etc..." id="parametro" ng-model="parametros.pesquisa" class="form-control">
+			</div>
+			<div class="form-group">
+				<label id="labelData">Ou pesquise por data: </label>
+				<input type="date" name="data" id="data" ng-model="data" class="form-control">
+			</div>
+			<select name="tipo" class="form-control" id="filtro" ng-value="parametros.tipoDeBusca" ng-model="parametros.tipoDeBusca">
 					<option ng-model="parametros.tipoDeBusca" ng-repeat="busca in buscas track by $index">{{busca.tipoBusca}}</option>
 			</select>
-			<input type="submit" name="Enviar" value="Buscar">
+			<button class="btn btn-default m-auto" type="submit">Procurar</button>
 		</form>
+		<hr>
+		<div class="found">
+			<h3 class="text-center" ng-show="not_found">{{notFound}}</h3>
+			<div class="listFound" ng-repeat="doador in doadores">
+				{{doador.nome}}
+			</div>
+		</div>
 	</div>
 
 	<?php include("rodape_doador.php"); ?>

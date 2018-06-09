@@ -4,8 +4,16 @@
 
 		data.addEventListener("change",function(){  //Se mudar a data..
 			if(data.value != ""){ //Se a data for diferente de uma string vazia..
-				parametro.style.display = "none"; //Oculta o parametro.
-				parametro.value = "";
+				if(filtro.value="DOADOR"){
+					parametro.style.display = "none"; //Oculta o parametro.
+					parametro.value = "";
+				} else {
+					parametro.style.display = "none"; //Oculta o parametro.
+					parametro.value = "";
+					labelData.style.display = "inline"; //Oculta label da data
+					campoData.style.display = "inline"; //Oculta data.
+					campoData.value = "";
+				}
 			} else { //Senão
 				parametro.style.display = "inline"; //Mostra o campo parametro.
 			}
@@ -14,13 +22,15 @@
 		parametro.addEventListener("keyup",function(){ //Se digitar algo no parametro
 			var labelData = document.getElementById('labelData');
 			var campoData = document.getElementById('data');
-			if(parametro.value != ""){ //Se o parametro for diferente a uma string vazia
-				labelData.style.display = "none"; //Oculta label da data
-				campoData.style.display = "none"; //Oculta data.
-				campoData.value = "";
-			} else { //Caso contrário
-				labelData.style.display = "inline"; //Mostra label data
-				campoData.style.display = "inline"; //Mostra campo data.
+			if(filtro.value=="DOADOR"){
+				if(parametro.value != ""){ //Se o parametro for diferente a uma string vazia
+					labelData.style.display = "none"; //Oculta label da data
+					campoData.style.display = "none"; //Oculta data.
+					campoData.value = "";
+				} else { //Caso contrário
+					labelData.style.display = "inline"; //Mostra label data
+					campoData.style.display = "inline"; //Mostra campo data.
+				}
 			}
 		});
 
@@ -29,6 +39,8 @@
 			if(filtro.value == "DOACAO"){ //Se o valor do filtro for igual a 2 (Procura por data de doacoes)
 				parametro.style.display = "none"; //Oculta o parametro
 				parametro.value = "";
+				labelData.style.display = "inline"; //Mostra label data
+				data.style.display = "inline"; //Mostra campo data.
 			} else { //Caso contrário
 				parametro.style.display = "inline"; //Mostra o campo parametro
 			}
@@ -44,7 +56,6 @@ busca.controller("buscaDoadorCtrl",function($scope, $http, $filter){
 		method : "GET",
 		url : "categoriasBusca.php"
 	}).then(function(response){
-		console.log(response.data);
 		$scope.buscas = response.data;
 		$scope.parametros.tipoDeBusca = response.data[0].tipoBusca;
 	});
@@ -55,6 +66,22 @@ busca.controller("buscaDoadorCtrl",function($scope, $http, $filter){
 		} else {
 			$scope.parametros.data = "0000-00-00";
 		}
-		console.log($scope.parametros);
+
+
+		//pegar doadores..
+		$http({
+			method : "POST",
+			url : "buscaDoador.php",
+			data : $scope.parametros
+		}).then(function(response){
+			if(response.data.notFound != undefined){
+				$scope.not_found = true;
+				$scope.notFound = response.data.notFound;
+				$scope.doadores = "";
+			} else {
+				$scope.not_found = false;
+				$scope.doadores = response.data;
+			}
+		});
 	}
 });
