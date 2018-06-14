@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: 23-Maio-2018 às 23:39
+-- Generation Time: 14-Jun-2018 às 00:09
 -- Versão do servidor: 5.7.17-log
 -- PHP Version: 5.6.30
 
@@ -39,7 +39,12 @@ CREATE TABLE `campanhas` (
 
 INSERT INTO `campanhas` (`id_campanha`, `nomeCampanha`, `dataInicial`, `dataFinal`) VALUES
 (1, 'Nenhuma', '0000-00-00', '0000-00-00'),
-(7, 'Natal', '2018-03-12', '2018-03-21');
+(7, 'Natal', '2018-03-12', '2018-03-21'),
+(9, 'teste', '2018-05-31', '2018-06-02'),
+(10, 'asdasdsa', '2018-05-30', '2018-06-22'),
+(11, 'sadas', '2018-05-01', '2018-05-31'),
+(14, 'Victor', '2018-05-01', '2018-05-31'),
+(15, 'asdadasdasasd', '2018-05-02', '2018-05-31');
 
 -- --------------------------------------------------------
 
@@ -136,8 +141,10 @@ CREATE TABLE `doador` (
   `nascimento` date NOT NULL,
   `dataCadastro` date NOT NULL,
   `tipoDoador` varchar(20) NOT NULL,
-  `doaDia` int(2) NOT NULL,
-  `doaMes` varchar(10) NOT NULL,
+  `reaisADoar` int(20) NOT NULL,
+  `centavosADoar` varchar(2) NOT NULL,
+  `doaDia` float NOT NULL,
+  `doaMes` varchar(50) NOT NULL,
   `documento` varchar(80) NOT NULL,
   `tipoPessoa` varchar(20) NOT NULL,
   `operadora` varchar(150) NOT NULL,
@@ -148,10 +155,58 @@ CREATE TABLE `doador` (
 -- Extraindo dados da tabela `doador`
 --
 
-INSERT INTO `doador` (`id_doador`, `nome`, `endereco`, `email`, `telefoneResidencial`, `celular1`, `celular2`, `nascimento`, `dataCadastro`, `tipoDoador`, `doaDia`, `doaMes`, `documento`, `tipoPessoa`, `operadora`, `turma`) VALUES
-(1, 'Victor Assis', 'Zeca Preto 68', 'vitinhomx@outlook.com', '324234234', '325432343', '323534', '1994-12-05', '2018-03-08', 'Fidelizado', 10, 'nenhum', '', 'FÃ­sica', '*', '*'),
-(2, 'Joao Paulo', 'Rua A, Bairro B, numero 22', 'jp@email.com', '38232332', '999999999', '999999999', '2018-05-16', '2018-05-15', 'Fidelizado', 10, 'nenhum', '', 'Física', '*', '*'),
-(3, 'Joao Vitor Rodrigues', 'Rua A, numero 6, Bairro São Joao', 'asdas@asdasasd.com', '0 00 0000-0000', '0 00 0 0000-0000', '0 00 0 0000-0000', '1994-01-01', '2018-05-20', 'Exporádico', 0, 'Aleatório', '123.456.789-90', 'Física', 'S.I.', '3º período');
+INSERT INTO `doador` (`id_doador`, `nome`, `endereco`, `email`, `telefoneResidencial`, `celular1`, `celular2`, `nascimento`, `dataCadastro`, `tipoDoador`, `reaisADoar`, `centavosADoar`, `doaDia`, `doaMes`, `documento`, `tipoPessoa`, `operadora`, `turma`) VALUES
+(1, 'Victor Assis', 'Zeca Preto 68', 'vitinhomx@outlook.com', '324234234', '325432343', '323534', '1994-12-05', '2018-03-08', 'Fidelizado', 0, '0', 10, 'nenhum', '', 'FÃ­sica', '*', '*'),
+(2, 'Joao Paulo', 'Rua A, Bairro B, numero 22', 'jp@email.com', '38232332', '999999999', '999999999', '2018-05-16', '2018-05-15', 'Fidelizado', 0, '0', 10, 'nenhum', '', 'Física', '*', '*'),
+(3, 'Joao Vitor Rodrigues', 'Rua A, numero 6, Bairro São Joao', 'asdas@asdasasd.com', '0 00 0000-0000', '0 00 0 0000-0000', '0 00 0 0000-0000', '1994-01-01', '2018-05-20', 'Exporádico', 0, '0', 0, 'Aleatório', '123.456.789-90', 'Física', 'S.I.', '3º período'),
+(4, 'Teste', 'teste', 'teste@te.com', '424554543', '43534534543', '4353456', '1990-01-01', '2018-06-03', 'Fidelizado', 0, '0', 5, 'Não defini', '11456734590', 'Física', 'Joana', 'Terceiro periodo'),
+(5, 'Marta', 'asqreqfcas asdasdas dasdas', 'dafadsads@asdasd.com', '3253455', '68588658', '9876679', '1990-01-01', '2018-06-03', 'Fidelizado', 150, '05', 14, 'Não definido', '46568687643', 'Física', '65756776', '45647889878'),
+(6, 'Antonio', 'sadasdas', 'asdas@asdasd.coasc', '6666', '887897897', '898787897', '1990-01-01', '2018-06-03', 'Exporádico', 0, '0', 0, 'Agosto', '3654654645', 'Física', '*', '*'),
+(7, 'Pedro Antonio', 'Rua asdasdlk kasdkads', 'asda@asddas.com', '435345345', '35534534', '345345345', '1986-03-31', '2018-06-13', 'Fidelizado', 120, '00', 15, 'Não definido', '12312312312', 'Física', 'n sei', 'n sei');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `numerorecibo`
+--
+
+CREATE TABLE `numerorecibo` (
+  `id` int(11) NOT NULL,
+  `numero` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Extraindo dados da tabela `numerorecibo`
+--
+
+INSERT INTO `numerorecibo` (`id`, `numero`) VALUES
+(1, '59');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `recibos`
+--
+
+CREATE TABLE `recibos` (
+  `idRecibo` int(11) NOT NULL,
+  `idDoador` int(11) NOT NULL,
+  `nome` varchar(150) NOT NULL,
+  `numero` varchar(250) NOT NULL,
+  `data` date NOT NULL,
+  `reais` int(11) NOT NULL,
+  `centavos` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Extraindo dados da tabela `recibos`
+--
+
+INSERT INTO `recibos` (`idRecibo`, `idDoador`, `nome`, `numero`, `data`, `reais`, `centavos`) VALUES
+(1, 5, 'Marta', '37', '0000-00-00', 150, 5),
+(2, 5, 'Marta', '38', '2018-06-09', 150, 5),
+(3, 5, 'Marta', '39', '2018-06-09', 150, 5),
+(4, 5, 'Marta', '42', '0000-00-00', 150, 5);
 
 -- --------------------------------------------------------
 
@@ -271,6 +326,18 @@ ALTER TABLE `doador`
   ADD PRIMARY KEY (`id_doador`);
 
 --
+-- Indexes for table `numerorecibo`
+--
+ALTER TABLE `numerorecibo`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `recibos`
+--
+ALTER TABLE `recibos`
+  ADD PRIMARY KEY (`idRecibo`);
+
+--
 -- Indexes for table `tipodoacao`
 --
 ALTER TABLE `tipodoacao`
@@ -302,7 +369,7 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT for table `campanhas`
 --
 ALTER TABLE `campanhas`
-  MODIFY `id_campanha` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_campanha` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 --
 -- AUTO_INCREMENT for table `categoriasdespesa`
 --
@@ -322,7 +389,17 @@ ALTER TABLE `doacao`
 -- AUTO_INCREMENT for table `doador`
 --
 ALTER TABLE `doador`
-  MODIFY `id_doador` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_doador` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+--
+-- AUTO_INCREMENT for table `numerorecibo`
+--
+ALTER TABLE `numerorecibo`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT for table `recibos`
+--
+ALTER TABLE `recibos`
+  MODIFY `idRecibo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `tipodoacao`
 --
