@@ -1,5 +1,6 @@
 *{
 	box-sizing: border-box;
+	user-select: none;
 }
 .recibo{
 	box-sizing: border-box;
@@ -7,6 +8,8 @@
 	margin: 40px auto;
 	padding-bottom: 10px;
 	border-bottom: 1px dashed #333;
+	position: relative;
+	z-index: 10;
 }
 
 .logo{
@@ -14,6 +17,12 @@
 	float: left;
 	border: 1px solid #333;
 	border-radius: 4px;
+	height: 137px;
+	overflow: hidden;
+}
+
+.logo img{
+	width: 150px;
 	height: 137px;
 }
 

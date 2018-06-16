@@ -56,7 +56,7 @@
 		<div class="recibo">
 			<div class="topo clearfix">
 				<div class="logo">
-					LOGO
+					<img src="amparo.png" width="150" height="137">
 				</div>
 				<div class="cabecalho">
 					<div class="text-center leis">
@@ -88,20 +88,20 @@
 					<p>em Patos de Minas - MG.</p>
 				</div>
 				<div class="assinatura clearfix text-center">
-					<p class="ass">ASSINATURA</p>
+					<p class="ass"><img src="aa.jpg" width="200" height="40"></p>
 					<p class="assNome">Mirian Gontijo Moreira da Costa</p>
 					<p>Presidente</p>
 				</div>
 			</div>
 		</div>
 		<div>
-			<form>
-				<input type="hidden" name="recibo.id_doador" ng-model="recibo.id_doador">
-				<input type="hidden" name="recibo.id_doador" ng-model="recibo.nome">
-				<input type="hidden" name="recibo.numero" ng-model="recibo.numero">
-				<input type="hidden" name="recibo.reais" ng-model="recibo.reais">
-				<input type="hidden" name="recibo.centavos" ng-model="recibo.centavos">
-				<button type="submit" class="btn btn-default m-auto blk">GRAVAR RECIBO</button>
+			<form action="reciboDoador.php" method="POST" target="_blank">
+				<input type="hidden" name="id_doador" value="{{doador.id_doador}}">
+				<input type="hidden" name="nome" value="{{doador.nome}}">
+				<input type="hidden" name="numeroRecibo" value="{{numero}}">
+				<input type="hidden" name="reais" value="{{doador.reaisADoar}}">
+				<input type="hidden" name="centavos" value="{{doador.centavosADoar}}">
+				<button type="submit" class="btn btn-warning m-auto blk">GERAR RECIBO</button>
 			</form>
 		</div>
 	</section>
