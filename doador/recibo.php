@@ -104,6 +104,27 @@
 				<button type="submit" class="btn btn-warning m-auto blk">GERAR RECIBO</button>
 			</form>
 		</div>
+		<div class="divAltera">
+			<form action="reciboDoador.php" method="POST">
+				<div class="container">
+					<input type="hidden" name="id_doador" value="{{doador.id_doador}}">
+					<div class="form-group">
+						<label>Nome:</label>
+						<input type="text" class="form-control" name="nome" value="{{doador.nome}}">
+					</div>
+					<input type="hidden" name="numeroRecibo" value="{{numero}}">
+					<div class="form-group">
+						<label>Reais:</label>
+						<input type="text" class="form-control" name="reais" value="{{doador.reaisADoar}}">
+					</div>
+					<div class="form-group">
+						<label>Centavos: </label>
+						<input type="text" class="form-control" name="centavos" value="{{doador.centavosADoar}}">
+					</div>
+				</div>
+				<button type="submit" class="btn btn-warning m-auto blk">Alterar Valores</button>
+			</form>
+		</div>
 	</section>
 
 

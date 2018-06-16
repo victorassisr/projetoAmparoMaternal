@@ -12,6 +12,14 @@
 	z-index: 10;
 }
 
+.divAltera{
+	margin-top: 60px;
+}
+
+.alteraRecibo{
+	width: 200px;
+}
+
 .logo{
 	width: 150px;
 	float: left;
