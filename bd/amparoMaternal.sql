@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: 14-Jun-2018 às 00:09
+-- Generation Time: 16-Jun-2018 às 20:17
 -- Versão do servidor: 5.7.17-log
 -- PHP Version: 5.6.30
 
@@ -180,7 +180,7 @@ CREATE TABLE `numerorecibo` (
 --
 
 INSERT INTO `numerorecibo` (`id`, `numero`) VALUES
-(1, '59');
+(1, '181');
 
 -- --------------------------------------------------------
 
@@ -194,8 +194,8 @@ CREATE TABLE `recibos` (
   `nome` varchar(150) NOT NULL,
   `numero` varchar(250) NOT NULL,
   `data` date NOT NULL,
-  `reais` int(11) NOT NULL,
-  `centavos` int(11) NOT NULL
+  `reais` varchar(255) NOT NULL,
+  `centavos` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -203,10 +203,19 @@ CREATE TABLE `recibos` (
 --
 
 INSERT INTO `recibos` (`idRecibo`, `idDoador`, `nome`, `numero`, `data`, `reais`, `centavos`) VALUES
-(1, 5, 'Marta', '37', '0000-00-00', 150, 5),
-(2, 5, 'Marta', '38', '2018-06-09', 150, 5),
-(3, 5, 'Marta', '39', '2018-06-09', 150, 5),
-(4, 5, 'Marta', '42', '0000-00-00', 150, 5);
+(1, 5, 'Marta', '37', '0000-00-00', '150', '5'),
+(2, 5, 'Marta', '38', '2018-06-09', '150', '5'),
+(3, 5, 'Marta', '39', '2018-06-09', '150', '5'),
+(4, 5, 'Marta', '42', '0000-00-00', '150', '5'),
+(5, 7, 'Pedro Antonio', '145', '2018-06-16', '120', '0'),
+(6, 7, 'Pedro Antonio', '146', '2018-06-16', '120', '00'),
+(7, 6, 'Antonio', '147', '2018-06-16', '0', '0'),
+(8, 7, 'Pedro Antonio', '150', '2018-06-16', '120', '00'),
+(9, 7, 'Pedro Antonio', '156', '2018-06-16', '120', '00'),
+(10, 7, 'Pedro Antonio', '157', '2018-06-16', '120', '00'),
+(11, 7, 'Pedro Antonio', '171', '2018-06-16', '120', '00'),
+(12, 7, 'Pedro Antonio', '172', '2018-06-16', '120', '00'),
+(13, 7, 'Pedro Antonio', '180', '2018-06-16', '190', '00');
 
 -- --------------------------------------------------------
 
@@ -399,7 +408,7 @@ ALTER TABLE `numerorecibo`
 -- AUTO_INCREMENT for table `recibos`
 --
 ALTER TABLE `recibos`
-  MODIFY `idRecibo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `idRecibo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 --
 -- AUTO_INCREMENT for table `tipodoacao`
 --
