@@ -1,4 +1,5 @@
 <?php
+	session_start();
 	if(isset($_SESSION["logado"])){
 		header("location:http://localhost/projetoAmparoMaternal/sistema/");
 		exit;
