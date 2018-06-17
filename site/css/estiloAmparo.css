@@ -11,6 +11,12 @@ body{
 header{
 	margin-bottom: 1%;
 }
+
+#btn-pags{
+	border: none;
+	background: none;
+}
+
 .menu-fixo{
 	position: fixed;
 	top: 0;

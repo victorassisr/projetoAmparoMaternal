@@ -18,15 +18,20 @@
 		</div>
 		<div class="row col m6">
 			<div class="col s7 pagseguro-sup">
-				<!-- INICIO FORMULARIO BOTAO PAGSEGURO -->
-				<form action="https://pagseguro.uol.com.br/checkout/v2/donation.html"  method="post" target="_blank">
-				<!-- NÃO EDITE OS COMANDOS DAS LINHAS ABAIXO -->
-					<input type="hidden" name="currency" value="BRL" />
-					<input type="hidden" name="receiverEmail" value="amparomaternal@yahoo.com.br" />
-					<input type="hidden" name="iot" value="button" />
-					<input type="image" src="img/botao_pagseguro.gif" name="submit" alt="Pague com PagSeguro - é rápido, grátis e seguro!" />
-				</form>
-				<!-- FINAL FORMULARIO BOTAO PAGSEGURO -->
+				<!-- INICIO BOTAO PAGSEGURO -->
+					<a href="doacao" id="btn-pags" class="waves-effect waves-light btn modal-trigger" name="submit" title="Pague com PagSeguro - é rápido, grátis e seguro!"><img src="img/botao_pagseguro.gif"></a>
+				<!-- FINAL BOTAO PAGSEGURO -->
+
+				  <!-- Modal Structure -->
+				  <div id="modal1" class="modal modal-fixed-footer">
+				    <div class="modal-content">
+				      <h4>Modal Header</h4>
+				      <p>A bunch of text</p>
+				    </div>
+				    <div class="modal-footer">
+				      <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+				    </div>
+				  </div>
 			</div>
 			<div class="col s5 phone-sup">
 				<span>
@@ -215,6 +220,7 @@
 
 	<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script> 
 	<script src="js/materialize.js"></script>
+	<script type="text/javascript" src="js/script.js"></script>
 	
 	<div id="fb-root"></div>
 	<script>(function(d, s, id) {
