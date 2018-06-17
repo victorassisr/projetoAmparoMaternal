@@ -1,12 +1,28 @@
 *{
 	box-sizing: border-box;
+	user-select: none;
 }
 .recibo{
 	box-sizing: border-box;
-	width: 600px;
+	width: 1000px;
 	margin: 40px auto;
 	padding-bottom: 10px;
 	border-bottom: 1px dashed #333;
+	position: relative;
+	z-index: 10;
+}
+
+.divAltera{
+	margin-top: 60px;
+}
+
+#btn-print{
+	display: block;
+	margin: 0 auto;
+}
+
+.alteraRecibo{
+	width: 200px;
 }
 
 .logo{
@@ -15,9 +31,16 @@
 	border: 1px solid #333;
 	border-radius: 4px;
 	height: 137px;
+	overflow: hidden;
+}
+
+.logo img{
+	width: 150px;
+	height: 137px;
 }
 
 .cabecalho{
+	width: 845px;
 	float: right;
 	border: 1px solid #333;
 	padding: 6px;
@@ -101,4 +124,15 @@ h3{
 
 .blk{
 	display: block !important;
+}
+
+
+@media print{
+	.no-print{
+		display: none;
+	}
+
+	footer{
+		display: none;
+	}
 }

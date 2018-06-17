@@ -2,11 +2,7 @@
 	require_once("conexao.php");
 	$con = conexaoMysql();
 
-	if(isset($_GET["pagina"])){
-		$pagina = $_GET["pagina"];
-	} else {
-		$pagina = 1;
-	}
+	$controle = false;
 
 	date_default_timezone_set("America/Sao_Paulo");
 	$diaAtual = date("d");
@@ -21,7 +17,9 @@
 
 	if($busca->rowCount() > 0){
 		$doadores = $busca->fetchAll(PDO::FETCH_OBJ);
+		$controle = true;
 	}
+
 ?>
 
 <!DOCTYPE html>
@@ -32,11 +30,10 @@
 	<link rel="stylesheet" type="text/css" href="../geral/css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="../geral/css/myStyle.css">
 	<link rel="stylesheet" type="text/css" href="css/recibo.css">
-	<script type="text/javascript" src="../geral/js/angular-1.6.9.min.js"></script>
 </head>
 <body>
 <body>
-	<nav class="navbar navbar-expand-lg navbar-dark">
+	<nav class="navbar navbar-expand-lg navbar-dark no-print">
 		<a class="navbar-brand" href="#" title="Amparo Maternal Euripedes Novelino"><div id="logo"></div></a>
 
 		<span id="nome">Amparo Maternal Euripedes Novelino</span>
@@ -74,7 +71,7 @@
 	</nav>
 
 	<!-- Conteudo -->
-	<section ng-app="reciboDoador" ng-controller="reciboController" ng-submit="cadastrarRecibo()">
+	<section>
 <?php
 
 	if(isset($doadores)){
@@ -125,10 +122,11 @@ forEach($doadores as $doador){
 	}
 
 ?>
+		<!-- Conteudo -->
 		<div class="recibo">
 			<div class="topo clearfix">
 				<div class="logo">
-					LOGO
+					<img src="amparo.png" width="150" height="137">
 				</div>
 				<div class="cabecalho">
 					<div class="text-center leis">
@@ -150,7 +148,7 @@ forEach($doadores as $doador){
 					<p class="serie">RECIBO DE DOAÇÃO - SÉRIE "A" - VALOR <span class="campoValor"><?php echo $doador->reaisADoar; ?>,<?php echo $doador->centavosADoar; ?></span> <span class="numeroRecibo"> Nº: <?php echo $numSalvo; ?></span></p>
 				</div>
 				<div class="informacoes">
-					<p>Recebemos de <b class="txt"><?php echo $doador->nome ?></b>, a quantia de <b class="txt">R$ <?php echo $doador->reaisADoar; ?>,<?php echo $doador->centavosADoar; ?></b></p>
+					<p>Recebemos de <b class="txt"><?php echo $doador->nome; ?></b>, a quantia de <b class="txt">R$ <?php echo $doador->reaisADoar; ?>,<?php echo $doador->centavosADoar; ?></b></p>
 				</div>
 				<div class="mensagem clearfix">
 					<p>Você está contribuindo com o programa</p>
@@ -159,7 +157,7 @@ forEach($doadores as $doador){
 					<p>em Patos de Minas - MG.</p>
 				</div>
 				<div class="assinatura clearfix text-center">
-					<p class="ass">ASSINATURA</p>
+					<p class="ass"><img src="aa.jpg" width="200" height="40"></p>
 					<p class="assNome">Mirian Gontijo Moreira da Costa</p>
 					<p>Presidente</p>
 				</div>
@@ -195,6 +193,12 @@ if($valida->rowCount() == 0){
 	echo '<h3 class="text-center">Nenhum doador doando HJ.</h3>';
 } 
 ?>
+
+<?php if($controle){ ?>
+	<div class="no-print">
+		<button type="button" id="btn-print">Imprimir</button>
+	</div>
+<?php } ?>
 	</section>
 
 	<?php
