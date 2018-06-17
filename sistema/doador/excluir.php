@@ -1,4 +1,13 @@
 <?php
+session_start();
+
+	if(!isset($_SESSION["logado"])){
+		header("location:http://localhost/projetoAmparoMaternal/site/admin/");
+		exit;
+	}
+
+?>
+<?php
 	if(isset($_GET['id']) && $_GET['id'] != ""){
 ?>
 

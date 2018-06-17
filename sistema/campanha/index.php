@@ -1,3 +1,12 @@
+<?php
+session_start();
+
+	if(!isset($_SESSION["logado"])){
+		header("location:http://localhost/projetoAmparoMaternal/site/admin/");
+		exit;
+	}
+
+?>
 <!DOCTYPE html>
 <html ng-app="campanhasAtivas">
 <head>
