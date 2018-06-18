@@ -1,6 +1,6 @@
 <?php
 
-	if(isset($_GET['pag']) && $_GET['pag'] == 'doador' && isset($_GET['id']) && $_GET['id'] != ""){
+	if(isset($_GET['id']) && $_GET['id'] != ""){
 		$id_doador = $_GET['id'];
 
 	require_once('conexao.php');
@@ -37,10 +37,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<noscript>
-		<meta http-equiv="Refresh" content="0;url=https://10.0.0.50/projetoAmparoMaternal/index.php?erro=nojs">
-	</noscript>
-
 	<title>Cadastrar Doacao</title>
 </head>
 <body>

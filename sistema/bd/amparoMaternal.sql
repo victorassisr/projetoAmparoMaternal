@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: 16-Jun-2018 às 20:17
+-- Generation Time: 18-Jun-2018 às 02:07
 -- Versão do servidor: 5.7.17-log
 -- PHP Version: 5.6.30
 
@@ -122,7 +122,8 @@ INSERT INTO `doacao` (`id_doacao`, `id_tipoDoacao`, `item_doacao`, `id_campanha`
 (3, 7, 'Comidads', 7, 1, '2018-03-15', 54, 0, 0, 5),
 (4, 7, 'Ropunhasd', 7, 1, '2018-03-15', 5, 0, 0, 5),
 (5, 7, 'Ropunhasd', 7, 1, '2018-03-15', 5, 0, 0, 5),
-(6, 8, 'Dinheiro', 1, 1, '2018-04-22', 0, 145, 50, 2);
+(6, 8, 'Dinheiro', 1, 1, '2018-04-22', 0, 145, 50, 2),
+(7, 7, 'Roupas', 14, 7, '2018-06-17', 1, 0, 0, 5);
 
 -- --------------------------------------------------------
 
@@ -180,7 +181,26 @@ CREATE TABLE `numerorecibo` (
 --
 
 INSERT INTO `numerorecibo` (`id`, `numero`) VALUES
-(1, '181');
+(1, '236');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `opcoesrelatorio`
+--
+
+CREATE TABLE `opcoesrelatorio` (
+  `id` int(11) NOT NULL,
+  `nome` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Extraindo dados da tabela `opcoesrelatorio`
+--
+
+INSERT INTO `opcoesrelatorio` (`id`, `nome`) VALUES
+(1, 'DESPESAS'),
+(2, 'DOACAO');
 
 -- --------------------------------------------------------
 
@@ -215,7 +235,59 @@ INSERT INTO `recibos` (`idRecibo`, `idDoador`, `nome`, `numero`, `data`, `reais`
 (10, 7, 'Pedro Antonio', '157', '2018-06-16', '120', '00'),
 (11, 7, 'Pedro Antonio', '171', '2018-06-16', '120', '00'),
 (12, 7, 'Pedro Antonio', '172', '2018-06-16', '120', '00'),
-(13, 7, 'Pedro Antonio', '180', '2018-06-16', '190', '00');
+(13, 7, 'Pedro Antonio', '180', '2018-06-16', '190', '00'),
+(14, 7, 'Pedro Antonio', '182', '2018-06-16', '120', '00'),
+(15, 3, 'Joao Vitor Rodrigues', '184', '2018-06-16', '0', '0'),
+(16, 2, 'Joao Paulo', '186', '2018-06-16', '0', '0'),
+(17, 5, 'Marta', '187', '2018-06-16', '150', '05'),
+(18, 1, 'Victor Assis', '188', '0000-00-00', '0', '0'),
+(19, 2, 'Joao Paulo', '189', '0000-00-00', '0', '0'),
+(20, 1, 'Victor Assis', '190', '0000-00-00', '0', '0'),
+(21, 2, 'Joao Paulo', '191', '0000-00-00', '0', '0'),
+(22, 1, 'Victor Assis', '192', '0000-00-00', '0', '0'),
+(23, 2, 'Joao Paulo', '193', '0000-00-00', '0', '0'),
+(24, 1, 'Victor Assis', '194', '0000-00-00', '0', '0'),
+(25, 2, 'Joao Paulo', '195', '0000-00-00', '0', '0'),
+(26, 1, 'Victor Assis', '196', '0000-00-00', '0', '0'),
+(27, 2, 'Joao Paulo', '197', '0000-00-00', '0', '0'),
+(28, 1, 'Victor Assis', '198', '0000-00-00', '0', '0'),
+(29, 2, 'Joao Paulo', '199', '0000-00-00', '0', '0'),
+(30, 1, 'Victor Assis', '200', '0000-00-00', '0', '0'),
+(31, 2, 'Joao Paulo', '201', '0000-00-00', '0', '0'),
+(32, 1, 'Victor Assis', '202', '0000-00-00', '0', '0'),
+(33, 2, 'Joao Paulo', '203', '0000-00-00', '0', '0'),
+(34, 1, 'Victor Assis', '204', '0000-00-00', '0', '0'),
+(35, 2, 'Joao Paulo', '205', '0000-00-00', '0', '0'),
+(36, 1, 'Victor Assis', '206', '0000-00-00', '0', '0'),
+(37, 2, 'Joao Paulo', '207', '0000-00-00', '0', '0'),
+(38, 1, 'Victor Assis', '208', '0000-00-00', '0', '0'),
+(39, 2, 'Joao Paulo', '209', '0000-00-00', '0', '0'),
+(40, 1, 'Victor Assis', '210', '0000-00-00', '0', '0'),
+(41, 2, 'Joao Paulo', '211', '0000-00-00', '0', '0'),
+(42, 1, 'Victor Assis', '212', '0000-00-00', '0', '0'),
+(43, 2, 'Joao Paulo', '213', '0000-00-00', '0', '0'),
+(44, 1, 'Victor Assis', '214', '0000-00-00', '0', '0'),
+(45, 2, 'Joao Paulo', '215', '0000-00-00', '0', '0'),
+(46, 1, 'Victor Assis', '216', '0000-00-00', '0', '0'),
+(47, 2, 'Joao Paulo', '217', '0000-00-00', '0', '0'),
+(48, 1, 'Victor Assis', '218', '0000-00-00', '0', '0'),
+(49, 2, 'Joao Paulo', '219', '0000-00-00', '0', '0'),
+(50, 1, 'Victor Assis', '220', '0000-00-00', '0', '0'),
+(51, 2, 'Joao Paulo', '221', '0000-00-00', '0', '0'),
+(52, 1, 'Victor Assis', '222', '0000-00-00', '0', '0'),
+(53, 2, 'Joao Paulo', '223', '0000-00-00', '0', '0'),
+(54, 1, 'Victor Assis', '224', '0000-00-00', '0', '0'),
+(55, 2, 'Joao Paulo', '225', '0000-00-00', '0', '0'),
+(56, 1, 'Victor Assis', '226', '0000-00-00', '0', '0'),
+(57, 2, 'Joao Paulo', '227', '0000-00-00', '0', '0'),
+(58, 1, 'Victor Assis', '228', '0000-00-00', '0', '0'),
+(59, 2, 'Joao Paulo', '229', '0000-00-00', '0', '0'),
+(60, 1, 'Victor Assis', '230', '0000-00-00', '0', '0'),
+(61, 2, 'Joao Paulo', '231', '0000-00-00', '0', '0'),
+(62, 1, 'Victor Assis', '232', '0000-00-00', '0', '0'),
+(63, 2, 'Joao Paulo', '233', '0000-00-00', '0', '0'),
+(64, 6, 'Antonio', '234', '2018-06-17', '0', '0'),
+(65, 7, 'Pedro Antonio', '236', '2018-06-17', '120', '00');
 
 -- --------------------------------------------------------
 
@@ -341,6 +413,12 @@ ALTER TABLE `numerorecibo`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `opcoesrelatorio`
+--
+ALTER TABLE `opcoesrelatorio`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `recibos`
 --
 ALTER TABLE `recibos`
@@ -393,7 +471,7 @@ ALTER TABLE `despesas`
 -- AUTO_INCREMENT for table `doacao`
 --
 ALTER TABLE `doacao`
-  MODIFY `id_doacao` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_doacao` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `doador`
 --
@@ -405,10 +483,15 @@ ALTER TABLE `doador`
 ALTER TABLE `numerorecibo`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
+-- AUTO_INCREMENT for table `opcoesrelatorio`
+--
+ALTER TABLE `opcoesrelatorio`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
 -- AUTO_INCREMENT for table `recibos`
 --
 ALTER TABLE `recibos`
-  MODIFY `idRecibo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `idRecibo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
 --
 -- AUTO_INCREMENT for table `tipodoacao`
 --
