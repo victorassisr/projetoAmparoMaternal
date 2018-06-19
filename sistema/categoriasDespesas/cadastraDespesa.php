@@ -24,9 +24,14 @@ if($validacao->rowCount() == 0){
 	$inserir->execute();
 
 	if($inserir->rowCount() > 0){
-		echo "Cadastrado!";
+		echo "<script>
+				alert(\"Categoria cadastrada.\");
+				location.href = \"index.php\";
+			</script>";
 	} else {
-		echo "Nao cadastrado!";
+		echo "<script>
+				alert(\"Categoria cadastrada.\");
+			</script>";
 	}
 } else {
 	echo "Categoria já existe!";

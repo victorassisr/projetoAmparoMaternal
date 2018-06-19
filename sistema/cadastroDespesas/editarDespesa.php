@@ -23,24 +23,28 @@ $busca = $con->prepare($sql);
 $busca->execute();
 
 $categorias = $busca->fetchAll(PDO::FETCH_OBJ);
-
 }
 ?>
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Editar de despesas</title>
+	<meta charset="utf-8">
+	<title>Editar despesa</title>
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> 
+	<link rel="stylesheet" type="text/css" href="../geral/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="../geral/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="../geral/css/myStyle.css">
+	<link rel="stylesheet" type="text/css" href="css/estilo.css">
+	<script type="text/javascript" src="../geral/js/angular-1.6.9.min.js"></script>
 </head>
 <body>
+<?php  include("menu.html") ?>
+<h1 class="titulo container">Edição de despesas</h1>
 
-<h1>Edição de despesas</h1>
-
-<form action="updateDespesa.php" method="post">
+<form action="updateDespesa.php" method="post" class="form-group container">
 	<fieldset>
-		<legend>Editar despesas</legend>
-		<div><label>Despesa:</label><textarea cols="10" rows="10" name="infoDespesa"><?php echo $despesa->infoDespesa; ?></textarea></div>
 		<div>
-			<select name="categoriaDespesa">
+			<select name="categoriaDespesa" class="form-control">
 				<option value="default">Categoria da Despesa</option>
 				<?php foreach($categorias as $categoria){
 					if($categoria->id == $despesa->idCategoria){ ?>
@@ -50,12 +54,36 @@ $categorias = $busca->fetchAll(PDO::FETCH_OBJ);
 					<?php }} ?>
 			</select>
 		</div>
-		<div><label>Valor: </label><input type="text" name="reais" value="<?php echo $despesa->reais; ?>">,<input type="number" name="centavos" maxlength="2" value="<?php echo $despesa->centavos; ?>"></div>
-		<div><label>Data da despesa: </label><input type="date" name="dataDespesa" value="<?php echo $despesa->data; ?>"></div>
+		<div>
+			<label>Despesa:</label>
+			<input class="form-control" type="text" name="infoDespesa" value="<?php echo $despesa->infoDespesa; ?>">
+		</div>
+		<div class="row">
+			<div class="col">
+				<label>Valor: </label>
+				<input type="text" name="reais" value="<?php echo $despesa->reais; ?>">,
+				<input type="number" name="centavos" maxlength="2" class="cents" value="<?php echo $despesa->centavos; ?>">
+			</div>
+			<div class="col">
+				<label>Data da vencimento: </label>
+				<input type="date" name="dataDespesa" value="<?php echo $despesa->data; ?>">
+			</div>
+		</div>
+
 		<input type="hidden" name="idDespesa" value="<?php echo $despesa->idDespesa;?>">
-		<input type="submit" value="Cadastrar">
+
+		<input type="submit" value="Cadastrar" class="btn">
 	</fieldset>
 </form>
+
+<?php 
+	include("rodape.php");
+?>
+<script type="text/javascript" src="../geral/js/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="../geral/js/popper.min.js"></script>
+<script type="text/javascript" src="../geral/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../geral/js/script.js"></script>
+<script type="text/javascript" src="js/despesas.js"></script>
 </body>
 </html>
 

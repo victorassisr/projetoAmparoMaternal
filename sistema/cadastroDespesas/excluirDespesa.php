@@ -20,8 +20,10 @@ $exclui->bindValue(':id',$id);
 $exclui->execute();
 
 	if($exclui->rowCount() > 0){
-		echo "<h1>Excluido.</h1>";
-		echo "<a href=\"index.php\">Voltar</a>";
+		echo "<script>
+				alert(\"Despesa excluída\");
+				location.href = \"index.php\";
+			</script>";
 	}
 } else{
 		echo "<h1>Nada a excuir.</h1>";

@@ -26,11 +26,20 @@ if($validacao->rowCount() == 0){
 	$inserir->execute();
 
 	if($inserir->rowCount() > 0){
-		echo "Atualizado!";
+		echo "<script>
+			alert(\"Categoria atualizada.\");
+			location.href = \"index.php\";
+		</script>";
 	} else {
-		echo "Nao atualizado!";
+		echo "<script>
+			alert(\"Não foi possível atualizar.\");
+			location.href = \"index.php\";
+		</script>";
 	}
 } else {
-	echo "Categoria já existe!";
+	echo "<script>
+			alert(\"Categoria já existe!\");
+			location.href = \"editarCategoria.php?id=$id\";
+		</script>";
 }
 ?>

@@ -20,8 +20,9 @@ $cadastro->bindValue(':idCategoria',$idCategoria);
 $cadastro->execute();
 
 if($cadastro->rowCount() > 0){
-	echo "<h1>Cadastrado</h1>";
-	echo "<a href=\"index.php\">Voltar</a>";
+	echo "<script>alert(\"Despesa registrada.\");
+			location.href = \" index.php\";
+		</script>";
 } else {
 	echo "NW";
 	echo "<a href=\"index.php\">Voltar</a>";

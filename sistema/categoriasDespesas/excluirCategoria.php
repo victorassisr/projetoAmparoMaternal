@@ -21,9 +21,15 @@ if($validacao->rowCount() == 0){
 	$excluir->execute();
 
 	if($excluir->rowCount() > 0){
-		echo "Excluido!";
+		echo "<script>
+				alert(\"Categoria excluida.\");
+				location.href = \"index.php\";
+			</script>";
 	} else {
-		echo "Nao excluido!";
+		echo "<script>
+				alert(\" Não foi possível excluir a categoria.\");
+				location.href = \"index.php\";
+			</script>";
 	}
 } else {
 	echo "Voce não pode excluir essa categoria.\n\n<br>";
