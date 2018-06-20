@@ -114,11 +114,11 @@
 						<div class="row div-caixa">
 							<div class="col m5">
 								<div class="row">
-									<img class="col s5 bb" src="img/bb.jpg">
+									<img class="col s5 bb" src="img/itau.png">
 									<div class="col s7">
 										<b>
-										<p>Agência: 0800-1</p>
-										<p>Cc: 5389-8</p>		
+										<p>Agência: 6648</p>
+										<p>Cc: 09634-2</p>		
 									</b>
 									</div>
 								</div>
@@ -234,6 +234,8 @@
 	<script>
 		$(document).ready(function(){
     	$('.carousel').carousel();
+    	var nav = $('#menu');
+    	nav.removeClass("menu-fixo"); 
   		});
 		$('.carousel.carousel-slider').carousel({
 				fullWidth: true,
@@ -249,7 +251,7 @@
 	    	$(".button-collapse").sideNav();
 	    	$('.scrollspy').scrollSpy();
 
-	    	var nav = $('#menu');
+		    	var nav = $('#menu');
 
 				$(window).scroll(function () {
 				if ($(this).scrollTop() > 150) { 
