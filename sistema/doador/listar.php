@@ -69,14 +69,14 @@ session_start();
 					{{doador.nome}}
 				</div>
 				<div class="acoesDoador">
+					<a class="badge badge-pill botaoAcao" href="../doacao/cadastrarDoacao.php?id={{doador.id_doador}}" title="Gerar doação para doador {{doador.nome}}">
+						<i class="material-icons">attach_money</i>
+					</a>
 					<a class="badge badge-pill botaoAcao" href="editar.php?id={{doador.id_doador}}" title="Editar o doador {{doador.nome}}">
 						<i class="material-icons">edit</i>
 					</a>
 					<a class="badge badge-pill botaoAcao" ng-click="excluir(doador.id_doador, doador.nome)" title="Excluir o doador {{doador.nome}}">
 						<i class="material-icons">delete</i>
-					</a>
-					<a class="badge badge-pill botaoAcao" href="recibo.php?id={{doador.id_doador}}" title="Gerar recibo para doador {{doador.nome}}">
-						<i class="material-icons">receipt</i>
 					</a>
 					<a class="badge badge-pill botaoAcao" href="info.php?id={{doador.id_doador}}" title="Informações do doador {{doador.nome}}">
 						<i class="material-icons">info</i>

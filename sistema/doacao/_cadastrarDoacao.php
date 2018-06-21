@@ -51,21 +51,11 @@
 	<?php  include("menu.html") ?>
 	<div class="container">
 		<h2 class="titulo">Nova doação</h2>
-
-
 	<form action="cadastroDoacao.php" method="POST" id="formDoacao" class="form-group">
+		<label for="itemDoacao" id="lItemDoacao">O que foi doado?</label>
+		<input type="text" name="itemDoacao" id="itemDoacao">
 
-		<div class="row">
-			<div class="col-md-6">
-				<label for="doador">Doador: </label>
-				<input type="text" name="doador" id="doador" class="form-control" value="<?php echo $doador->nome; ?>" readonly>
-				<input type="hidden" name="id_doador" value="<?php echo $doador->id_doador; ?>">
-			</div>
-			<div class="col-md-6">
-				<label for="dataDoacao">Data da Doação</label>
-				<input type="date" name="dataDoacao" id="dataDoacao" class="form-control">
-			</div>
-		</div>
+		<br><br>
 
 		<select name="campanha" class="form-control">
 			<option value="default">Selecione a Campanha</option>
@@ -74,12 +64,30 @@
 			<?php } ?>
 		</select>
 
-		<select name="tipoDoacao" class="form-control">
-			<option value="default">Seleciona o tipo de doação</option>
-			<?php foreach($tipoDoacoes as $tipoDoacao){ ?>
-			<option value="<?php echo $tipoDoacao->id_tipoDoacao; ?>"><?php echo $tipoDoacao->nome; ?></option>
-			<?php } ?>
-		</select>
+		<br><br>
+
+		<label for="doador">Doador: </label>
+		<input type="text" name="doador" id="doador" value="<?php echo $doador->nome; ?>" readonly>
+		<input type="hidden" name="id_doador" value="<?php echo $doador->id_doador; ?>">
+
+		<br><br>
+
+		<label for="dataDoacao">Data da Doação</label>
+		<input type="date" name="dataDoacao" id="dataDoacao">
+
+		<br><br>
+
+		<label for="quantidade" id="lQuantidade">Quantidade: </label>
+		<input type="number" name="quantidade" id="quantidade">
+
+		<br><br>
+
+		<label for="valorDinheiro" id="lValorDinheiro">Valor Doado: </label>
+		<input type="text" name="valorDinheiro" id="valorDinheiro">
+		<label for="valorCentavos" id="lValorCentavos">,</label>
+		<input type="text" maxlength="2" name="valorCentavos" id="valorCentavos">
+
+		<br><br>
 
 		<select name="tipoDinheiro" class="form-control">
 			<option value="default">Selecione a categoria</option>
@@ -109,24 +117,16 @@
 			<?php } ?>
 		</select>
 
+		<br><br>
 
-		<div class="row">
-			<div class="col-md-6">
-				<label for="itemDoacao" id="lItemDoacao">O que foi doado?</label>
-				<input type="text" name="itemDoacao" id="itemDoacao" class="form-control">
-			</div>
-			<div class="col-md-6">
-				<label for="quantidade" id="lQuantidade">Quantidade: </label>
-				<input type="number" name="quantidade" id="quantidade" class="form-control">
-			</div>
-		</div>
+		<select name="tipoDoacao" class="form-control">
+			<option value="default">Selecione a categoria..</option>
+			<?php foreach($tipoDoacoes as $tipoDoacao){ ?>
+			<option value="<?php echo $tipoDoacao->id_tipoDoacao; ?>"><?php echo $tipoDoacao->nome; ?></option>
+			<?php } ?>
+		</select>
 
-		<label for="valorDinheiro" id="lValorDinheiro">Valor: R$</label>
-		<input type="text" name="valorDinheiro" id="valorDinheiro">
-		<label for="valorCentavos" id="lValorCentavos">,</label>
-		<input type="text" maxlength="2" name="valorCentavos" id="valorCentavos">
-
-
+		<br><br>
 
 		<input type="submit" value="Cadastrar" class="btn">
 	</form>

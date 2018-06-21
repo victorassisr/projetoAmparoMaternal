@@ -1,21 +1,15 @@
 var data = [
 {
-    value: 40,
+    value: 55,
     color:"#F7464A",
     highlight:"#FF5A5E",
-    label:"red"
+    label:"Despesas"
 },
 {
-    value: 20,
+    value: 45,
     color:"#46BFBD",
     highlight:"#5AD3D1",
-    label:"Green"
-},
-{
-    value: 40,
-    color:"#FDB45C",
-    highlight:"#FFC870",
-    label:"Yellow"
+    label:"Doações"
 }
 ];
 

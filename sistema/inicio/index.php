@@ -1,17 +1,3 @@
-<?php
-
-require_once('conexao.php');
-
-$con = conexaoMysql();
-$atual = date('d/m/y');
-date_default_timezone_set("America/Sao_Paulo");
-
-$sql = "SELECT * FROM despesas WHERE Date(data) = Date(NOW())";
-
-$listar = $con->prepare($sql);
-$listar->execute();
-?>
-
 <html ng-app="despesas">
 <head>
 	<title>Inicio</title>
@@ -71,6 +57,7 @@ $listar->execute();
 				<a href="../doador/">
 					<img src="../inicio/img/icon_recibo.png" style="width: 100px;">
 					<span>Gerar recibos</span>
+					<span class="badge badge-pill badge-info">2</span>
 				</a>
 			</div>
 		</div>
@@ -96,13 +83,9 @@ $listar->execute();
 		    </tr>
 		  </thead>
 		  <tbody>
-		  <?php 
-			if($listar->rowCount() <= 0){
-				echo "<tr>
-						<td colspan=\"2\" align=\"center\"> Nenhuma despesa com vencimento em $atual </td>
-					</tr>";
-			}
-	 		?>
+		  	<tr>
+		  		<td colspan="2" align="center" ng-show="not_found">{{notFound}}</td>
+		  	</tr>
 		    <tr ng-repeat="despesa in despesas track by $index">
 		      <td>{{despesa.infoDespesa}}</td>
 		      <th>R$ {{despesa.reais + "," + despesa.centavos}}</th>

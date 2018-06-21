@@ -10,9 +10,12 @@ $sql = "SELECT * FROM despesas WHERE Date(data) = Date(NOW())";
 
 $listar = $con->prepare($sql);
 $listar->execute();
-
+$atual = date('d/m/y');
 if($listar->rowCount() > 0){
 		$dados = $listar->fetchAll(PDO::FETCH_OBJ);
 		echo json_encode($dados);
+}else{
+	$nf["notFound"] = "Nenhuma despesa encontrada em $atual";
+	echo json_encode($nf);
 }
 ?>
