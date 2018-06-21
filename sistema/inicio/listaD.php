@@ -14,6 +14,5 @@ $listar->execute();
 if($listar->rowCount() > 0){
 		$dados = $listar->fetchAll(PDO::FETCH_OBJ);
 		echo json_encode($dados);
-
-	}
+}
 ?>

@@ -57,7 +57,7 @@ foreach ($despesas as $despesa) {
 		    	<tr>
 		      		<td><?php echo $categoriaAtual; ?></td>
 		      		<th><?php echo $despesa->infoDespesa; ?></th>
-		      		<th scope="row"><?php echo $despesa->data; ?></th>
+		      		<th scope="row"><?php echo date("d/m/Y", strtotime($despesa->data)); ?> </th>
 		      		<th scope="row"> <?php echo $despesa->reais . "," . $despesa->centavos; ?></th>
 		      		<th scope="row"><a href="editarDespesa.php?id=<?php echo $despesa->idDespesa; ?>"><i class="material-icons">edit</i></a></th>
 		      		<th scope="row"> <a href="excluirDespesa.php?id=<?php echo $despesa->idDespesa; ?>"class="icon-excluir" title="Deletar">

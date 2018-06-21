@@ -42,11 +42,11 @@
 			</select>
 		</div>
 			<label>Descrição:</label>
-			<input type="text" name="infoDespesa" class="form-control">
+			<input type="text" name="infoDespesa" class="form-control" required>
 		<div class="form-row">
 			<div class="col">	
 					<label>Valor: </label>
-					<input type="text" name="reais">,<input type="number" name="centavos" maxlength="2" class="cents">
+					<input type="text" name="reais" required>,<input type="number" name="centavos" maxlength="2" class="cents" required>
 			</div>	
 			<div class="col">
 				<label>Data de vencimento: </label>

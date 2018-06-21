@@ -11,6 +11,13 @@ $centavos = $_POST['centavos'];
 $data = $_POST['dataDespesa'];
 $idCategoria = $_POST['idCategoria'];
 
+if($idCategoria == "default"){
+	echo "<script>
+			alert(\"Escolha uma categoria.\");
+			location.href = \"index.php\";
+		</script>";
+}
+
 $cadastro = $con->prepare($sql);
 $cadastro->bindValue(':info',$info);
 $cadastro->bindValue(':reais',$reais);

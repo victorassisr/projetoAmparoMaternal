@@ -1,3 +1,17 @@
+<?php
+
+require_once('conexao.php');
+
+$con = conexaoMysql();
+$atual = date('d/m/y');
+date_default_timezone_set("America/Sao_Paulo");
+
+$sql = "SELECT * FROM despesas WHERE Date(data) = Date(NOW())";
+
+$listar = $con->prepare($sql);
+$listar->execute();
+?>
+
 <html ng-app="despesas">
 <head>
 	<title>Inicio</title>
@@ -5,7 +19,6 @@
 	<meta charset="utf-8">
 	<link rel="stylesheet" type="text/css" href="css2/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="css2/font-awesome.min.css">
-	<!--<link rel="stylesheet" type="text/css" href="css/estilo.css">-->
 	<link rel="stylesheet" type="text/css" href="css2/myEstilo.css">
 	<script type="text/javascript" src="../geral/js/angular-1.6.9.min.js"></script>
 </head>
@@ -38,22 +51,6 @@
 	      <li class="nav-item">
 	        <a class="nav-link" href="../relatorio/">Relatórios</a>
 	      </li>
-	      <!--
-	      <li class="nav-item dropdown">
-	        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-	          Dropdown
-	        </a>
-	        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-	          <a class="dropdown-item" href="#">Action</a>
-	          <a class="dropdown-item" href="#">Another action</a>
-	          <div class="dropdown-divider"></div>
-	          <a class="dropdown-item" href="#">Something else here</a>
-	        </div>
-	      </li>
-	      <li class="nav-item">
-	        <a class="nav-link disabled" href="#">Disabled</a>
-	      </li>
-	  		-->
 	    </ul>
 	  </div>
 	</nav>
@@ -84,14 +81,13 @@
 			<div class="col-md-6">
 				<ul class="legenda">
 					<li class="text-red">Despesas do Mês</li>
-					<li class="text-orange">Doacões Recebidas no Mês</li>
-					<li class="text-aqua">Doações à receber</li>
+					<li class="text-aqua">Doações Recebidas</li>
 				</ul>
 			</div>
 		</div>
 	</div>
 
-	<div class="container">
+<div class="container">
 		<table class="table table-hover table-dark table-responsive-xm">
 		  <thead>
 		    <tr>
@@ -100,6 +96,13 @@
 		    </tr>
 		  </thead>
 		  <tbody>
+		  <?php 
+			if($listar->rowCount() <= 0){
+				echo "<tr>
+						<td colspan=\"2\" align=\"center\"> Nenhuma despesa com vencimento em $atual </td>
+					</tr>";
+			}
+	 		?>
 		    <tr ng-repeat="despesa in despesas track by $index">
 		      <td>{{despesa.infoDespesa}}</td>
 		      <th>R$ {{despesa.reais + "," + despesa.centavos}}</th>
